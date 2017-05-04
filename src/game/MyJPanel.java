@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import object.Ball;
+import object.Paddle;
 
 public class MyJPanel extends JPanel {
 	
@@ -14,12 +15,13 @@ public class MyJPanel extends JPanel {
 	public static int HEIGHT = 500;
 	
 	private ArrayList<Ball> balls;
+	private Paddle paddle;
 	
 
-	public MyJPanel(ArrayList<Ball> balls){
+	public MyJPanel(ArrayList<Ball> balls, Paddle paddle){
 		super();
-		super.setSize(MyJPanel.WIDTH, MyJPanel.HEIGHT);
 		this.balls = balls;
+		this.paddle = paddle;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -28,5 +30,6 @@ public class MyJPanel extends JPanel {
 		g2.clearRect(0, 0, MyJPanel.WIDTH, MyJPanel.HEIGHT);
 		for(Ball b : this.balls)
 			b.draw(g2);
+		this.paddle.draw(g2);
 	}
 }

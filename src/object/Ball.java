@@ -27,10 +27,10 @@ public class Ball extends Item {
 			super.mSpeed[1] = Math.abs(super.mSpeed[1]);
 		}
 		if(super.mPosition[0] + super.width >= super.screenWidth) {
-			super.mSpeed[0] = -super.mSpeed[0];
+			super.mSpeed[0] = -Math.abs(super.mSpeed[0]);
 		}
 		if(super.mPosition[1] >= super.screenHeight){
-			super.mSpeed[1] = -super.mSpeed[1];
+			super.mSpeed[1] = -Math.abs(super.mSpeed[1]);
 		}
 	}
 }

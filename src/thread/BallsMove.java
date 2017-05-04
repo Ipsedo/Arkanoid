@@ -25,9 +25,8 @@ public class BallsMove extends Thread {
 					b.move(new float[]{0f, 0f});
 				}
 			}
-			yield();
 			try {
-				Thread.sleep(5L);
+				Thread.sleep(50L);
 			} catch(InterruptedException ie) {
 				ie.printStackTrace();
 			}

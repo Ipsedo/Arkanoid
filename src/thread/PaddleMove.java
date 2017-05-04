@@ -1,16 +1,15 @@
 package thread;
 
-import java.util.ArrayList;
-
 import object.Ball;
+import object.Paddle;
 
-public class BallsBounding extends Thread {
+public class PaddleMove extends Thread {
 
 	private boolean canceled;
-	private ArrayList<Ball> balls;
+	private Paddle paddle;
 	
-	public BallsBounding(ArrayList<Ball> balls) {
-		this.balls = balls;
+	public PaddleMove(Paddle paddle) {
+		this.paddle = paddle;
 		this.canceled = false;
 	}
 	
@@ -20,11 +19,7 @@ public class BallsBounding extends Thread {
 	
 	public void run() {
 		while(!this.canceled) {
-			for(Ball b : this.balls) {
-				synchronized (b) {
-					b.bounding();
-				}
-			}
+			this.paddle.move(new float[2]);
 			try {
 				Thread.sleep(50L);
 			} catch(InterruptedException ie) {

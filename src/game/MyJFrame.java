@@ -1,17 +1,19 @@
 package game;
 import java.awt.BorderLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import object.Ball;
+import object.Paddle;
 import thread.BallsBounding;
 import thread.BallsMove;
+import thread.PaddleMove;
 
 public class MyJFrame extends JFrame implements Runnable {
 
@@ -21,11 +23,13 @@ public class MyJFrame extends JFrame implements Runnable {
 	private MyJPanel jPanel;
 	
 	private ArrayList<Ball> balls;
+	private Paddle paddle;
 	
 	private boolean closed;
 	
 	private BallsMove ballsMoveThread;
 	private BallsBounding ballsBoundingThread;
+	private PaddleMove paddleMoveThread;
 	
 	public MyJFrame(){
 		super("Arkanoid");
@@ -42,13 +46,31 @@ public class MyJFrame extends JFrame implements Runnable {
                 MyJFrame.this.closed = true;
                 MyJFrame.this.ballsMoveThread.setCancel(true);
                 MyJFrame.this.ballsBoundingThread.setCancel(true);
+                MyJFrame.this.paddleMoveThread.setCancel(true);
                 e.getWindow().dispose();
             }
         });
 		this.closed = false;
 		this.balls = new ArrayList<>();
 		this.balls.add(new Ball(new Random(System.currentTimeMillis()), 0, MyJPanel.WIDTH, 0, MyJPanel.HEIGHT));
-		this.jPanel = new MyJPanel(this.balls);
+		this.paddle = new Paddle();
+		
+		this.jPanel = new MyJPanel(this.balls, this.paddle);
+		this.jPanel.addMouseMotionListener(new MouseMotionListener(){
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				// TODO Auto-generated method stub
+				MyJFrame.this.paddle.setPos(e.getX());
+			}
+			
+		});
 		
 		Thread mainLoop = new Thread(this);
 		mainLoop.start();
@@ -56,6 +78,8 @@ public class MyJFrame extends JFrame implements Runnable {
 		this.ballsMoveThread.start();
 		this.ballsBoundingThread = new BallsBounding(this.balls);
 		this.ballsBoundingThread.start();
+		this.paddleMoveThread = new PaddleMove(this.paddle);
+		this.paddleMoveThread.start();
 		
 		super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
 		super.setVisible(true);
@@ -68,7 +92,7 @@ public class MyJFrame extends JFrame implements Runnable {
 		while(!this.closed) {
 			this.jPanel.repaint();
 			try {
-				Thread.sleep(1000L / 120L);
+				Thread.sleep(20L);
 			} catch (InterruptedException ie) {
 				ie.printStackTrace();
 			}
