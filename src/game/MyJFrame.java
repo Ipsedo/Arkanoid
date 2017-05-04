@@ -1,5 +1,6 @@
 package game;
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
@@ -115,6 +116,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		while(!this.closed) {
+			Toolkit.getDefaultToolkit().sync();
 			this.jPanel.repaint();
 			try {
 				Thread.sleep(20L);
