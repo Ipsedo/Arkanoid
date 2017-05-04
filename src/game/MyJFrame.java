@@ -18,7 +18,7 @@ import thread.BallsMove;
 import thread.PaddleMove;
 
 public class MyJFrame extends JFrame implements Runnable {
-
+//yo
 	public static final int WIDTH = 500;
 	public static final int HEIGHT = 500;
 	
