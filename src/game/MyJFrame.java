@@ -68,7 +68,7 @@ public class MyJFrame extends JFrame implements Runnable {
 		while(!this.closed) {
 			this.jPanel.repaint();
 			try {
-				Thread.sleep(1000L / 240L);
+				Thread.sleep(1000L / 120L);
 			} catch (InterruptedException ie) {
 				ie.printStackTrace();
 			}

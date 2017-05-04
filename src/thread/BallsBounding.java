@@ -25,8 +25,9 @@ public class BallsBounding extends Thread {
 					b.bounding();
 				}
 			}
+			yield();
 			try {
-				Thread.sleep(1000L / 120L);
+				Thread.sleep(10L);
 			} catch(InterruptedException ie) {
 				ie.printStackTrace();
 			}
