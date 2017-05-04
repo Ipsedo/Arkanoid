@@ -12,4 +12,8 @@ public class Paddle extends Item {
 	public void setPos(int x) {
 		super.mPosition[0] = x;
 	}
+	
+	public void ballBouding(Ball b){
+		//if(b.mPosition[0] < this.mPosition[0] + this.width && b.mPosition[0] + this.width)
+	}
 }
