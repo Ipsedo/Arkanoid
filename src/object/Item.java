@@ -2,13 +2,15 @@ package object;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Random;
 
 import game.MyJPanel;
 
 public class Item {
+	
+	public enum CollisionSide { HORIZOBNTAL, VERTICAL }
 
-	//protected final int screenWidth;
-	//protected final int screenHeight;
+	protected Random rand;
 	private MyJPanel jpanel;
 	
 	protected float[] mPosition;
@@ -31,6 +33,7 @@ public class Item {
 		this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width, this.height);
 		this.jpanel = jpanel;
 		this.color = Color.RED;
+		this.rand = new Random(System.currentTimeMillis());
 	}
 	
 	public void updateScreenSize(int width, int height) {
@@ -40,6 +43,10 @@ public class Item {
 	
 	public boolean intersect(Item other) {
 		return this.rect.intersects(other.rect);
+	}
+	
+	public CollisionSide detectCollisionSide(Item other){
+		return null;
 	}
 	
 	public void move(float[] acceleration){
