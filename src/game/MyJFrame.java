@@ -5,7 +5,9 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import object.Ball;
 import thread.BallsBounding;
@@ -30,6 +32,7 @@ public class MyJFrame extends JFrame implements Runnable {
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
 		super.setLocation(200, 200);
+		super.setResizable(false);
 		super.getContentPane().setLayout(new BorderLayout());
 		super.addWindowListener(new WindowAdapter()
         {
@@ -65,7 +68,7 @@ public class MyJFrame extends JFrame implements Runnable {
 		while(!this.closed) {
 			this.jPanel.repaint();
 			try {
-				Thread.sleep(1000L / 60L);
+				Thread.sleep(1000L / 240L);
 			} catch (InterruptedException ie) {
 				ie.printStackTrace();
 			}

@@ -19,20 +19,16 @@ public class Ball extends Item {
 	
 	public void bounding(){
 		if(super.mPosition[0] <= 0) {
-			super.mSpeed[0] = -super.mSpeed[0];
-			super.move(super.mAcceleration);
+			super.mSpeed[0] = Math.abs(super.mSpeed[0]);
 		}
 		if(super.mPosition[1] <= 0) {
-			super.mSpeed[1] = -super.mSpeed[1];
-			super.move(super.mAcceleration);
+			super.mSpeed[1] = Math.abs(super.mSpeed[1]);
 		}
 		if(super.mPosition[0] + super.width >= super.screenWidth) {
 			super.mSpeed[0] = -super.mSpeed[0];
-			super.move(super.mAcceleration);
 		}
-		if(super.mPosition[1] + super.height >= super.screenHeight){
+		if(super.mPosition[1] >= super.screenHeight){
 			super.mSpeed[1] = -super.mSpeed[1];
-			super.move(super.mAcceleration);
 		}
 	}
 }
