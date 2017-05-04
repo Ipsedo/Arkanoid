@@ -15,6 +15,7 @@ import object.Ball;
 import object.Paddle;
 import thread.BallsBounding;
 import thread.BallsMove;
+import thread.PaddleBounding;
 import thread.PaddleMove;
 
 public class MyJFrame extends JFrame implements Runnable {
@@ -32,6 +33,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	private BallsMove ballsMoveThread;
 	private BallsBounding ballsBoundingThread;
 	private PaddleMove paddleMoveThread;
+	private PaddleBounding paddleBoundingThread;
 	
 	public MyJFrame(){
 		super("Arkanoid");
@@ -48,6 +50,7 @@ public class MyJFrame extends JFrame implements Runnable {
                 MyJFrame.this.ballsMoveThread.setCancel(true);
                 MyJFrame.this.ballsBoundingThread.setCancel(true);
                 MyJFrame.this.paddleMoveThread.setCancel(true);
+                MyJFrame.this.paddleBoundingThread.setCancel(true);
                 e.getWindow().dispose();
             }
         });
@@ -89,6 +92,8 @@ public class MyJFrame extends JFrame implements Runnable {
 		this.ballsBoundingThread.start();
 		this.paddleMoveThread = new PaddleMove(this.paddle);
 		this.paddleMoveThread.start();
+		this.paddleBoundingThread = new PaddleBounding(this.balls, this.paddle);
+		this.paddleBoundingThread.start();
 		
 		this.jPanel.init(this.balls, this.paddle);
 		

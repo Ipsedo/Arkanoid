@@ -8,8 +8,8 @@ import game.MyJPanel;
 
 public class Item {
 
-	protected int screenWidth;
-	protected int screenHeight;
+	protected final int screenWidth;
+	protected final int screenHeight;
 	
 	protected float[] mPosition;
 	protected float[] mSpeed;

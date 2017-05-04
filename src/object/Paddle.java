@@ -14,6 +14,8 @@ public class Paddle extends Item {
 	}
 	
 	public void ballBouding(Ball b){
-		//if(b.mPosition[0] < this.mPosition[0] + this.width && b.mPosition[0] + this.width)
+		if(b.mPosition[0] < this.mPosition[0] + this.width && b.mPosition[0] + b.width > this.mPosition[0] && b.mPosition[1] > this.mPosition[1] + this.height && b.mPosition[1] + b.height > this.mPosition[1]) {
+			b.mPosition[1] = -Math.abs(b.mPosition[1]);
+		}
 	}
 }
