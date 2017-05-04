@@ -8,7 +8,7 @@ import game.MyJPanel;
 
 public class Item {
 	
-	public enum CollisionSide { HORIZOBNTAL, VERTICAL }
+	public enum CollisionSide { HORIZONTAL, VERTICAL }
 
 	protected Random rand;
 	private MyJPanel jpanel;

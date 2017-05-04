@@ -9,7 +9,7 @@ public class Ball extends Item {
 
 	public Ball(Random rand, MyJPanel jpanel) {
 		super(new float[]{jpanel.getWidth() / 2, jpanel.getHeight() / 2},
-						Vector.normalize2f(new float[]{rand.nextFloat(), rand.nextFloat()}),
+						Ball.initSpeed(),
 						new float[]{0f, 0f},
 						10,
 						10, jpanel);
@@ -31,6 +31,24 @@ public class Ball extends Item {
 		}
 		if(super.mPosition[1] >= super.getScreenHeight()){
 			super.mSpeed[1] = -Math.abs(super.mSpeed[1]);
+		}
+	}
+	
+	public static float[] initSpeed(){
+		Random rand = new Random(System.currentTimeMillis());
+		int directionId = rand.nextInt(4);
+		if(directionId == 0) {
+			double angle = rand.nextDouble() * Math.PI / 6 + Math.PI / 6;
+			return new float[]{(float) Math.cos(angle), (float) Math.sin(angle)};
+		} else if(directionId == 1) {
+			double angle = rand.nextDouble() * Math.PI / 6 + Math.PI * 2d / 3d;
+			return new float[]{(float) Math.cos(angle), (float) Math.sin(angle)};
+		} else if(directionId == 2) {
+			double angle = -rand.nextDouble() * Math.PI / 6 - Math.PI *2d / 3d;
+			return new float[]{(float) Math.cos(angle), (float) Math.sin(angle)};
+		} else {
+			double angle = -rand.nextDouble() * Math.PI / 6 - Math.PI / 6;
+			return new float[]{(float) Math.cos(angle), (float) Math.sin(angle)};
 		}
 	}
 }
