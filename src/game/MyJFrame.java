@@ -61,7 +61,14 @@ public class MyJFrame extends JFrame implements Runnable {
 		super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
 		
 		this.balls = new ArrayList<>();
-		this.balls.add(new Ball(new Random(System.currentTimeMillis()), this.jPanel));
+		Random rand = new Random(System.currentTimeMillis());
+		this.balls.add(new Ball(rand, this.jPanel));
+		this.balls.add(new Ball(rand, this.jPanel));
+		this.balls.add(new Ball(rand, this.jPanel));
+		this.balls.add(new Ball(rand, this.jPanel));
+		this.balls.add(new Ball(rand, this.jPanel));
+		this.balls.add(new Ball(rand, this.jPanel));
+
 		this.paddle = new Paddle(this.jPanel);
 		
 		this.jPanel.addMouseMotionListener(new MouseMotionListener(){
