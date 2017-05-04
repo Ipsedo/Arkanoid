@@ -55,6 +55,6 @@ public class Item {
 	
 	public void draw(Graphics2D g2){
 		g2.setColor(this.color);
-		g2.draw(this.rect);
+		g2.fillRect((int) this.mPosition[0], (int) this.mPosition[1], this.width, this.height);
 	}
 }
