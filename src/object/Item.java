@@ -22,8 +22,8 @@ public class Item {
 		this.width = width;
 		this.height = height;
 		this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width, this.height);
-		this.screenWidth = MyJPanel.WIDTH;
-		this.screenHeight = MyJPanel.HEIGHT;
+		this.screenWidth = 400;
+		this.screenHeight = 500;
 	}
 	
 	public void updateScreenSize(int width, int height) {

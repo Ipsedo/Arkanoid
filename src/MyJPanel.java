@@ -11,6 +11,7 @@ public class MyJPanel extends JPanel {
 
 	public MyJPanel(){
 		super();
+		super.setSize(MyJPanel.WIDTH, MyJPanel.HEIGHT);
 	}
 	
 	public void paintComponent(Graphics g) {
