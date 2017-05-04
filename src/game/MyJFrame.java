@@ -1,4 +1,6 @@
+package game;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -12,7 +14,7 @@ public class MyJFrame extends JFrame {
 	
 	private MyJPanel jPanel;
 	
-	private Ball ball;
+	private ArrayList<Ball> balls;
 	
 	public MyJFrame(){
 		super("Arkanoid");
@@ -21,8 +23,10 @@ public class MyJFrame extends JFrame {
 		super.setLocation(200, 200);
 		super.getContentPane().setLayout(new BorderLayout());
 		
-		this.jPanel = new MyJPanel();
-		this.ball = new Ball(new Random(System.currentTimeMillis()), 0, this.jPanel.getWidth(), 0, this.jPanel.getHeight());
+		this.balls = new ArrayList<>();
+		this.balls.add(new Ball(new Random(System.currentTimeMillis()), 0, MyJPanel.WIDTH, 0, MyJPanel.HEIGHT));
+		this.jPanel = new MyJPanel(this.balls);
+		this.jPanel.repaint();
 		
 		super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
 		super.setVisible(true);

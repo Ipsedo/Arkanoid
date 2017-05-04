@@ -1,5 +1,9 @@
 package object;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+
+import game.MyJPanel;
 
 public class Item {
 
@@ -15,6 +19,8 @@ public class Item {
 	
 	private Rectangle2D rect;
 	
+	protected Color color;
+	
 	public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height) {
 		this.mPosition = mPosition.clone();
 		this.mSpeed = mSpeed.clone();
@@ -22,8 +28,9 @@ public class Item {
 		this.width = width;
 		this.height = height;
 		this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width, this.height);
-		this.screenWidth = 400;
-		this.screenHeight = 500;
+		this.screenWidth = MyJPanel.WIDTH;
+		this.screenHeight = MyJPanel.HEIGHT;
+		this.color = Color.RED;
 	}
 	
 	public void updateScreenSize(int width, int height) {
@@ -44,5 +51,10 @@ public class Item {
 		this.mPosition[1] += this.mSpeed[1];
 		
 		this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width, this.height);
+	}
+	
+	public void draw(Graphics2D g2){
+		g2.setColor(this.color);
+		g2.draw(this.rect);
 	}
 }
