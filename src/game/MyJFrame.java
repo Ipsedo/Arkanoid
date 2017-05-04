@@ -71,13 +71,17 @@ public class MyJFrame extends JFrame implements Runnable {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				// TODO Auto-generated method stub
-				MyJFrame.this.paddle.setPos(e.getX());
+				synchronized(MyJFrame.this.paddle) {
+					MyJFrame.this.paddle.setPos(e.getX());
+				}
 			}
 
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				// TODO Auto-generated method stub
-				MyJFrame.this.paddle.setPos(e.getX());
+				synchronized(MyJFrame.this.paddle) {
+					MyJFrame.this.paddle.setPos(e.getX());
+				}
 			}
 			
 		});

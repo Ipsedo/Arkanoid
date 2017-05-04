@@ -19,9 +19,11 @@ public class PaddleMove extends Thread {
 	
 	public void run() {
 		while(!this.canceled) {
-			this.paddle.move(new float[2]);
+			synchronized(this.paddle) {
+				this.paddle.move(new float[2]);
+			}
 			try {
-				Thread.sleep(50L);
+				Thread.sleep(10L);
 			} catch(InterruptedException ie) {
 				ie.printStackTrace();
 			}

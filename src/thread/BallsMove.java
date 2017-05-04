@@ -26,7 +26,7 @@ public class BallsMove extends Thread {
 				}
 			}
 			try {
-				Thread.sleep(50L);
+				Thread.sleep(10L);
 			} catch(InterruptedException ie) {
 				ie.printStackTrace();
 			}
