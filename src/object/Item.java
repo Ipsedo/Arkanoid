@@ -3,23 +3,32 @@ import java.awt.geom.Rectangle2D;
 
 public class Item {
 
+	protected int screenWidth;
+	protected int screenHeight;
 	
-	private float[] mPosition;
-	private float[] mSpeed;
-	private float[] mAcceleration;
+	protected float[] mPosition;
+	protected float[] mSpeed;
+	protected float[] mAcceleration;
 	
-	private int width;
-	private int height;
+	protected int width;
+	protected int height;
 	
 	private Rectangle2D rect;
 	
-	public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height) {
+	public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height, int screenWidth, int screenHeight) {
 		this.mPosition = mPosition.clone();
 		this.mSpeed = mSpeed.clone();
 		this.mAcceleration = mAcceleration.clone();
 		this.width = width;
 		this.height = height;
 		this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width, this.height);
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
+	}
+	
+	public synchronized void updateScreenSize(int width, int height) {
+		this.width = width;
+		this.height = height;
 	}
 	
 	public boolean intersect(Item other) {
