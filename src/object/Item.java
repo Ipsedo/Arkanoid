@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
+import game.MyJFrame;
 import game.MyJPanel;
 
 public class Item {
@@ -21,15 +22,15 @@ public class Item {
 	
 	protected Color color;
 	
-	public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height) {
+	public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height, int screenW, int screenH) {
 		this.mPosition = mPosition.clone();
 		this.mSpeed = mSpeed.clone();
 		this.mAcceleration = mAcceleration.clone();
 		this.width = width;
 		this.height = height;
 		this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width, this.height);
-		this.screenWidth = MyJPanel.WIDTH;
-		this.screenHeight = MyJPanel.HEIGHT;
+		this.screenWidth = screenW;
+		this.screenHeight = screenH;
 		this.color = Color.RED;
 	}
 	

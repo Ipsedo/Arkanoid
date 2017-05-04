@@ -7,7 +7,9 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import object.Ball;
 import object.Paddle;
@@ -34,7 +36,6 @@ public class MyJFrame extends JFrame implements Runnable {
 	public MyJFrame(){
 		super("Arkanoid");
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
 		super.setLocation(200, 200);
 		super.setResizable(false);
 		super.getContentPane().setLayout(new BorderLayout());
@@ -51,11 +52,18 @@ public class MyJFrame extends JFrame implements Runnable {
             }
         });
 		this.closed = false;
-		this.balls = new ArrayList<>();
-		this.balls.add(new Ball(new Random(System.currentTimeMillis()), 0, MyJPanel.WIDTH, 0, MyJPanel.HEIGHT));
-		this.paddle = new Paddle();
 		
-		this.jPanel = new MyJPanel(this.balls, this.paddle);
+		this.jPanel = new MyJPanel();
+		super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
+		
+		super.pack();
+		super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
+		
+		this.balls = new ArrayList<>();
+		this.balls.add(new Ball(new Random(System.currentTimeMillis()), 0, this.jPanel.getWidth(), 0, this.jPanel.getHeight(), this.jPanel.getWidth(), this.jPanel.getHeight()));
+		this.paddle = new Paddle(this.jPanel.getWidth(), this.jPanel.getHeight());
+		
+		
 		this.jPanel.addMouseMotionListener(new MouseMotionListener(){
 
 			@Override
@@ -74,6 +82,7 @@ public class MyJFrame extends JFrame implements Runnable {
 		
 		Thread mainLoop = new Thread(this);
 		mainLoop.start();
+		
 		this.ballsMoveThread = new BallsMove(this.balls);
 		this.ballsMoveThread.start();
 		this.ballsBoundingThread = new BallsBounding(this.balls);
@@ -81,7 +90,11 @@ public class MyJFrame extends JFrame implements Runnable {
 		this.paddleMoveThread = new PaddleMove(this.paddle);
 		this.paddleMoveThread.start();
 		
-		super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
+		this.jPanel.init(this.balls, this.paddle);
+		
+		JPanel tmp = new JPanel();
+		tmp.add(new JButton("test"));
+		super.getContentPane().add(tmp, BorderLayout.EAST);
 		super.setVisible(true);
 	}
 	

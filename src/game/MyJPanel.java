@@ -11,15 +11,15 @@ import object.Paddle;
 
 public class MyJPanel extends JPanel {
 	
-	public static int WIDTH = 400;
-	public static int HEIGHT = 500;
-	
 	private ArrayList<Ball> balls;
 	private Paddle paddle;
 	
 
-	public MyJPanel(ArrayList<Ball> balls, Paddle paddle){
+	public MyJPanel(){
 		super();
+	}
+	
+	public void init(ArrayList<Ball> balls, Paddle paddle) {
 		this.balls = balls;
 		this.paddle = paddle;
 	}
@@ -27,7 +27,7 @@ public class MyJPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setBackground(Color.GRAY);
-		g2.clearRect(0, 0, MyJPanel.WIDTH, MyJPanel.HEIGHT);
+		g2.clearRect(0, 0, super.getWidth(), super.getHeight());
 		for(Ball b : this.balls)
 			b.draw(g2);
 		this.paddle.draw(g2);
