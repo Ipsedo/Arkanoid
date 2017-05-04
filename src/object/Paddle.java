@@ -11,7 +11,7 @@ public class Paddle extends Item {
 	 * @param jpanel
 	 */
 	public Paddle(MyJPanel jpanel) {
-		super(new float[]{jpanel.getWidth() / 2, jpanel.getHeight() - 50}, new float[]{0f, 0f}, new float[]{0f, 0f}, 50, 20, jpanel);
+		super(new float[]{jpanel.getWidth() / 2, jpanel.getHeight() - 30}, new float[]{0f, 0f}, new float[]{0f, 0f}, 50, 20, jpanel);
 	}
 	
 	/**
@@ -20,6 +20,7 @@ public class Paddle extends Item {
 	 */
 	public void setPos(int x) {
 		super.mPosition[0] = x - super.width / 2;
+		super.mPosition[1] = super.getScreenHeight() - 30;
 	}
 	
 	/**
@@ -30,6 +31,7 @@ public class Paddle extends Item {
 		if(super.intersect(b)) {
 				b.mSpeed[1] = -Math.abs(b.mSpeed[1]);
 				this.color = new Color(super.rand.nextInt(255), super.rand.nextInt(255), super.rand.nextInt(255));
+				b.color = new Color(super.rand.nextInt(255), super.rand.nextInt(255), super.rand.nextInt(255));
 		}
 	}
 }

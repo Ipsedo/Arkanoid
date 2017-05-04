@@ -7,9 +7,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import object.Ball;
 import object.Paddle;
@@ -39,7 +37,7 @@ public class MyJFrame extends JFrame implements Runnable {
 		super("Arkanoid");
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.setLocation(200, 200);
-		super.setResizable(false);
+		//super.setResizable(false);
 		super.getContentPane().setLayout(new BorderLayout());
 		super.addWindowListener(new WindowAdapter()
         {
@@ -100,9 +98,8 @@ public class MyJFrame extends JFrame implements Runnable {
 		
 		this.jPanel.init(this.balls, this.paddle);
 		
-		JPanel tmp = new JPanel();
-		tmp.add(new JButton("test"));
-		super.getContentPane().add(tmp, BorderLayout.EAST);
+		super.getContentPane().add(new GameInfoJPanel(), BorderLayout.EAST);
+		
 		super.setVisible(true);
 	}
 	
