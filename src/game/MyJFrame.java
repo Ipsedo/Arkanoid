@@ -63,16 +63,15 @@ public class MyJFrame extends JFrame implements Runnable {
 		super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
 		
 		this.balls = new ArrayList<>();
-		this.balls.add(new Ball(new Random(System.currentTimeMillis()), 0, this.jPanel.getWidth(), 0, this.jPanel.getHeight(), this.jPanel.getWidth(), this.jPanel.getHeight()));
-		this.paddle = new Paddle(this.jPanel.getWidth(), this.jPanel.getHeight());
-		
+		this.balls.add(new Ball(new Random(System.currentTimeMillis()), this.jPanel));
+		this.paddle = new Paddle(this.jPanel);
 		
 		this.jPanel.addMouseMotionListener(new MouseMotionListener(){
 
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+				MyJFrame.this.paddle.setPos(e.getX());
 			}
 
 			@Override

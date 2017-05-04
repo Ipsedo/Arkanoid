@@ -3,13 +3,13 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-import game.MyJFrame;
 import game.MyJPanel;
 
 public class Item {
 
-	protected final int screenWidth;
-	protected final int screenHeight;
+	//protected final int screenWidth;
+	//protected final int screenHeight;
+	private MyJPanel jpanel;
 	
 	protected float[] mPosition;
 	protected float[] mSpeed;
@@ -22,15 +22,14 @@ public class Item {
 	
 	protected Color color;
 	
-	public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height, int screenW, int screenH) {
+	public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height, MyJPanel jpanel) {
 		this.mPosition = mPosition.clone();
 		this.mSpeed = mSpeed.clone();
 		this.mAcceleration = mAcceleration.clone();
 		this.width = width;
 		this.height = height;
 		this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width, this.height);
-		this.screenWidth = screenW;
-		this.screenHeight = screenH;
+		this.jpanel = jpanel;
 		this.color = Color.RED;
 	}
 	
@@ -52,6 +51,14 @@ public class Item {
 		this.mPosition[1] += this.mSpeed[1];
 		
 		this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width, this.height);
+	}
+	
+	public int getScreenWidth(){
+		return this.jpanel.getWidth();
+	}
+	
+	public int getScreenHeight(){
+		return this.jpanel.getHeight();
 	}
 	
 	public void draw(Graphics2D g2){

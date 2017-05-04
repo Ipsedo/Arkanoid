@@ -1,10 +1,10 @@
 package object;
-import java.awt.geom.Rectangle2D;
+import game.MyJPanel;
 
 public class Brick extends Item{
 	
-	public Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height, int screenW, int screenH) {
-		super(mPosition, mSpeed, mAcceleration, width, height, screenW, screenH);
+	public Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height, MyJPanel jpanel) {
+		super(mPosition, mSpeed, mAcceleration, width, height, jpanel);
 	}
 
 }
