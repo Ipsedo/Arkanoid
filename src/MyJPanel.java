@@ -4,6 +4,10 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 public class MyJPanel extends JPanel {
+	
+	public static final int WIDTH = 400;
+	public static final int HEIGHT = 500;
+	
 
 	public MyJPanel(){
 		super();

@@ -15,18 +15,18 @@ public class Item {
 	
 	private Rectangle2D rect;
 	
-	public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height, int screenWidth, int screenHeight) {
+	public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height) {
 		this.mPosition = mPosition.clone();
 		this.mSpeed = mSpeed.clone();
 		this.mAcceleration = mAcceleration.clone();
 		this.width = width;
 		this.height = height;
 		this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width, this.height);
-		this.screenWidth = screenWidth;
-		this.screenHeight = screenHeight;
+		this.screenWidth = MyJPanel.WIDTH;
+		this.screenHeight = MyJPanel.HEIGHT;
 	}
 	
-	public synchronized void updateScreenSize(int width, int height) {
+	public void updateScreenSize(int width, int height) {
 		this.width = width;
 		this.height = height;
 	}
