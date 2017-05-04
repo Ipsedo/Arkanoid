@@ -24,6 +24,7 @@ public class MyJFrame extends JFrame {
 		this.jPanel = new MyJPanel();
 		this.ball = new Ball(new Random(System.currentTimeMillis()), 0, this.jPanel.getWidth(), 0, this.jPanel.getHeight());
 		
+		super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
 		super.setVisible(true);
 	}
 	
