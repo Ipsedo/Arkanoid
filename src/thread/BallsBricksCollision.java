@@ -36,7 +36,7 @@ public class BallsBricksCollision extends CancelableThread {
 				}
 			}
 			try {
-				Thread.sleep(10);
+				Thread.sleep(10L);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
