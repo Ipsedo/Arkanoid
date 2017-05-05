@@ -7,7 +7,7 @@ import game.MyJPanel;
 
 public class Ball extends Item {
 	
-	private static float maxSpeed = 0.005f;
+	private static float maxSpeed = 0.003f;
 
 	public Ball(Random rand, MyJPanel jpanel) {
 		super(new float[]{rand.nextFloat(), rand.nextFloat() / 3f},
@@ -18,9 +18,9 @@ public class Ball extends Item {
 		super.color = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
 	}
 	
-	/*public Ball(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel) {
-		super(mPosition.clone(), mSpeed.clone(), mAcceleration.clone(), 10, 10, jpanel);
-	}*/
+	public Ball(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel) {
+		super(mPosition.clone(), mSpeed.clone(), mAcceleration.clone(), 0.01f, 0.01f, jpanel);
+	}
 	
 	public void bounding(){
 		if(super.mPosition[0] <= 0) {

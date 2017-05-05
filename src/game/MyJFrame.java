@@ -53,7 +53,6 @@ public class MyJFrame extends JFrame implements Runnable {
             @Override
             public void windowClosing(WindowEvent e)
             {
-                MyJFrame.this.closed = true;
                 MyJFrame.this.killThreads();
                 e.getWindow().dispose();
             }
@@ -71,7 +70,7 @@ public class MyJFrame extends JFrame implements Runnable {
 			this.balls.add(new Ball(rand, this.jPanel));
 		}
 		
-		this.bricks = BrickInitializator.initBrickRandom(this.jPanel, 50);
+		this.bricks = BrickInitializator.initBrickRandom(this.jPanel, 5);
 
 		this.paddle = new Paddle(this.jPanel);
 		
@@ -124,21 +123,22 @@ public class MyJFrame extends JFrame implements Runnable {
 	
 	public void killThreads() {
 		this.closed = true;
+		this.ballsBricksCollisionThread.setCancel(true);
 		this.ballsMoveThread.setCancel(true);
 		this.ballsBoundingThread.setCancel(true);
 		this.paddleMoveThread.setCancel(true);
 		this.paddleBoundingThread.setCancel(true);
 		this.ballsCollisionThread.setCancel(true);
-		this.ballsBricksCollisionThread.setCancel(true);
+		
 		
 		try {
-			this.mainLoop.join();
-			this.ballsMoveThread.join();
-			this.ballsBoundingThread.join();
-			this.paddleMoveThread.join();
-			this.paddleBoundingThread.join();
-			this.ballsCollisionThread.join();
 			this.ballsBricksCollisionThread.join();
+			this.mainLoop.join();
+			this.paddleMoveThread.join();
+			this.ballsCollisionThread.join();
+			this.ballsBoundingThread.join();
+			this.paddleBoundingThread.join();
+			this.ballsMoveThread.join();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

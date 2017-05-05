@@ -17,18 +17,29 @@ public class BallsBricksCollision extends CancelableThread {
 	}
 	
 	public void run() {
+		
 		while(!this.canceled) {
-			for(int i = 0; i < this.balls.size(); i++) {
-				for(int j = 0; j < this.bricks.size(); j++) {
-					synchronized (this.balls.get(i)) {
-						this.balls.get(i).collide(this.bricks.get(j));
-					}
-					synchronized (this.bricks) {
-						if(this.bricks.get(j).intersect(this.balls.get(i))) {
-							this.bricks.remove(this.bricks.get(j));
+			for(int i = this.bricks.size() - 1; i >= 0; i--) {
+				Brick br = this.bricks.get(i);
+				synchronized (br) {
+					for(int j = 0; j < this.balls.size(); j++) {
+						Ball ba = this.balls.get(j);
+						synchronized (ba) {
+							ba.collide(br);
+							if(br.intersect(ba)) {
+								synchronized(this.bricks) {
+									this.bricks.remove(br);
+								}
+							}
 						}
 					}
 				}
+			}
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}

@@ -43,10 +43,10 @@ public class MyJPanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setBackground(Color.GRAY);
 		g2.clearRect(0, 0, super.getWidth(), super.getHeight());
-		for(Ball b : this.balls)
-			b.draw(g2);
-		for(Brick b : this.bricks)
-			b.draw(g2);
+		for(int i = 0; i < this.balls.size(); i++)
+			this.balls.get(i).draw(g2);
+		for(int i = 0; i < this.bricks.size(); i++)
+			this.bricks.get(i).draw(g2);
 		this.paddle.draw(g2);
 	}
 }
