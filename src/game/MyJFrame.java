@@ -33,6 +33,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	private ArrayList<Brick> bricks;
 	private Paddle paddle;
 	
+	private Thread mainLoop;
 	private boolean closed;
 	
 	private BallsMove ballsMoveThread;
@@ -53,12 +54,7 @@ public class MyJFrame extends JFrame implements Runnable {
             public void windowClosing(WindowEvent e)
             {
                 MyJFrame.this.closed = true;
-                MyJFrame.this.ballsMoveThread.setCancel(true);
-                MyJFrame.this.ballsBoundingThread.setCancel(true);
-                MyJFrame.this.paddleMoveThread.setCancel(true);
-                MyJFrame.this.paddleBoundingThread.setCancel(true);
-                MyJFrame.this.ballsCollisionThread.setCancel(true);
-                MyJFrame.this.ballsBricksCollisionThread.setCancel(true);
+                MyJFrame.this.killThreads();
                 e.getWindow().dispose();
             }
         });
@@ -100,9 +96,6 @@ public class MyJFrame extends JFrame implements Runnable {
 			
 		});
 		
-		Thread mainLoop = new Thread(this);
-		mainLoop.start();
-		
 		this.initThreads();
 		
 		this.jPanel.init(this.balls, this.bricks, this.paddle);
@@ -113,6 +106,9 @@ public class MyJFrame extends JFrame implements Runnable {
 	}
 	
 	private void initThreads(){
+		this.closed = false;
+		this.mainLoop = new Thread(this);
+		this.mainLoop.start();
 		this.ballsMoveThread = new BallsMove(this.balls);
 		this.ballsMoveThread.start();
 		this.ballsBoundingThread = new BallsBounding(this.balls);
@@ -128,6 +124,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	}
 	
 	public void killThreads() {
+		this.closed = true;
 		this.ballsMoveThread.setCancel(true);
 		this.ballsBoundingThread.setCancel(true);
 		this.paddleMoveThread.setCancel(true);
@@ -136,6 +133,7 @@ public class MyJFrame extends JFrame implements Runnable {
 		this.ballsBricksCollisionThread.setCancel(true);
 		
 		try {
+			this.mainLoop.join();
 			this.ballsMoveThread.join();
 			this.ballsBoundingThread.join();
 			this.paddleMoveThread.join();
