@@ -64,13 +64,9 @@ public class MyJFrame extends JFrame implements Runnable {
 		super.pack();
 		super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
 		
-		this.balls = new ArrayList<>();
-		Random rand = new Random(System.currentTimeMillis());
-		for(int i = 0; i < 20; i++) {
-			this.balls.add(new Ball(rand, this.jPanel));
-		}
-		
-		this.bricks = BrickInitializator.initBrickRandom(this.jPanel, 5);
+		// On appelle la création de niveau depuis la classe LevelMaker
+		this.balls = LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()), this.jPanel);
+		this.bricks = LevelMaker.getBricksFromLevelID(0, this.jPanel);
 
 		this.paddle = new Paddle(this.jPanel);
 		

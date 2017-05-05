@@ -1,6 +1,7 @@
 package object;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.util.Random;
 
 import game.MyJPanel;
@@ -52,5 +53,10 @@ public class Ball extends Item {
 			double angle = -rand.nextDouble() * Math.PI / 6 - Math.PI / 6;
 			return new float[]{(float) Math.cos(angle) * Ball.maxSpeed, (float) Math.sin(angle) * Ball.maxSpeed};
 		}
+	}
+	
+	public void draw(Graphics2D g2) {
+		g2.setColor(super.color);
+		g2.fillOval((int) (this.mPosition[0] * (float) super.getScreenWidth()), (int) (this.mPosition[1] * (float) super.getScreenHeight()), (int) (this.width * (float) super.getScreenWidth()), (int) (this.height * (float) super.getScreenHeight()));
 	}
 }
