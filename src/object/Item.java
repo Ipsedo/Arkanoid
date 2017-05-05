@@ -17,14 +17,14 @@ public class Item {
 	protected float[] mSpeed;
 	protected float[] mAcceleration;
 	
-	protected int width;
-	protected int height;
+	protected float width;
+	protected float height;
 	
 	protected Rectangle2D rect;
 	
 	protected Color color;
 	
-	public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, int width, int height, MyJPanel jpanel) {
+	public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, float width, float height, MyJPanel jpanel) {
 		this.mPosition = mPosition.clone();
 		this.mSpeed = mSpeed.clone();
 		this.mAcceleration = mAcceleration.clone();
@@ -36,20 +36,15 @@ public class Item {
 		this.rand = new Random(System.currentTimeMillis());
 	}
 	
-	public void updateScreenSize(int width, int height) {
-		this.width = width;
-		this.height = height;
-	}
-	
 	public boolean intersect(Item other) {
 		return this.rect.intersects(other.rect);
 	}
 	
 	protected CollisionSide detectCollisionSide(Item other) {
-		float dx = (this.mPosition[0] + this.width / 2) - (other.mPosition[0] + other.width / 2);
-	    float dy = (this.mPosition[1] + this.height / 2) - (other.mPosition[1] + other.height / 2);
-	    float avWidth = (this.width + other.width) / 2;
-	    float avHeight = (this.height + other.height) / 2;
+		float dx = (this.mPosition[0] + this.width / 2f) - (other.mPosition[0] + other.width / 2f);
+	    float dy = (this.mPosition[1] + this.height / 2f) - (other.mPosition[1] + other.height / 2f);
+	    float avWidth = (this.width + other.width) / 2f;
+	    float avHeight = (this.height + other.height) / 2f;
 	    float crossWidth = avWidth * dy;
 	    float crossHeight = avHeight * dx;
 	    CollisionSide collision = CollisionSide.NONE;
@@ -108,6 +103,6 @@ public class Item {
 	
 	public void draw(Graphics2D g2){
 		g2.setColor(this.color);
-		g2.fillRect((int) this.mPosition[0], (int) this.mPosition[1], this.width, this.height);
+		g2.fillRect((int) (this.mPosition[0] * (float) this.jpanel.getWidth()), (int) (this.mPosition[1] * (float) this.jpanel.getHeight()), (int) (this.width * (float) this.jpanel.getWidth()), (int) (this.height * (float) this.jpanel.getHeight()));
 	}
 }

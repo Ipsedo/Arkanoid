@@ -12,7 +12,7 @@ public class Paddle extends Item {
 	 * @param jpanel
 	 */
 	public Paddle(MyJPanel jpanel) {
-		super(new float[]{jpanel.getWidth() / 2, jpanel.getHeight() - 30}, new float[]{0f, 0f}, new float[]{0f, 0f}, 50, 20, jpanel);
+		super(new float[]{0.5f , 0.9f}, new float[]{0f, 0f}, new float[]{0f, 0f}, 0.05f, 0.02f, jpanel);
 	}
 	
 	/**
@@ -20,8 +20,8 @@ public class Paddle extends Item {
 	 * @param x Nouvelle position en largeur de la raquette
 	 */
 	public void setPos(int x) {
-		super.mPosition[0] = x - super.width / 2;
-		super.mPosition[1] = super.getScreenHeight() - 30;
+		super.mPosition[0] = (float) x / super.getScreenWidth() - super.width / 2f;
+		super.mPosition[1] = 0.9f;
 	}
 	
 	/**

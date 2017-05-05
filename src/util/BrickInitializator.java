@@ -17,7 +17,7 @@ public class BrickInitializator {
 		ArrayList<Brick> res = new ArrayList<>();
 		
 		for(int i = 0; i < nb; i++){
-			float[] pos = new float[]{rand.nextFloat() * jpanel.getWidth(), rand.nextFloat() * jpanel.getHeight() / 2};
+			float[] pos = new float[]{rand.nextFloat(), rand.nextFloat() * 0.5f};
 			float[] speed = new float[2];
 			float[] acc = new float[2];
 			res.add(new Brick(pos, speed, acc, jpanel));
