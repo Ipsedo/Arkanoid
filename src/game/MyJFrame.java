@@ -45,7 +45,6 @@ public class MyJFrame extends JFrame implements Runnable {
 		super("Arkanoid");
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.setLocation(200, 200);
-		//super.setResizable(false);
 		super.getContentPane().setLayout(new BorderLayout());
 		super.addWindowListener(new WindowAdapter()
         {
