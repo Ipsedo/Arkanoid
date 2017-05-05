@@ -21,14 +21,14 @@ public class MyJPanel extends JPanel {
 
 	public MyJPanel(){
 		super();
-		this.isDead = false;
-		this.isWinner = false;
 	}
 	
 	public void init(ArrayList<Ball> balls, ArrayList<Brick> bricks, Paddle paddle) {
 		this.balls = balls;
 		this.bricks = bricks;
 		this.paddle = paddle;
+		this.isDead = false;
+		this.isWinner = false;
 	}
 	
 	public void setDead(boolean isDead){
