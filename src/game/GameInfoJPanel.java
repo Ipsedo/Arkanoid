@@ -50,48 +50,17 @@ public class GameInfoJPanel extends JPanel {
 			
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
-		pause.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				GameInfoJPanel.this.jframe.killThreads();
-			}			
-		});	
-		
-		pause.addKeyListener(new KeyListener() {
+		this.jframe.addKeyListener(new KeyListener() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				// TODO Auto-generated method stub
 				if (arg0.getKeyChar() == 'p') {
 					GameInfoJPanel.this.jframe.killThreads();
 				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
-				
-		resume.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				GameInfoJPanel.this.jframe.resumeGame();
-			}		
-		});	
-		
-		resume.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				if (arg0.getKeyChar() == 'o') {
+				else if (arg0.getKeyChar() == KeyEvent.VK_R) {
+					GameInfoJPanel.this.jframe.resetGame();
+				}
+				else if (arg0.getKeyChar() == 'o') {
 					GameInfoJPanel.this.jframe.resumeGame();
 				}
 			}
@@ -110,35 +79,26 @@ public class GameInfoJPanel extends JPanel {
 			
 		});
 		
+		pause.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				GameInfoJPanel.this.jframe.killThreads();
+			}			
+		});	
+				
+		resume.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				GameInfoJPanel.this.jframe.resumeGame();
+			}		
+		});
+		
 		reset.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				GameInfoJPanel.this.jframe.resetGame();
 			}			
 		});	
-		
-		reset.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				if (arg0.getKeyChar() == 'r') {
-					GameInfoJPanel.this.jframe.resetGame();
-				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
 		
 	}
 
