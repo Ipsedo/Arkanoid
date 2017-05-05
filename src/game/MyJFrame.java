@@ -10,6 +10,7 @@ import java.util.Random;
 
 import javax.swing.JFrame;
 
+import levels.LevelMaker;
 import object.Ball;
 import object.Brick;
 import object.Paddle;
@@ -120,6 +121,19 @@ public class MyJFrame extends JFrame implements Runnable {
 		super.getContentPane().add(new GameInfoJPanel(this), BorderLayout.EAST);
 		
 		super.setVisible(true);
+	}
+	
+	public void resetGame() {
+		
+		synchronized(this.bricks) {
+			this.bricks.clear();
+			this.bricks.addAll(LevelMaker.getBricksFromLevelID(0, this.jPanel));
+		}
+		
+		synchronized(this.balls) {
+			this.balls.clear();
+			this.balls.addAll(LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()), this.jPanel));
+		}
 	}
 	
 

@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import object.Ball;
 
 public class GameInfoJPanel extends JPanel {
+	
+	private MyJFrame jframe;
 		
 	/**
 	 * Mettre des info de jeux en argument
@@ -19,9 +21,10 @@ public class GameInfoJPanel extends JPanel {
 	public GameInfoJPanel(MyJFrame f) {
 		super();
 		
+		this.jframe = f;
 		JButton start = new JButton("Start");
-		JButton pause = new JButton("Start");
-		JButton reset = new JButton("Start");
+		JButton pause = new JButton("Pause");
+		JButton reset = new JButton("Reset");
 		
 		this.add(start);;
 		this.add(new JSeparator(SwingConstants.HORIZONTAL));
@@ -36,7 +39,7 @@ public class GameInfoJPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				GameInfoJPanel.this.jframe.resetGame();
 			}
 			
 		});
