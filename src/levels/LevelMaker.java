@@ -13,7 +13,9 @@ public class LevelMaker {
 	public static ArrayList<Ball> getBallsFromLevelId(int levelId, Random rand, MyJPanel jpanel){
 		if(levelId == 0) {
 			ArrayList<Ball> res = new ArrayList<Ball>();
-			res.add(new Ball(rand, jpanel));
+			for(int i = 0; i < 20; i++) {
+				res.add(new Ball(rand, jpanel));
+			}
 			return res;
 		} else {
 			ArrayList<Ball> res = new ArrayList<Ball>();

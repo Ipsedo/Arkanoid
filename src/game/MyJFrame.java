@@ -18,9 +18,9 @@ import thread.BallsBounding;
 import thread.BallsBricksCollision;
 import thread.BallsCollision;
 import thread.BallsMove;
+import thread.EndGameDetection;
 import thread.PaddleBounding;
 import thread.PaddleMove;
-import util.BrickInitializator;
 
 public class MyJFrame extends JFrame implements Runnable {
 
@@ -42,6 +42,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	private PaddleBounding paddleBoundingThread;
 	private BallsCollision ballsCollisionThread;
 	private BallsBricksCollision ballsBricksCollisionThread;
+	private EndGameDetection endGameDetectionThread;
 	
 	public MyJFrame(){
 		super("Arkanoid");
@@ -115,6 +116,8 @@ public class MyJFrame extends JFrame implements Runnable {
 		this.ballsCollisionThread.start();
 		this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks);
 		this.ballsBricksCollisionThread.start();
+		this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel);
+		this.endGameDetectionThread.start();
 	}
 	
 	public void killThreads() {
@@ -125,7 +128,7 @@ public class MyJFrame extends JFrame implements Runnable {
 		this.paddleMoveThread.setCancel(true);
 		this.paddleBoundingThread.setCancel(true);
 		this.ballsCollisionThread.setCancel(true);
-		
+		this.endGameDetectionThread.setCancel(true);
 		
 		try {
 			this.ballsBricksCollisionThread.join();
@@ -135,6 +138,7 @@ public class MyJFrame extends JFrame implements Runnable {
 			this.ballsBoundingThread.join();
 			this.paddleBoundingThread.join();
 			this.ballsMoveThread.join();
+			this.endGameDetectionThread.join();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -159,6 +163,8 @@ public class MyJFrame extends JFrame implements Runnable {
 			this.balls.clear();
 			this.balls.addAll(LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()), this.jPanel));
 		}
+		
+		this.jPanel.init(this.balls, this.bricks, this.paddle);
 		
 		this.initThreads();
 	}
