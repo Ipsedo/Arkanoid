@@ -103,6 +103,16 @@ public class MyJFrame extends JFrame implements Runnable {
 		Thread mainLoop = new Thread(this);
 		mainLoop.start();
 		
+		this.initThreads();
+		
+		this.jPanel.init(this.balls, this.bricks, this.paddle);
+		
+		super.getContentPane().add(new GameInfoJPanel(this), BorderLayout.EAST);
+		
+		super.setVisible(true);
+	}
+	
+	private void initThreads(){
 		this.ballsMoveThread = new BallsMove(this.balls);
 		this.ballsMoveThread.start();
 		this.ballsBoundingThread = new BallsBounding(this.balls);
@@ -115,25 +125,43 @@ public class MyJFrame extends JFrame implements Runnable {
 		this.ballsCollisionThread.start();
 		this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks);
 		this.ballsBricksCollisionThread.start();
+	}
+	
+	public void killThreads() {
+		this.ballsMoveThread.setCancel(true);
+		this.ballsBoundingThread.setCancel(true);
+		this.paddleMoveThread.setCancel(true);
+		this.paddleBoundingThread.setCancel(true);
+		this.ballsCollisionThread.setCancel(true);
+		this.ballsBricksCollisionThread.setCancel(true);
 		
-		this.jPanel.init(this.balls, this.bricks, this.paddle);
-		
-		super.getContentPane().add(new GameInfoJPanel(this), BorderLayout.EAST);
-		
-		super.setVisible(true);
+		try {
+			this.ballsMoveThread.join();
+			this.ballsBoundingThread.join();
+			this.paddleMoveThread.join();
+			this.paddleBoundingThread.join();
+			this.ballsCollisionThread.join();
+			this.ballsBricksCollisionThread.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void resetGame() {
+		this.killThreads();
 		
-		synchronized(this.bricks) {
+		synchronized (this.bricks) {
 			this.bricks.clear();
 			this.bricks.addAll(LevelMaker.getBricksFromLevelID(0, this.jPanel));
 		}
 		
-		synchronized(this.balls) {
+		synchronized (this.balls) {
 			this.balls.clear();
 			this.balls.addAll(LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()), this.jPanel));
 		}
+		
+		this.initThreads();
 	}
 	
 

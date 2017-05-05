@@ -9,7 +9,7 @@ public class BallsCollision extends CancelableThread {
 	private ArrayList<Ball> balls;
 	
 	public BallsCollision(ArrayList<Ball> balls) {
-		super();
+		super("BallsCollision");
 		this.balls = balls;
 	}
 	

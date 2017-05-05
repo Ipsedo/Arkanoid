@@ -11,16 +11,16 @@ public class PaddleBounding extends CancelableThread {
 	private ArrayList<Ball> balls;
 	
 	public PaddleBounding(ArrayList<Ball> balls, Paddle paddle) {
-		super();
+		super("PaddleBounding");
 		this.balls = balls;
 		this.paddle = paddle;
 	}
 	
 	public void run() {
 		while(!this.canceled) {
-			for(Ball b : this.balls) {
-				synchronized (b) {
-					b.collide(this.paddle);
+			for(int i = 0; i < this.balls.size(); i++) {
+				synchronized (this.balls.get(i)) {
+					this.balls.get(i).collide(this.paddle);
 				}
 			}
 			try {

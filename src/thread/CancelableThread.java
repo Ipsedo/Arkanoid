@@ -4,7 +4,8 @@ public class CancelableThread extends Thread {
 
 	protected boolean canceled;
 	
-	public CancelableThread(){
+	public CancelableThread(String name){
+		super(name);
 		this.canceled = false;
 	}
 	

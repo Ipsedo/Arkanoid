@@ -10,15 +10,15 @@ public class BallsBounding extends CancelableThread {
 	private ArrayList<Ball> balls;
 	
 	public BallsBounding(ArrayList<Ball> balls) {
-		super();
+		super("BallsBounding");
 		this.balls = balls;
 	}
 	
 	public void run() {
 		while(!this.canceled) {
-			for(Ball b : this.balls) {
-				synchronized (b) {
-					b.bounding();
+			for(int i = 0; i < this.balls.size(); i++) {
+				synchronized (this.balls.get(i)) {
+					this.balls.get(i).bounding();
 				}
 			}
 			try {

@@ -11,20 +11,21 @@ public class BallsBricksCollision extends CancelableThread {
 	private ArrayList<Ball> balls;
 	
 	public BallsBricksCollision(ArrayList<Ball> balls, ArrayList<Brick> bricks) {
+		super("BallsBricksCollision");
 		this.balls = balls;
 		this.bricks = bricks;
 	}
 	
 	public void run() {
 		while(!this.canceled) {
-			for(Ball ba : this.balls) {
-				for(int i = 0; i < this.bricks.size(); i++) {
-					synchronized (ba) {
-						ba.collide(this.bricks.get(i));
+			for(int i = 0; i < this.balls.size(); i++) {
+				for(int j = 0; j < this.bricks.size(); j++) {
+					synchronized (this.balls.get(i)) {
+						this.balls.get(i).collide(this.bricks.get(j));
 					}
 					synchronized (this.bricks) {
-						if(this.bricks.get(i).intersect(ba)) {
-							this.bricks.remove(this.bricks.get(i));
+						if(this.bricks.get(j).intersect(this.balls.get(i))) {
+							this.bricks.remove(this.bricks.get(j));
 						}
 					}
 				}

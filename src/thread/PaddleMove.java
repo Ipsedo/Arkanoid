@@ -8,7 +8,7 @@ public class PaddleMove extends CancelableThread {
 	private Paddle paddle;
 	
 	public PaddleMove(Paddle paddle) {
-		super();
+		super("PaddleMove");
 		this.paddle = paddle;
 	}
 	

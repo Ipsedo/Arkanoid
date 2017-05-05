@@ -13,7 +13,7 @@ public class EndGameDetection extends CancelableThread {
 	private MyJPanel jpanel;
 	
 	public EndGameDetection(ArrayList<Ball> balls, ArrayList<Brick> bricks, MyJPanel jpanel){
-		super();
+		super("EndGameDetection");
 		this.balls = balls;
 		this.jpanel = jpanel;
 	}

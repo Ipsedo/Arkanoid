@@ -9,15 +9,15 @@ public class BallsMove extends CancelableThread {
 	private ArrayList<Ball> balls;
 	
 	public BallsMove(ArrayList<Ball> balls) {
-		super();
+		super("BallsMove");
 		this.balls = balls;
 	}
 	
 	public void run() {
 		while(!this.canceled) {
-			for(Ball b : this.balls) {
-				synchronized (b) {
-					b.move(new float[]{0f, 0f});
+			for(int i = 0; i < this.balls.size(); i++) {
+				synchronized (this.balls.get(i)) {
+					this.balls.get(i).move(new float[]{0f, 0f});
 				}
 			}
 			try {
