@@ -3,18 +3,13 @@ package thread;
 import object.Ball;
 import object.Paddle;
 
-public class PaddleMove extends Thread {
+public class PaddleMove extends CancelableThread {
 
-	private boolean canceled;
 	private Paddle paddle;
 	
 	public PaddleMove(Paddle paddle) {
+		super();
 		this.paddle = paddle;
-		this.canceled = false;
-	}
-	
-	public void setCancel(boolean canceled){
-		this.canceled = canceled;
 	}
 	
 	public void run() {

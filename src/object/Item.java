@@ -8,7 +8,7 @@ import game.MyJPanel;
 
 public class Item {
 	
-	public enum CollisionSide { HORIZONTAL, VERTICAL }
+	public enum CollisionSide { LEFT, RIGHT, DOWN, UP, NONE }
 
 	protected Random rand;
 	private MyJPanel jpanel;
@@ -20,7 +20,7 @@ public class Item {
 	protected int width;
 	protected int height;
 	
-	private Rectangle2D rect;
+	protected Rectangle2D rect;
 	
 	protected Color color;
 	
@@ -45,8 +45,46 @@ public class Item {
 		return this.rect.intersects(other.rect);
 	}
 	
-	public CollisionSide detectCollisionSide(Item other){
-		return null;
+	protected CollisionSide detectCollisionSide(Item other) {
+		float dx = (this.mPosition[0] + this.width / 2) - (other.mPosition[0] + other.width / 2);
+	    float dy = (this.mPosition[1] + this.height / 2) - (other.mPosition[1] + other.height / 2);
+	    float avWidth = (this.width + other.width) / 2;
+	    float avHeight = (this.height + other.height) / 2;
+	    float crossWidth = avWidth * dy;
+	    float crossHeight = avHeight * dx;
+	    CollisionSide collision = CollisionSide.NONE;
+	    if(Math.abs(dx) <= avWidth && Math.abs(dy) <= avHeight) {
+	        if(crossWidth > crossHeight){
+	            collision = (crossWidth>(-crossHeight)) ? CollisionSide.DOWN : CollisionSide.LEFT;
+	        } else {
+	            collision = (crossWidth>-(crossHeight)) ? CollisionSide.RIGHT : CollisionSide.UP;
+	        }
+	    }
+	    return collision;
+	}
+	
+	protected void changeSpeed(CollisionSide collisionSide) {
+		switch(collisionSide) {
+		case UP:
+			this.mSpeed[1] = -Math.abs(this.mSpeed[1]);
+			break;
+		case DOWN:
+			this.mSpeed[1] = Math.abs(this.mSpeed[1]);
+			break;
+		case LEFT:
+			this.mSpeed[0] = -Math.abs(this.mSpeed[0]);
+			break;
+		case RIGHT:
+			this.mSpeed[0] = Math.abs(this.mSpeed[0]);
+			break;
+		case NONE:
+			break;
+		}
+	}
+	
+	public void collide(Item other) {
+		CollisionSide side = this.detectCollisionSide(other);
+		this.changeSpeed(side);
 	}
 	
 	public void move(float[] acceleration){

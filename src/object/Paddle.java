@@ -1,6 +1,7 @@
 package object;
 
 import java.awt.Color;
+import java.awt.geom.Rectangle2D;
 
 import game.MyJPanel;
 

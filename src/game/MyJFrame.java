@@ -11,11 +11,15 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 import object.Ball;
+import object.Brick;
 import object.Paddle;
 import thread.BallsBounding;
+import thread.BallsBricksCollision;
+import thread.BallsCollision;
 import thread.BallsMove;
 import thread.PaddleBounding;
 import thread.PaddleMove;
+import util.BrickInitializator;
 
 public class MyJFrame extends JFrame implements Runnable {
 
@@ -25,6 +29,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	private MyJPanel jPanel;
 	
 	private ArrayList<Ball> balls;
+	private ArrayList<Brick> bricks;
 	private Paddle paddle;
 	
 	private boolean closed;
@@ -33,6 +38,8 @@ public class MyJFrame extends JFrame implements Runnable {
 	private BallsBounding ballsBoundingThread;
 	private PaddleMove paddleMoveThread;
 	private PaddleBounding paddleBoundingThread;
+	private BallsCollision ballsCollisionThread;
+	private BallsBricksCollision ballsBricksCollisionThread;
 	
 	public MyJFrame(){
 		super("Arkanoid");
@@ -50,6 +57,8 @@ public class MyJFrame extends JFrame implements Runnable {
                 MyJFrame.this.ballsBoundingThread.setCancel(true);
                 MyJFrame.this.paddleMoveThread.setCancel(true);
                 MyJFrame.this.paddleBoundingThread.setCancel(true);
+                MyJFrame.this.ballsCollisionThread.setCancel(true);
+                MyJFrame.this.ballsBricksCollisionThread.setCancel(true);
                 e.getWindow().dispose();
             }
         });
@@ -63,12 +72,11 @@ public class MyJFrame extends JFrame implements Runnable {
 		
 		this.balls = new ArrayList<>();
 		Random rand = new Random(System.currentTimeMillis());
-		this.balls.add(new Ball(rand, this.jPanel));
-		this.balls.add(new Ball(rand, this.jPanel));
-		this.balls.add(new Ball(rand, this.jPanel));
-		this.balls.add(new Ball(rand, this.jPanel));
-		this.balls.add(new Ball(rand, this.jPanel));
-		this.balls.add(new Ball(rand, this.jPanel));
+		for(int i = 0; i < 20; i++) {
+			this.balls.add(new Ball(rand, this.jPanel));
+		}
+		
+		this.bricks = BrickInitializator.initBrickRandom(this.jPanel, 50);
 
 		this.paddle = new Paddle(this.jPanel);
 		
@@ -103,8 +111,12 @@ public class MyJFrame extends JFrame implements Runnable {
 		this.paddleMoveThread.start();
 		this.paddleBoundingThread = new PaddleBounding(this.balls, this.paddle);
 		this.paddleBoundingThread.start();
+		this.ballsCollisionThread = new BallsCollision(this.balls);
+		this.ballsCollisionThread.start();
+		this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks);
+		this.ballsBricksCollisionThread.start();
 		
-		this.jPanel.init(this.balls, this.paddle);
+		this.jPanel.init(this.balls, this.bricks, this.paddle);
 		
 		super.getContentPane().add(new GameInfoJPanel(), BorderLayout.EAST);
 		

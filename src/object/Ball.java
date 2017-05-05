@@ -1,9 +1,9 @@
 package object;
 
+import java.awt.Color;
 import java.util.Random;
 
 import game.MyJPanel;
-import util.Vector;
 
 public class Ball extends Item {
 
@@ -13,6 +13,7 @@ public class Ball extends Item {
 						new float[]{0f, 0f},
 						10,
 						10, jpanel);
+		super.color = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255));
 	}
 	
 	public Ball(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel) {

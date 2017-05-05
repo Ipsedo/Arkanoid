@@ -4,18 +4,14 @@ import java.util.ArrayList;
 
 import object.Ball;
 
-public class BallsBounding extends Thread {
+public class BallsBounding extends CancelableThread {
 
-	private boolean canceled;
+	
 	private ArrayList<Ball> balls;
 	
 	public BallsBounding(ArrayList<Ball> balls) {
+		super();
 		this.balls = balls;
-		this.canceled = false;
-	}
-	
-	public void setCancel(boolean canceled){
-		this.canceled = canceled;
 	}
 	
 	public void run() {
