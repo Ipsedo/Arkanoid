@@ -78,7 +78,6 @@ public class GameInfoJPanel extends JPanel {
 		});
 		
 		this.jframe.setFocusable(true);
-		this.jframe.requestFocus();
 		
 		pause.addActionListener(new ActionListener() {
 			@Override
