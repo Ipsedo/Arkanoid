@@ -30,7 +30,7 @@ public class GameInfoJPanel extends JPanel {
 		JButton reset = new JButton("Reset 'R'");
 		
 		String[] levelList = {"Level 0", "Level 1", "Level 3", "Level 4", "Level 5"};
-		JComboBox comboBox = new JComboBox(levelList);
+		JComboBox<String> comboBox = new JComboBox<String>(levelList);
 		comboBox.setEditable(false);
 		comboBox.setBackground(new Color(189, 195, 199));
 		
