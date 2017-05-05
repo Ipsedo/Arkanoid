@@ -16,15 +16,27 @@ public class MyJPanel extends JPanel {
 	private ArrayList<Brick> bricks;
 	private Paddle paddle;
 	
+	private boolean isDead;
+	private boolean isWinner;
 
 	public MyJPanel(){
 		super();
+		this.isDead = false;
+		this.isWinner = false;
 	}
 	
 	public void init(ArrayList<Ball> balls, ArrayList<Brick> bricks, Paddle paddle) {
 		this.balls = balls;
 		this.bricks = bricks;
 		this.paddle = paddle;
+	}
+	
+	public void setDead(boolean isDead){
+		this.isDead = isDead;
+	}
+	
+	public void setWinner(boolean isWinner) {
+		this.isWinner = isWinner;
 	}
 	
 	public void paintComponent(Graphics g) {
