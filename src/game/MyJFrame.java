@@ -151,10 +151,6 @@ public class MyJFrame extends JFrame implements Runnable {
 		}
 	}
 	
-	public void resumeGame() {
-		this.initThreads();
-	}
-	
 	public void resetGame() {
 		this.killThreads();
 		

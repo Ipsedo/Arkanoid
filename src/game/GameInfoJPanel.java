@@ -54,13 +54,13 @@ public class GameInfoJPanel extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				// TODO Auto-generated method stub
-				if (arg0.getKeyChar() == 'p') {
+				if (arg0.getKeyChar() == KeyEvent.VK_P) {
 					GameInfoJPanel.this.jframe.killThreads();
 				}
 				else if (arg0.getKeyChar() == KeyEvent.VK_R) {
 					GameInfoJPanel.this.jframe.resetGame();
 				}
-				else if (arg0.getKeyChar() == 'o') {
+				else if (arg0.getKeyChar() == KeyEvent.VK_O) {
 					GameInfoJPanel.this.jframe.resumeGame();
 				}
 			}
