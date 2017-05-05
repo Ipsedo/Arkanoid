@@ -58,7 +58,6 @@ public class MyJFrame extends JFrame implements Runnable {
                 e.getWindow().dispose();
             }
         });
-		this.closed = false;
 		
 		this.jPanel = new MyJPanel();
 		super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
