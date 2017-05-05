@@ -118,7 +118,7 @@ public class MyJFrame extends JFrame implements Runnable {
 		
 		this.jPanel.init(this.balls, this.bricks, this.paddle);
 		
-		super.getContentPane().add(new GameInfoJPanel(), BorderLayout.EAST);
+		super.getContentPane().add(new GameInfoJPanel(this), BorderLayout.EAST);
 		
 		super.setVisible(true);
 	}
