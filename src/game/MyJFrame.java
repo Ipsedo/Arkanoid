@@ -146,7 +146,9 @@ public class MyJFrame extends JFrame implements Runnable {
 	}
 	
 	public void resumeGame(){
-		this.initThreads();
+		if(this.closed) {
+			this.initThreads();
+		}
 	}
 	
 	public void resetGame() {
