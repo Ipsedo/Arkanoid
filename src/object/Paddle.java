@@ -7,12 +7,14 @@ import game.MyJPanel;
 
 public class Paddle extends Item {
 
+    private final static float initialHeight = 0.02f;
+    
     /**
      * 
      * @param jpanel Le MyJPanel contenant la raquette
      */
     public Paddle(MyJPanel jpanel) {
-	super(new float[] { 0.5f, 0.98f }, new float[] { 0f, 0f }, new float[] { 0f, 0f }, 0.2f, 0.01f, jpanel);
+	super(new float[] { 0.5f, 1f - initialHeight }, new float[] { 0f, 0f }, new float[] { 0f, 0f }, 0.2f, initialHeight, jpanel);
     }
 
     /**
@@ -21,18 +23,17 @@ public class Paddle extends Item {
      */
     public void setPos(int x) {
 	super.mPosition[0] = (float) x / super.getScreenWidth() - super.width / 2f;
-	super.mPosition[1] = 0.98f;
+	super.mPosition[1] = 1f - initialHeight;
     }
-
-    /**
-     * 
-     * @param b La balle à faire rebondir
-     */
-    public void ballBouding(Ball b) {
-	if (super.intersect(b)) {
-	    b.mSpeed[1] = -Math.abs(b.mSpeed[1]);
-	    this.color = new Color(super.rand.nextInt(255), super.rand.nextInt(255), super.rand.nextInt(255));
-	    b.color = new Color(super.rand.nextInt(255), super.rand.nextInt(255), super.rand.nextInt(255));
+    
+    @Override
+    public void collide(Item other) {
+	if(other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0] + this.width, this.mPosition[1])) {
+	    other.mSpeed[1] = -Math.abs(other.mSpeed[1]);
+	} else if(other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0], this.mPosition[1] + this.height)) {
+	    other.mSpeed[0] = -Math.abs(other.mSpeed[0]);
+	} else if(other.rect.intersectsLine(this.mPosition[0] + this.width, this.mPosition[1], this.mPosition[0] + this.width, this.mPosition[1] + this.height)) {
+	    other.mSpeed[0] = Math.abs(other.mSpeed[0]);
 	}
     }
 }
