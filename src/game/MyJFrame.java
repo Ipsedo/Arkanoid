@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import levels.LevelMaker;
@@ -66,6 +67,8 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	super.pack();
 	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
+	
+	this.setIconImage(new ImageIcon("icone_1.png").getImage());
 
 	// On appelle la création de niveau depuis la classe LevelMaker
 	this.balls = LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()), this.jPanel);
