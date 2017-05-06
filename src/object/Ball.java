@@ -28,7 +28,7 @@ public class Ball extends Item {
      * @param jpanel
      */
     public Ball(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel) {
-	super(mPosition.clone(), mSpeed.clone(), mAcceleration.clone(), 0.01f, 0.01f, jpanel);
+	super(mPosition.clone(), mSpeed.clone(), mAcceleration.clone(), 0.03f, 0.03f, jpanel);
     }
 
     /**

@@ -12,7 +12,7 @@ public class Brick extends Item {
      * @param jpanel
      */
     public Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel) {
-	super(mPosition, mSpeed, mAcceleration, 0.02f, 0.01f, jpanel);
+	super(mPosition, mSpeed, mAcceleration, 0.06f, 0.02f, jpanel);
     }
 
 }

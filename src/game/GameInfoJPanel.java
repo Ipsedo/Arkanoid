@@ -90,6 +90,7 @@ public class GameInfoJPanel extends JPanel {
 		GameInfoJPanel.this.jframe.killThreads();
 	    }
 	});
+	pause.setFocusable(false);
 
 	resume.addActionListener(new ActionListener() {
 	    @Override
@@ -97,6 +98,7 @@ public class GameInfoJPanel extends JPanel {
 		GameInfoJPanel.this.jframe.resumeGame();
 	    }
 	});
+	resume.setFocusable(false);
 
 	reset.addActionListener(new ActionListener() {
 	    @Override
@@ -104,6 +106,7 @@ public class GameInfoJPanel extends JPanel {
 		GameInfoJPanel.this.jframe.resetGame();
 	    }
 	});
+	reset.setFocusable(false);
 
     }
 
