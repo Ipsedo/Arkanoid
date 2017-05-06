@@ -108,15 +108,17 @@ public class Item {
      * @param other
      */
     public void collide(Item other) {
-	/**CollisionSide side = this.detectCollisionSide(other);
-	this.changeSpeed(side);**/
-	if(other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0] + this.width, this.mPosition[1])) {
+	/**
+	 * CollisionSide side = this.detectCollisionSide(other);
+	 * this.changeSpeed(side);
+	 **/
+	if (other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0] + this.width, this.mPosition[1])) {
 	    other.mSpeed[1] = -Math.abs(other.mSpeed[1]);
-	} else if(other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0], this.mPosition[1] + this.height)) {
+	} else if (other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0], this.mPosition[1] + this.height)) {
 	    other.mSpeed[0] = -Math.abs(other.mSpeed[0]);
-	} else if(other.rect.intersectsLine(this.mPosition[0] + this.width, this.mPosition[1], this.mPosition[0] + this.width, this.mPosition[1] + this.height)) {
+	} else if (other.rect.intersectsLine(this.mPosition[0] + this.width, this.mPosition[1], this.mPosition[0] + this.width, this.mPosition[1] + this.height)) {
 	    other.mSpeed[0] = Math.abs(other.mSpeed[0]);
-	} else if(other.rect.intersectsLine(this.mPosition[0], this.mPosition[1] + this.height, this.mPosition[0] + this.width, this.mPosition[1] + this.height)) {
+	} else if (other.rect.intersectsLine(this.mPosition[0], this.mPosition[1] + this.height, this.mPosition[0] + this.width, this.mPosition[1] + this.height)) {
 	    other.mSpeed[1] = Math.abs(other.mSpeed[1]);
 	}
     }
