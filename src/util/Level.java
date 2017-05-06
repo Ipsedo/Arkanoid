@@ -8,11 +8,11 @@ import object.Brick;
 import object.Paddle;
 
 public interface Level {
-	void init(Paddle paddle, ArrayList<Ball> balls, ArrayList<Brick> bricks);
-	
-	void draw(Graphics2D g2);
-	
-	boolean isDead();
-	
-	boolean isWinner();
+    void init(Paddle paddle, ArrayList<Ball> balls, ArrayList<Brick> bricks);
+
+    void draw(Graphics2D g2);
+
+    boolean isDead();
+
+    boolean isWinner();
 }
