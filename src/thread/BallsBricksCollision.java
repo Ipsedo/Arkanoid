@@ -30,7 +30,7 @@ public class BallsBricksCollision extends CancelableThread {
 	    for (int i = this.bricks.size() - 1; i >= 0; i--) {
 		Brick br = this.bricks.get(i);
 		synchronized (br) {
-		    for (int j = 0; j < this.balls.size(); j++) {
+		    for (int j = this.balls.size() - 1; j >= 0; j--) {
 			Ball ba = this.balls.get(j);
 			synchronized (ba) {
 			    br.collide(ba);

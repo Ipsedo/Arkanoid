@@ -26,7 +26,7 @@ public class PaddleBounding extends CancelableThread {
      */
     public void run() {
 	while (!this.canceled) {
-	    for (int i = 0; i < this.balls.size(); i++) {
+	    for (int i = this.balls.size() - 1; i >= 0; i--) {
 		synchronized (this.balls.get(i)) {
 		    this.paddle.collide(this.balls.get(i));
 		}

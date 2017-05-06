@@ -22,12 +22,12 @@ public class BallsCollision extends CancelableThread {
      */
     public void run() {
 	while (!this.canceled) {
-	    for (int i = 0; i < this.balls.size(); i++) {
-		for (int j = i + 1; j < this.balls.size(); j++) {
-		    synchronized (this.balls.get(i)) {
+	    for (int i = this.balls.size() - 1; i >= 0; i--) {
+		for (int j = i - 1; j >= 0; j--) {
+		    synchronized (this.balls.get(j)) {
 			this.balls.get(i).collide(this.balls.get(j));
 		    }
-		    synchronized (this.balls.get(j)) {
+		    synchronized (this.balls.get(i)) {
 			this.balls.get(j).collide(this.balls.get(i));
 		    }
 		}
