@@ -32,9 +32,10 @@ public class Ball extends Item {
     }
 
     /**
-     * 
+     * On fait rebondir la balle et on renvoie faux si la balle est sortie (faux sinon)
+     * @return
      */
-    public void bounding() {
+    public boolean bounding() {
 	if (super.mPosition[0] <= 0) {
 	    super.mSpeed[0] = Math.abs(super.mSpeed[0]);
 	}
@@ -45,8 +46,9 @@ public class Ball extends Item {
 	    super.mSpeed[0] = -Math.abs(super.mSpeed[0]);
 	}
 	if (super.mPosition[1] >= 1f) {
-	    super.mSpeed[1] = -Math.abs(super.mSpeed[1]);
+	    return true;
 	}
+	return false;
     }
 
     /**
