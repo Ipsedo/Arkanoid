@@ -37,7 +37,8 @@ public class MyJFrame extends JFrame implements Runnable {
     private Paddle paddle;
 
     private Thread mainLoop;
-    private boolean closed;
+    private boolean closed = true;
+    private boolean one = true;
 
     private BallsMove ballsMoveThread;
     private BallsBounding ballsBoundingThread;
@@ -99,7 +100,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	});
 
-	this.avantStartBall();
+	this.initThreads();
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
 
@@ -129,36 +130,19 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.ballsBricksCollisionThread.start();
 	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this);
 	this.endGameDetectionThread.start();
+	if (this.one) {
+	    this.closed = true;
+	    this.killThreads();
+	}
     }
-    
-    /**
-     * balles à l'arret en attendant le start
-     */
-    public void startBall() {
-	    this.ballsMoveThread = new BallsMove(this.balls);
-	    this.ballsMoveThread.start();
-    }
-    
+        
     /**
      * init apres le start
      */
-    public void avantStartBall() {
-	this.closed = false;
-	this.mainLoop = new Thread(this);
-	this.mainLoop.start();
-	//pas de ball move ici
-	this.ballsBoundingThread = new BallsBounding(this.balls);
-	this.ballsBoundingThread.start();
-	this.paddleMoveThread = new PaddleMove(this.paddle);
-	this.paddleMoveThread.start();
-	this.paddleBoundingThread = new PaddleBounding(this.balls, this.paddle);
-	this.paddleBoundingThread.start();
-	this.ballsCollisionThread = new BallsCollision(this.balls);
-	this.ballsCollisionThread.start();
-	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks);
-	this.ballsBricksCollisionThread.start();
-	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this);
-	this.endGameDetectionThread.start();
+    public void startBall() {
+	this.one = false;
+	this.initThreads();
+	System.out.println("pressed");
     }
 
     /**
@@ -224,7 +208,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
 
 	if (this.closed) {
-	    this.avantStartBall();
+	    this.initThreads();
 	}
     }
 
