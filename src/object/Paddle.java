@@ -10,14 +10,14 @@ import game.MyJPanel;
 
 public class Paddle extends Item {
 
-    private final static float initialHeight = 0.02f;
+    private final static float initialHeight = 0.03f;
 
     /**
      * 
      * @param jpanel
      */
     public Paddle(MyJPanel jpanel) {
-	super(new float[] { 0.5f, 1f - initialHeight }, new float[] { 0f, 0f }, new float[] { 0f, 0f }, 0.2f, initialHeight, jpanel);
+	super(new float[] { 0.5f, 1f - initialHeight }, new float[] { 0f, 0f }, new float[] { 0f, 0f }, 0.2f, initialHeight - 0.015f, jpanel);
     }
 
     /**

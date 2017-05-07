@@ -53,13 +53,13 @@ public class GameInfoJPanel extends JPanel {
 	    @Override
 	    public void itemStateChanged(ItemEvent ie) {
 		// TODO Auto-generated method stub
-		if (ie.getItem() == "Level 0") {
+		if (ie.getItem().equals("Level 0")) {
 		    jframe.level(0);
-		} else if (ie.getItem() == "Level 1") {
+		} else if (ie.getItem().equals("Level 1")) {
 		    jframe.level(1);
-		} else if (ie.getItem() == "Level 2") {
+		} else if (ie.getItem().equals("Level 2")) {
 		    jframe.level(2);
-		} else if (ie.getItem() == "Level 3") {
+		} else if (ie.getItem().equals("Level 3")) {
 		    jframe.level(3);
 		}
 	    }

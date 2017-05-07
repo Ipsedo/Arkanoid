@@ -33,7 +33,7 @@ public class Ball extends Item {
     }
 
     /**
-     * On fait rebondir la balle et on renvoie faux si la balle est sortie (faux sinon)
+     * On fait rebondir la balle et on renvoie vrai si la balle est sortie (faux sinon)
      * @return
      */
     public boolean bounding() {
@@ -59,7 +59,6 @@ public class Ball extends Item {
      */
     public static float[] initSpeed(Random rand) {
 	double angle = rand.nextDouble() * 2d * Math.PI / 3d + Math.PI / 6d;
-	System.out.println("angle " + (angle * 360d / (Math.PI * 2d)));
 	return new float[] { (float) Math.cos(angle) * maxSpeed, (float) -Math.sin(angle) * maxSpeed};
     }
 
