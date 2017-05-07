@@ -103,6 +103,15 @@ public class GameInfoJPanel extends JPanel {
 	});
 
 	this.jframe.setFocusable(true);
+	
+	start.addActionListener(new ActionListener() {
+
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		GameInfoJPanel.this.jframe.startBall();
+	    }
+	});
 
 	pause.addActionListener(new ActionListener() {
 	    @Override

@@ -99,7 +99,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	});
 
-	this.initThreads();
+	this.avantStartBall();
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
 
@@ -117,6 +117,36 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.mainLoop.start();
 	this.ballsMoveThread = new BallsMove(this.balls);
 	this.ballsMoveThread.start();
+	this.ballsBoundingThread = new BallsBounding(this.balls);
+	this.ballsBoundingThread.start();
+	this.paddleMoveThread = new PaddleMove(this.paddle);
+	this.paddleMoveThread.start();
+	this.paddleBoundingThread = new PaddleBounding(this.balls, this.paddle);
+	this.paddleBoundingThread.start();
+	this.ballsCollisionThread = new BallsCollision(this.balls);
+	this.ballsCollisionThread.start();
+	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks);
+	this.ballsBricksCollisionThread.start();
+	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this);
+	this.endGameDetectionThread.start();
+    }
+    
+    /**
+     * balles à l'arret en attendant le start
+     */
+    public void startBall() {
+	    this.ballsMoveThread = new BallsMove(this.balls);
+	    this.ballsMoveThread.start();
+    }
+    
+    /**
+     * init apres le start
+     */
+    public void avantStartBall() {
+	this.closed = false;
+	this.mainLoop = new Thread(this);
+	this.mainLoop.start();
+	//pas de ball move ici
 	this.ballsBoundingThread = new BallsBounding(this.balls);
 	this.ballsBoundingThread.start();
 	this.paddleMoveThread = new PaddleMove(this.paddle);
@@ -167,7 +197,10 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.initThreads();
 	}
     }
-
+    
+    /**
+     * Mettre en pause la partie
+     */
     public void pauseGame() {
 	if (!this.closed) {
 	    this.killThreads();
@@ -191,7 +224,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
 
 	if (this.closed) {
-	    this.initThreads();
+	    this.avantStartBall();
 	}
     }
 
