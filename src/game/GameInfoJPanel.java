@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -36,7 +38,7 @@ public class GameInfoJPanel extends JPanel {
 	infoPanel.setLayout(new GridLayout(5, 1, 0, 0));
 	setLayout(new BorderLayout());
 
-	String[] levelList = { "Level 0", "Level 1", "Level 3", "Level 4", "Level 5" };
+	String[] levelList = { "Level 0", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5" };
 	JComboBox<String> comboBox = new JComboBox<String>(levelList);
 	comboBox.setEditable(false);
 	comboBox.setBackground(new Color(189, 195, 199));
@@ -45,6 +47,24 @@ public class GameInfoJPanel extends JPanel {
 	pause.setBackground(new Color(189, 195, 199));
 	resume.setBackground(new Color(189, 195, 199));
 	reset.setBackground(new Color(189, 195, 199));
+	
+	comboBox.addItemListener(new ItemListener() {
+
+	    @Override
+	    public void itemStateChanged(ItemEvent ie) {
+		// TODO Auto-generated method stub
+		if (ie.getItem() == "Level 0") {
+		    jframe.level(0);
+		} else if (ie.getItem() == "Level 1") {
+		    jframe.level(1);
+		} else if (ie.getItem() == "Level 2") {
+		    jframe.level(2);
+		} else if (ie.getItem() == "Level 3") {
+		    jframe.level(3);
+		}
+	    }
+	    
+	});
 
 	infoPanel.add(comboBox);
 	this.add(comboBox, BorderLayout.NORTH);

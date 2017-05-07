@@ -44,7 +44,7 @@ public class LevelMaker {
     public static List<Brick> getBricksFromLevelID(int levelId, MyJPanel jpanel) {
 	List<Brick> res = Collections.synchronizedList(new ArrayList<Brick>());
 	float milieu = 0.5f;
-	if (levelId == 3) {
+	if (levelId == 0) {
 	    for (int i = -3; i < -1; i++) {
 		for (int j = 0; j < 9; j++) {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
@@ -124,7 +124,7 @@ public class LevelMaker {
 		float[] acc = new float[2];
 		res.add(new Brick(pos, speed, acc, jpanel, 2));
 	    }
-	} else if(levelId == 0) {
+	} else if(levelId == 3) {
 	    for (int i = 0; i < 20; i++) {
 		float[] pos = new float[] { (float) i / 20f, 0.1f + (float) Math.cos((double) i * Math.PI * 2d / 20d) / 10f};
 		float[] speed = new float[2];
