@@ -62,7 +62,7 @@ public class GameInfoJPanel extends JPanel {
 	    public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		if (arg0.getKeyCode() == KeyEvent.VK_P) {
-		    GameInfoJPanel.this.jframe.killThreads();
+		    GameInfoJPanel.this.jframe.pauseGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_R) {
 		    GameInfoJPanel.this.jframe.resetGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_O) {
@@ -87,7 +87,7 @@ public class GameInfoJPanel extends JPanel {
 	pause.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		GameInfoJPanel.this.jframe.killThreads();
+		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 	});
 	pause.setFocusable(false);

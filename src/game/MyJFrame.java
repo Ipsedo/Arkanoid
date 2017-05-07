@@ -67,7 +67,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	super.pack();
 	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
-	
+
 	this.setIconImage(new ImageIcon("icone_1.png").getImage());
 
 	// On appelle la création de niveau depuis la classe LevelMaker
@@ -124,14 +124,14 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.ballsCollisionThread.start();
 	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks);
 	this.ballsBricksCollisionThread.start();
-	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel);
+	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this);
 	this.endGameDetectionThread.start();
     }
 
     /**
      * Terminer toutes les Threads de jeu
      */
-    public void killThreads() {
+    private void killThreads() {
 	this.closed = true;
 	this.ballsBricksCollisionThread.setCancel(true);
 	this.ballsMoveThread.setCancel(true);
@@ -165,11 +165,19 @@ public class MyJFrame extends JFrame implements Runnable {
 	}
     }
 
+    public void pauseGame() {
+	if (!this.closed) {
+	    this.killThreads();
+	}
+    }
+
     /**
      * Recommencer le jeu
      */
     public void resetGame() {
-	this.killThreads();
+	if (!this.closed) {
+	    this.killThreads();
+	}
 
 	synchronized (this.bricks) {
 	    this.bricks.clear();
@@ -183,7 +191,9 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
 
-	this.initThreads();
+	if (this.closed) {
+	    this.initThreads();
+	}
     }
 
     /**

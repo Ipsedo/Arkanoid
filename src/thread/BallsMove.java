@@ -24,7 +24,7 @@ public class BallsMove extends CancelableThread {
 	while (!this.canceled) {
 	    for (int i = this.balls.size() - 1; i >= 0; i--) {
 		synchronized (this.balls.get(i)) {
-		    this.balls.get(i).move(new float[] { 0f, 0f });
+		    this.balls.get(i).move(new float[2]);
 		}
 	    }
 	    try {
