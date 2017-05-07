@@ -170,25 +170,21 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.killThreads();
 	}
     }
-
     /**
-     * Recommencer le jeu
+     * Creation de level
+     * @param x : id du level
      */
-    public void resetGame() {
-	if (!this.closed) {
-	    this.killThreads();
-	}
-
+    public void level(int x) {
+	this.killThreads();
 	synchronized (this.bricks) {
 	    this.bricks.clear();
-	    this.bricks.addAll(LevelMaker.getBricksFromLevelID(0, this.jPanel));
+	    this.bricks.addAll(LevelMaker.getBricksFromLevelID(x, this.jPanel));
 	}
-
 	synchronized (this.balls) {
 	    this.balls.clear();
-	    this.balls.addAll(LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()), this.jPanel));
+	    this.balls.addAll(LevelMaker.getBallsFromLevelId(x, new Random(System.currentTimeMillis()), this.jPanel));
 	}
-
+	
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
 
 	if (this.closed) {

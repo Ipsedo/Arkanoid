@@ -37,7 +37,7 @@ public class Paddle extends Item {
 	    float dx = this.mPosition[0] + this.width * 0.5f - (other.mPosition[0] + other.width * 0.5f);
 	    dx = dx / (this.width * 0.5f);
 	    float length = Vector.length2f(other.mSpeed);
-	    double angle = dx * Math.PI * 0.5d;
+	    double angle = dx * Math.PI * 0.4d;
 	    other.mSpeed[0] = -length * (float) Math.sin(angle);
 	    other.mSpeed[1] = -length * (float) Math.cos(angle);
 	    //other.mSpeed[1] = -Math.abs(other.mSpeed[1]);
