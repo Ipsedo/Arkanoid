@@ -12,10 +12,10 @@ public class BrickInitializator {
 	return new ArrayList<>();
     }
 
-    public static ArrayList<Brick> initBrickRandom(MyJPanel jpanel, int nb) {
-	Random rand = new Random(System.currentTimeMillis());
+    public static ArrayList<Brick> initBrickRandom(int levelID, MyJPanel jpanel) {
 	ArrayList<Brick> res = new ArrayList<>();
 
+	float nb = 10;
 	for (float i = 1f / ((float) nb*2f + 1f); i < 0.7f; i+= 1f / ((float) nb*2f + 1f)) {
 	    for (float j = 1f / ((float) nb + 1f); j < 1f - (1f / ((float) nb + 1f)); j+= 1f / ((float) nb + 1f)) {
 		float[] pos = new float[] { j, i };
