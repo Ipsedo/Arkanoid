@@ -1,19 +1,23 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import game.MyJPanel;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import object.Brick;
 
 public class BrickInitializator {
 
-    public static ArrayList<Brick> initBrickFromFile() {
-	return new ArrayList<>();
+    public static List<Brick> initBrickFromFile() {
+	List<Brick> res = Collections.synchronizedList(new ArrayList<Brick>());
+	return res;
     }
 
-    public static ArrayList<Brick> initBrickRandom(int levelID, MyJPanel jpanel) {
-	ArrayList<Brick> res = new ArrayList<>();
+    public static List<Brick> initBrickRandom(int levelID, MyJPanel jpanel) {
+	List<Brick> res = Collections.synchronizedList(new ArrayList<Brick>());
+
 
 	float nb = 10;
 	for (float i = 1f / ((float) nb*2f + 1f); i < 0.7f; i+= 1f / ((float) nb*2f + 1f)) {

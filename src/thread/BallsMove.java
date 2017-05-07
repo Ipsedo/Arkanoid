@@ -1,18 +1,18 @@
 package thread;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import object.Ball;
 
 public class BallsMove extends CancelableThread {
 
-    private ArrayList<Ball> balls;
+    private List<Ball> balls;
 
     /**
      * 
      * @param balls
      */
-    public BallsMove(ArrayList<Ball> balls) {
+    public BallsMove(List<Ball> balls) {
 	super("BallsMove");
 	this.balls = balls;
     }

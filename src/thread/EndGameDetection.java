@@ -4,14 +4,15 @@ import game.MyJFrame;
 import game.MyJPanel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import object.Ball;
 import object.Brick;
 
 public class EndGameDetection extends CancelableThread {
 
-    private ArrayList<Ball> balls;
-    private ArrayList<Brick> bricks;
+    private List<Ball> balls;
+    private List<Brick> bricks;
     private MyJPanel jpanel;
     private MyJFrame jframe;
 
@@ -21,7 +22,7 @@ public class EndGameDetection extends CancelableThread {
      * @param bricks
      * @param jpanel
      */
-    public EndGameDetection(ArrayList<Ball> balls, ArrayList<Brick> bricks, MyJPanel jpanel, MyJFrame jframe) {
+    public EndGameDetection(List<Ball> balls, List<Brick> bricks, MyJPanel jpanel, MyJFrame jframe) {
 	super("EndGameDetection");
 	this.bricks = bricks;
 	this.balls = balls;

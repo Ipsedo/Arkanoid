@@ -1,6 +1,6 @@
 package thread;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import object.Ball;
 import object.Paddle;
@@ -8,14 +8,14 @@ import object.Paddle;
 public class PaddleBounding extends CancelableThread {
 
     private Paddle paddle;
-    private ArrayList<Ball> balls;
+    private List<Ball> balls;
 
     /**
      * 
      * @param balls
      * @param paddle
      */
-    public PaddleBounding(ArrayList<Ball> balls, Paddle paddle) {
+    public PaddleBounding(List<Ball> balls, Paddle paddle) {
 	super("PaddleBounding");
 	this.balls = balls;
 	this.paddle = paddle;
