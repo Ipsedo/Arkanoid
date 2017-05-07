@@ -25,7 +25,7 @@ public class Item {
 
     protected Rectangle2D rect;
 
-    public Color color;
+    protected Color color;
 
     /**
      * 

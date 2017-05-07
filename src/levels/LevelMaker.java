@@ -21,7 +21,7 @@ public class LevelMaker {
      */
     public static List<Ball> getBallsFromLevelId(int levelId, Random rand, MyJPanel jpanel) {
 	if (levelId == 0) {
-	    int nbBall = 2;
+	    int nbBall = 20;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
@@ -44,6 +44,7 @@ public class LevelMaker {
     public static List<Brick> getBricksFromLevelID(int levelId, MyJPanel jpanel) {
 	List<Brick> res = Collections.synchronizedList(new ArrayList<Brick>());
 	float milieu = 0.5f;
+	
 	if (levelId == 0) {
 	    for (int i = -3; i < -1; i++) {
 		for (int j = 0; j < 9; j++) {
@@ -147,7 +148,7 @@ public class LevelMaker {
 		float[] acc = new float[2];
 		res.add(new Brick(pos, speed, acc, jpanel, 3));
 	    }
-	} else if (levelId == -1) {
+	} else if (levelId == -10) {
 	    float nb = 10;
 	    float decalageWidth = 1f / (float) (nb * nb);
 

@@ -39,6 +39,7 @@ public class MyJFrame extends JFrame implements Runnable {
     private Thread mainLoop;
     private boolean closed = true;
     private boolean go = true;
+    private int myIdLevel;
 
     private BallsMove ballsMoveThread;
     private BallsBounding ballsBoundingThread;
@@ -65,6 +66,8 @@ public class MyJFrame extends JFrame implements Runnable {
 	});
 
 	CancelableThread.TIME_TO_WAIT = 5L;
+	
+	this.myIdLevel = 0;
 
 	this.jPanel = new MyJPanel();
 	super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
@@ -104,7 +107,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
 
-	super.getContentPane().add(new GameInfoJPanel(this), BorderLayout.EAST);
+	super.getContentPane().add(new GameInfoJPanel(this, this.myIdLevel), BorderLayout.EAST);
 
 	super.setVisible(true);
     }
@@ -163,7 +166,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	    e.printStackTrace();
 	}
     }
-
+    
     /**
      * init apres le start
      */
@@ -191,7 +194,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.killThreads();
 	}
     }
-
+    
     /**
      * Creation de level
      * 
@@ -200,6 +203,7 @@ public class MyJFrame extends JFrame implements Runnable {
      */
     public void level(int x) {
 	this.killThreads();
+	this.myIdLevel = x;
 	synchronized (this.bricks) {
 	    this.bricks.clear();
 	    this.bricks.addAll(LevelMaker.getBricksFromLevelID(x, this.jPanel));
