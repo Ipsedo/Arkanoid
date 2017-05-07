@@ -60,52 +60,6 @@ public class Item {
     /**
      * 
      * @param other
-     * @return
-     */
-    protected CollisionSide detectCollisionSide(Item other) {
-	float dx = (this.mPosition[0] + this.width / 2f) - (other.mPosition[0] + other.width / 2f);
-	float dy = (this.mPosition[1] + this.height / 2f) - (other.mPosition[1] + other.height / 2f);
-	float avWidth = (this.width + other.width) / 2f;
-	float avHeight = (this.height + other.height) / 2f;
-	float crossWidth = avWidth * dy;
-	float crossHeight = avHeight * dx;
-	CollisionSide collision = CollisionSide.NONE;
-	if (Math.abs(dx) <= avWidth && Math.abs(dy) <= avHeight) {
-	    if (crossWidth > crossHeight) {
-		collision = (crossWidth > -crossHeight) ? CollisionSide.DOWN : CollisionSide.LEFT;
-	    } else {
-		collision = (crossWidth > -crossHeight) ? CollisionSide.RIGHT : CollisionSide.UP;
-	    }
-	}
-	return collision;
-    }
-
-    /**
-     * 
-     * @param collisionSide
-     */
-    protected void changeSpeed(CollisionSide collisionSide) {
-	switch (collisionSide) {
-	case UP:
-	    this.mSpeed[1] = -Math.abs(this.mSpeed[1]);
-	    break;
-	case DOWN:
-	    this.mSpeed[1] = Math.abs(this.mSpeed[1]);
-	    break;
-	case LEFT:
-	    this.mSpeed[0] = -Math.abs(this.mSpeed[0]);
-	    break;
-	case RIGHT:
-	    this.mSpeed[0] = Math.abs(this.mSpeed[0]);
-	    break;
-	case NONE:
-	    break;
-	}
-    }
-
-    /**
-     * 
-     * @param other
      */
     public void collide(Item other) {
 	/**
