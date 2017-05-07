@@ -35,7 +35,7 @@ public class BallsBricksCollision extends CancelableThread {
 			for (int j = this.balls.size() - 1; j >= 0; j--) {
 			    Ball ba = this.balls.get(j);
 			    br.collide(ba);
-			    if (br.intersect(ba)) {
+			    if (br.intersect(ba) && !br.isAlive()) {
 				this.bricks.remove(br);
 			    }
 

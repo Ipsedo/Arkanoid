@@ -159,7 +159,6 @@ public class Item {
      * @param g2
      */
     public void draw(Graphics2D g2) {
-	g2.setColor(this.color);
 	g2.fillRect((int) (this.mPosition[0] * (float) this.jpanel.getWidth()), (int) (this.mPosition[1] * (float) this.jpanel.getHeight()), (int) (this.width * (float) this.jpanel.getWidth()), (int) (this.height * (float) this.jpanel.getHeight()));
 	g2.setColor(Color.BLACK);
 	g2.drawRect((int) (this.mPosition[0] * (float) this.jpanel.getWidth()), (int) (this.mPosition[1] * (float) this.jpanel.getHeight()), (int) (this.width * (float) this.jpanel.getWidth()), (int) (this.height * (float) this.jpanel.getHeight()));

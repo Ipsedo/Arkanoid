@@ -50,7 +50,7 @@ public class LevelMaker {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
 		    float[] speed = new float[2];
 		    float[] acc = new float[2];
-		    res.add(new Brick(pos, speed, acc, jpanel));
+		    res.add(new Brick(pos, speed, acc, jpanel, 1));
 		}
 	    }
 
@@ -59,7 +59,7 @@ public class LevelMaker {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
 		    float[] speed = new float[2];
 		    float[] acc = new float[2];
-		    res.add(new Brick(pos, speed, acc, jpanel));
+		    res.add(new Brick(pos, speed, acc, jpanel, 1));
 		}
 	    }
 
@@ -68,7 +68,7 @@ public class LevelMaker {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
 		    float[] speed = new float[2];
 		    float[] acc = new float[2];
-		    res.add(new Brick(pos, speed, acc, jpanel));
+		    res.add(new Brick(pos, speed, acc, jpanel, 1));
 		}
 	    }
 
@@ -77,7 +77,7 @@ public class LevelMaker {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
 		    float[] speed = new float[2];
 		    float[] acc = new float[2];
-		    res.add(new Brick(pos, speed, acc, jpanel));
+		    res.add(new Brick(pos, speed, acc, jpanel, 1));
 		}
 	    }
 	} else if (levelId == 1) {
@@ -86,7 +86,7 @@ public class LevelMaker {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
 		    float[] speed = new float[2];
 		    float[] acc = new float[2];
-		    res.add(new Brick(pos, speed, acc, jpanel));
+		    res.add(new Brick(pos, speed, acc, jpanel, 2));
 		}
 	    }
 
@@ -95,7 +95,7 @@ public class LevelMaker {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
 		    float[] speed = new float[2];
 		    float[] acc = new float[2];
-		    res.add(new Brick(pos, speed, acc, jpanel));
+		    res.add(new Brick(pos, speed, acc, jpanel, 2));
 		}
 	    }
 
@@ -104,7 +104,7 @@ public class LevelMaker {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
 		    float[] speed = new float[2];
 		    float[] acc = new float[2];
-		    res.add(new Brick(pos, speed, acc, jpanel));
+		    res.add(new Brick(pos, speed, acc, jpanel, 2));
 		}
 	    }
 	} else if (levelId == 2) {
@@ -114,7 +114,7 @@ public class LevelMaker {
 		float[] pos = new float[] { milieu + (float) (radius * Math.cos(angle)), 0.25f + (float) (radius * Math.sin(angle)) };
 		float[] speed = new float[2];
 		float[] acc = new float[2];
-		res.add(new Brick(pos, speed, acc, jpanel));
+		res.add(new Brick(pos, speed, acc, jpanel, 1));
 	    }
 	    radius = 0.1d;
 	    for (int i = 0; i < 12; i++) {
@@ -122,21 +122,21 @@ public class LevelMaker {
 		float[] pos = new float[] { milieu + (float) (radius * Math.cos(angle)), 0.25f + (float) (radius * Math.sin(angle)) };
 		float[] speed = new float[2];
 		float[] acc = new float[2];
-		res.add(new Brick(pos, speed, acc, jpanel));
+		res.add(new Brick(pos, speed, acc, jpanel, 2));
 	    }
 	} else if(levelId == 0) {
 	    for (int i = 0; i < 20; i++) {
 		float[] pos = new float[] { (float) i / 20f, 0.1f + (float) Math.cos((double) i * Math.PI * 2d / 20d) / 10f};
 		float[] speed = new float[2];
 		float[] acc = new float[2];
-		res.add(new Brick(pos, speed, acc, jpanel));
+		res.add(new Brick(pos, speed, acc, jpanel, 2));
 	    }
 	    
 	    for (int i = 0; i < 20; i++) {
 		float[] pos = new float[] { (float) i / 20f, 0.4f + (float) -Math.cos((double) i * Math.PI * 2d / 20d) / 10f};
 		float[] speed = new float[2];
 		float[] acc = new float[2];
-		res.add(new Brick(pos, speed, acc, jpanel));
+		res.add(new Brick(pos, speed, acc, jpanel, 2));
 	    }
 	    
 	    double radius = 0.15d;
@@ -145,7 +145,7 @@ public class LevelMaker {
 		float[] pos = new float[] { milieu + (float) (radius * Math.cos(angle)), 0.25f + (float) (radius * Math.sin(angle)) };
 		float[] speed = new float[2];
 		float[] acc = new float[2];
-		res.add(new Brick(pos, speed, acc, jpanel));
+		res.add(new Brick(pos, speed, acc, jpanel, 3));
 	    }
 	} else if (levelId == -1) {
 	    float nb = 10;
@@ -156,7 +156,7 @@ public class LevelMaker {
 		    float[] pos = new float[] { (float) i / nb + decalageWidth, 0.6f * (float) j / nb };
 		    float[] speed = new float[2];
 		    float[] acc = new float[2];
-		    res.add(new Brick(pos, speed, acc, jpanel));
+		    res.add(new Brick(pos, speed, acc, jpanel, 1));
 		}
 	    }
 	}
