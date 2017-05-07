@@ -34,13 +34,12 @@ public class BallsBricksCollision extends CancelableThread {
 		    synchronized (this.balls) {
 			for (int j = this.balls.size() - 1; j >= 0; j--) {
 			    Ball ba = this.balls.get(j);
-			    synchronized (ba) {
-				br.collide(ba);
-				if (br.intersect(ba)) {
-				    this.bricks.remove(br);
+			    br.collide(ba);
+			    if (br.intersect(ba)) {
+				this.bricks.remove(br);
 
-				}
 			    }
+
 			}
 		    }
 		}
