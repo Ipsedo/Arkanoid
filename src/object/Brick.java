@@ -4,8 +4,8 @@ import game.MyJPanel;
 
 public class Brick extends Item {
     
-    private static float width = 0.06f;
-    private static float height = 0.02f;
+    private static float width = 1f / 20f;
+    private static float height = 1f / 50f;
 
     /**
      * 
