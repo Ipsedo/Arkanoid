@@ -32,7 +32,7 @@ public class PaddleBounding extends CancelableThread {
 		}
 	    }
 	    try {
-		Thread.sleep(10L);
+		Thread.sleep(CancelableThread.TIME_TO_WAIT);
 	    } catch (InterruptedException ie) {
 		ie.printStackTrace();
 	    }

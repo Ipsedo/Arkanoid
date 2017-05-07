@@ -25,7 +25,7 @@ public class PaddleMove extends CancelableThread {
 		this.paddle.move(new float[2]);
 	    }
 	    try {
-		Thread.sleep(10L);
+		Thread.sleep(CancelableThread.TIME_TO_WAIT);
 	    } catch (InterruptedException ie) {
 		ie.printStackTrace();
 	    }
