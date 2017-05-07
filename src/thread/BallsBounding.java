@@ -22,11 +22,12 @@ public class BallsBounding extends CancelableThread {
      */
     public void run() {
 	while (!this.canceled) {
-	    for (int i = this.balls.size() - 1; i >= 0; i--) {
-		synchronized (this.balls.get(i)) {
-		    if (this.balls.get(i).bounding()) {
-			synchronized (this.balls) {
+	    synchronized (this.balls) {
+		for (int i = this.balls.size() - 1; i >= 0; i--) {
+		    synchronized (this.balls.get(i)) {
+			if (this.balls.get(i).bounding()) {
 			    this.balls.remove(this.balls.get(i));
+
 			}
 		    }
 		}
