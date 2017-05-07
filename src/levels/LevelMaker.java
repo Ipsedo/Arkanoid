@@ -9,12 +9,9 @@ import java.util.Random;
 
 import object.Ball;
 import object.Brick;
-import util.BrickInitializator;
 
 public class LevelMaker {
-    
-    private static int nbBall = 2;
-    
+
     /**
      * 
      * @param levelId
@@ -24,6 +21,7 @@ public class LevelMaker {
      */
     public static List<Ball> getBallsFromLevelId(int levelId, Random rand, MyJPanel jpanel) {
 	if (levelId == 0) {
+	    int nbBall = 2;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
@@ -44,7 +42,45 @@ public class LevelMaker {
      * @return
      */
     public static List<Brick> getBricksFromLevelID(int levelId, MyJPanel jpanel) {
-	return BrickInitializator.initBrickRandom(levelId, jpanel);
+	List<Brick> res = Collections.synchronizedList(new ArrayList<Brick>());
+
+	if (levelId == 1) {
+	    float nb = 10;
+	    float decalageWidth = 1f / (float) (nb * nb);
+
+	    for (int i = 0; i < nb; i++) {
+		for (int j = 0; j < nb; j++) {
+		    float[] pos = new float[] { (float) i / nb + decalageWidth, 0.6f * (float) j / nb };
+		    float[] speed = new float[2];
+		    float[] acc = new float[2];
+		    res.add(new Brick(pos, speed, acc, jpanel));
+		}
+	    }
+	} else if (levelId == 0) {
+	    /*float nb = 20;
+	    float decalageWidth = 1f / (float) (nb * nb);
+
+	    for (int i = 0; i < nb; i++) {
+		for (int j = 0; j < nb; j++) {
+		    float[] pos = new float[] { (float) i / nb + decalageWidth, 0.6f * (float) j / nb };
+		    float[] speed = new float[2];
+		    float[] acc = new float[2];
+		    res.add(new Brick(pos, speed, acc, jpanel));
+		}
+	    }*/
+	    
+	    float milieu = 0.5f;
+	    for(int i = -1; i < 2; i++) {
+		for (int j = 0; j < 15; j++) {
+		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f) , 0.1f + (float) j * (Brick.height + 0.01f) };
+		    float[] speed = new float[2];
+		    float[] acc = new float[2];
+		    res.add(new Brick(pos, speed, acc, jpanel));
+		}
+	    }
+	}
+
+	return res;
     }
 
 }
