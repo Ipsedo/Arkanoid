@@ -135,15 +135,6 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.killThreads();
 	}
     }
-        
-    /**
-     * init apres le start
-     */
-    public void startBall() {
-	this.one = false;
-	this.initThreads();
-	System.out.println("pressed");
-    }
 
     /**
      * Terminer toutes les Threads de jeu
@@ -170,6 +161,16 @@ public class MyJFrame extends JFrame implements Runnable {
 	} catch (InterruptedException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	}
+    }
+    
+    /**
+     * init apres le start
+     */
+    public void startBall() {
+	if (this.one) {
+	    this.one = false;
+	    this.initThreads();
 	}
     }
 
@@ -208,6 +209,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
 
 	if (this.closed) {
+	    this.one = true;
 	    this.initThreads();
 	}
     }
