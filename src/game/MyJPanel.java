@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -17,8 +17,8 @@ import object.Paddle;
 
 public class MyJPanel extends JPanel {
 
-    private ArrayList<Ball> balls;
-    private ArrayList<Brick> bricks;
+    private List<Ball> balls;
+    private List<Brick> bricks;
     private Paddle paddle;
 
     private boolean isDead;
@@ -40,7 +40,7 @@ public class MyJPanel extends JPanel {
      * @param bricks
      * @param paddle
      */
-    public void init(ArrayList<Ball> balls, ArrayList<Brick> bricks, Paddle paddle) {
+    public void init(List<Ball> balls, List<Brick> bricks, Paddle paddle) {
 	this.balls = balls;
 	this.bricks = bricks;
 	this.paddle = paddle;

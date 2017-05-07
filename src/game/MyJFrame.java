@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -31,8 +31,8 @@ public class MyJFrame extends JFrame implements Runnable {
 
     private MyJPanel jPanel;
 
-    private ArrayList<Ball> balls;
-    private ArrayList<Brick> bricks;
+    private List<Ball> balls;
+    private List<Brick> bricks;
     private Paddle paddle;
 
     private Thread mainLoop;
