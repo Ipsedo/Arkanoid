@@ -58,20 +58,8 @@ public class Ball extends Item {
      * @return
      */
     public static float[] initSpeed(Random rand) {
-	int directionId = rand.nextInt(4);
-	if (directionId == 0) {
-	    double angle = rand.nextDouble() * Math.PI / 6 + Math.PI / 6;
-	    return new float[] { (float) Math.cos(angle) * Ball.maxSpeed, (float) Math.sin(angle) * Ball.maxSpeed };
-	} else if (directionId == 1) {
-	    double angle = rand.nextDouble() * Math.PI / 6 + Math.PI * 2d / 3d;
-	    return new float[] { (float) Math.cos(angle) * Ball.maxSpeed, (float) Math.sin(angle) * Ball.maxSpeed };
-	} else if (directionId == 2) {
-	    double angle = -rand.nextDouble() * Math.PI / 6 - Math.PI * 2d / 3d;
-	    return new float[] { (float) Math.cos(angle) * Ball.maxSpeed, (float) Math.sin(angle) * Ball.maxSpeed };
-	} else {
-	    double angle = -rand.nextDouble() * Math.PI / 6 - Math.PI / 6;
-	    return new float[] { (float) Math.cos(angle) * Ball.maxSpeed, (float) Math.sin(angle) * Ball.maxSpeed };
-	}
+	double angle = rand.nextDouble() * Math.PI / 3d + Math.PI / 6d;
+	return new float[] { (float) Math.cos(angle) * maxSpeed, (float) -Math.sin(angle) * maxSpeed};
     }
 
     /**

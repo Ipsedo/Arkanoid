@@ -1,6 +1,7 @@
 package object;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
 import util.Vector;
@@ -46,5 +47,12 @@ public class Paddle extends Item {
 	} else if (other.rect.intersectsLine(this.mPosition[0] + this.width, this.mPosition[1], this.mPosition[0] + this.width, this.mPosition[1] + this.height)) {
 	    other.mSpeed[0] = Math.abs(other.mSpeed[0]);
 	}
+    }
+    
+    public void draw(Graphics2D g2) {
+	g2.setColor(Color.RED);
+	g2.fillRect((int) (this.mPosition[0] * (float) this.getScreenWidth()), (int) (this.mPosition[1] * (float) this.getScreenHeight()), (int) (this.width * (float) this.getScreenWidth()), (int) (this.height * (float) this.getScreenHeight()));
+	g2.setColor(Color.BLACK);
+	g2.drawRect((int) (this.mPosition[0] * (float) this.getScreenWidth()), (int) (this.mPosition[1] * (float) this.getScreenHeight()), (int) (this.width * (float) this.getScreenWidth()), (int) (this.height * (float) this.getScreenHeight()));
     }
 }
