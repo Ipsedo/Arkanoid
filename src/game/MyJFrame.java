@@ -20,6 +20,7 @@ import thread.BallsBounding;
 import thread.BallsBricksCollision;
 import thread.BallsCollision;
 import thread.BallsMove;
+import thread.CancelableThread;
 import thread.EndGameDetection;
 import thread.PaddleBounding;
 import thread.PaddleMove;
@@ -61,6 +62,8 @@ public class MyJFrame extends JFrame implements Runnable {
 		e.getWindow().dispose();
 	    }
 	});
+	
+	CancelableThread.TIME_TO_WAIT = 5L;
 
 	this.jPanel = new MyJPanel();
 	super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
@@ -202,7 +205,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	    Toolkit.getDefaultToolkit().sync();
 	    this.jPanel.repaint();
 	    try {
-		Thread.sleep(20L);
+		Thread.sleep(CancelableThread.TIME_TO_WAIT);
 	    } catch (InterruptedException ie) {
 		ie.printStackTrace();
 	    }
