@@ -2,6 +2,9 @@ package object;
 
 import game.MyJPanel;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 public class Brick extends Item {
     
     public static float width = 1f / 20f;
