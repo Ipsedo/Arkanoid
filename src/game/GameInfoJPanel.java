@@ -33,7 +33,7 @@ public class GameInfoJPanel extends JPanel {
 	JButton reset = new JButton("Reset 'R'");
 
 	JPanel infoPanel = new JPanel();
-	infoPanel.setLayout(new GridLayout(5, 1, 100, 0));
+	infoPanel.setLayout(new GridLayout(5, 1, 0, 0));
 	setLayout(new BorderLayout());
 
 	String[] levelList = { "Level 0", "Level 1", "Level 3", "Level 4", "Level 5" };
@@ -64,7 +64,7 @@ public class GameInfoJPanel extends JPanel {
 		if (arg0.getKeyCode() == KeyEvent.VK_P) {
 		    GameInfoJPanel.this.jframe.killThreads();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_R) {
-		    GameInfoJPanel.this.jframe.resetGame();
+		    GameInfoJPanel.this.jframe.level(0);
 		} else if (arg0.getKeyCode() == KeyEvent.VK_O) {
 		    GameInfoJPanel.this.jframe.resumeGame();
 		}
@@ -103,7 +103,7 @@ public class GameInfoJPanel extends JPanel {
 	reset.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		GameInfoJPanel.this.jframe.resetGame();
+		GameInfoJPanel.this.jframe.level(0);
 	    }
 	});
 	reset.setFocusable(false);

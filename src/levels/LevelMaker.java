@@ -42,7 +42,7 @@ public class LevelMaker {
      */
     public static ArrayList<Brick> getBricksFromLevelID(int levelId, MyJPanel jpanel) {
 	if (levelId == 0) {
-	    return BrickInitializator.initBrickRandom(jpanel, 5);
+	    return BrickInitializator.initBrickRandom(jpanel, 10);
 	} else if (levelId == 1) {
 	    return BrickInitializator.initBrickRandom(jpanel, 100);
 	} else {
