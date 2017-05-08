@@ -155,7 +155,7 @@ public class GameInfoJPanel extends JPanel {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		// GameInfoJPanel.this.jframe.startBall();
-		GameInfoJPanel.this.jframe.resumeGame();
+		GameInfoJPanel.this.jframe.startGame();
 	    }
 	});
 	start.setFocusable(false);
