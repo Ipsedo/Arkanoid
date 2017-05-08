@@ -30,7 +30,8 @@ public class MyJFrame extends JFrame implements Runnable {
 
     public static final int WIDTH = 900;
     public static final int HEIGHT = 800;
-
+    private static final float ratioWH = 900f / 800f;
+    
     private MyJPanel jPanel;
 
     private List<Ball> balls;

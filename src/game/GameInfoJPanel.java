@@ -20,6 +20,15 @@ public class GameInfoJPanel extends JPanel {
     private MyJFrame jframe;
     private int idLevel;
 
+    private static String Level_0 = "Level 0 - Zero";
+    private static String Level_1 = "Level 1 - One";
+    private static String Level_2 = "Level 2 - Circle";
+    private static String Level_3 = "Level 3 - Eye";
+    private static String Level_4 = "Level 4 - Skull";
+    private static String Level_5 = "Level 5 - Space";
+    private static String Level_6 = "Level 6 - Snake";
+    
+    
     /**
      * Mettre des info de jeux en argument
      */
@@ -44,7 +53,7 @@ public class GameInfoJPanel extends JPanel {
 	JPanel infoPanel = new JPanel();
 	infoPanel.setLayout(new GridLayout(0, 1));
 
-	final String[] levelList = { "Level 0", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6" };
+	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5, Level_6 };
 	final JComboBox<String> comboBox = new JComboBox<String>(levelList);
 	comboBox.setEditable(false);
 	comboBox.setBackground(new Color(189, 195, 199));
@@ -74,25 +83,25 @@ public class GameInfoJPanel extends JPanel {
 
 	    @Override
 	    public void itemStateChanged(ItemEvent ie) {
-		if (ie.getItem().equals("Level 0")) {
+		if (ie.getItem().equals(Level_0)) {
 		    GameInfoJPanel.this.jframe.level(0);
 		    GameInfoJPanel.this.idLevel = 0;
-		} else if (ie.getItem().equals("Level 1")) {
+		} else if (ie.getItem().equals(Level_1)) {
 		    GameInfoJPanel.this.jframe.level(1);
 		    GameInfoJPanel.this.idLevel = 1;
-		} else if (ie.getItem().equals("Level 2")) {
+		} else if (ie.getItem().equals(Level_2)) {
 		    GameInfoJPanel.this.jframe.level(2);
 		    GameInfoJPanel.this.idLevel = 2;
-		} else if (ie.getItem().equals("Level 3")) {
+		} else if (ie.getItem().equals(Level_3)) {
 		    GameInfoJPanel.this.jframe.level(3);
 		    GameInfoJPanel.this.idLevel = 3;
-		} else if (ie.getItem().equals("Level 4")) {
+		} else if (ie.getItem().equals(Level_4)) {
 		    GameInfoJPanel.this.jframe.level(4);
 		    GameInfoJPanel.this.idLevel = 4;
-		} else if (ie.getItem().equals("Level 5")) {
+		} else if (ie.getItem().equals(Level_5)) {
 		    GameInfoJPanel.this.jframe.level(5);
 		    GameInfoJPanel.this.idLevel = 5;
-		} else if (ie.getItem().equals("Level 6")) {
+		} else if (ie.getItem().equals(Level_6)) {
 		    GameInfoJPanel.this.jframe.level(6);
 		    GameInfoJPanel.this.idLevel = 6;
 		}
