@@ -46,7 +46,7 @@ public class GameInfoJPanel extends JPanel {
 	infoPanel.setLayout(new GridLayout(0, 1));
 
 	String[] levelList = { "Level 0", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5" };
-	JComboBox<String> comboBox = new JComboBox<String>(levelList);
+	final JComboBox<String> comboBox = new JComboBox<String>(levelList);
 	comboBox.setEditable(false);
 	comboBox.setBackground(new Color(189, 195, 199));
 
@@ -131,6 +131,7 @@ public class GameInfoJPanel extends JPanel {
 		System.out.println("back");
 		if (GameInfoJPanel.this.idLevel > 0) {
 		    GameInfoJPanel.this.idLevel--;
+		    comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		    jframe.level(GameInfoJPanel.this.idLevel);
 		    GameInfoJPanel.this.jframe.pauseGame();
 		}
@@ -143,6 +144,7 @@ public class GameInfoJPanel extends JPanel {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		GameInfoJPanel.this.idLevel++;
+		comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		jframe.level(GameInfoJPanel.this.idLevel);
 		GameInfoJPanel.this.jframe.pauseGame();
 	    }
@@ -187,6 +189,7 @@ public class GameInfoJPanel extends JPanel {
 	reset.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
+		comboBox.setSelectedIndex(0);
 		GameInfoJPanel.this.jframe.level(0);
 	    }
 	});

@@ -204,9 +204,8 @@ public class MyJFrame extends JFrame implements Runnable {
     public void level(int x) {
 	this.myIdLevel = x;
 
-	if (!this.closed) {
-	    this.killThreads();
-	}
+	pauseGame();
+	
 	synchronized (this.bricks) {
 	    this.bricks.clear();
 	    this.bricks.addAll(LevelMaker.getBricksFromLevelID(x, this.jPanel));
