@@ -38,7 +38,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
     private Thread mainLoop;
     private boolean closed = true;
-    private boolean go = false;
+    //private boolean go = false;
     private int myIdLevel;
 
     private BallsMove ballsMoveThread;
@@ -137,9 +137,9 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this);
 	this.endGameDetectionThread.start();
 
-	if (!this.go) {
+	/*if (!this.go) {
 	    pauseGame();
-	}
+	}*/
     }
 
     /**
@@ -173,8 +173,8 @@ public class MyJFrame extends JFrame implements Runnable {
      * Lance la partie
      */
     public void startGame() {
-	if (this.closed && !this.go) {
-	    this.go = true;
+	if (this.closed) { // && !this.go) {
+	    //this.go = true;
 	    this.initThreads();
 	}
     }
@@ -183,7 +183,7 @@ public class MyJFrame extends JFrame implements Runnable {
      * Reprendre la partie
      */
     public void resumeGame() {
-	if (this.closed && this.go) {
+	if (this.closed) {// && this.go) {
 	    this.initThreads();
 	}
     }
@@ -221,7 +221,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
 
-	this.go = false;
+	//this.go = false;
 	this.initThreads();
     }
 

@@ -33,10 +33,10 @@ public class GameInfoJPanel extends JPanel {
 	JButton back = new JButton("Back");
 	JButton next = new JButton("Next");
 
-	JButton start = new JButton("Start 'S'");
+	JButton start = new JButton("<HTML><BODY align='center'>Start /<BR>Resume</BR><BR>'S'</BR></BODY></HTML>");
 	JButton retry = new JButton("Retry 'T'");
 	JButton pause = new JButton("Pause 'P'");
-	JButton resume = new JButton("Resume 'O'");
+	//JButton resume = new JButton("Resume 'O'");
 	JButton reset = new JButton("Reset 'R'");
 
 	JPanel backNext = new JPanel();
@@ -55,7 +55,7 @@ public class GameInfoJPanel extends JPanel {
 	start.setBackground(new Color(189, 195, 199));
 	retry.setBackground(new Color(189, 195, 199));
 	pause.setBackground(new Color(189, 195, 199));
-	resume.setBackground(new Color(189, 195, 199));
+	//resume.setBackground(new Color(189, 195, 199));
 	reset.setBackground(new Color(189, 195, 199));
 
 	this.add(comboBox, BorderLayout.NORTH);
@@ -65,7 +65,7 @@ public class GameInfoJPanel extends JPanel {
 	infoPanel.add(start);
 	infoPanel.add(retry);
 	infoPanel.add(pause);
-	infoPanel.add(resume);
+	//infoPanel.add(resume);
 	infoPanel.add(reset);
 	this.add(infoPanel, BorderLayout.CENTER);
 
@@ -122,9 +122,9 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.jframe.resumeGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_T) {
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
-		} else if (arg0.getKeyCode() == KeyEvent.VK_S) {
+		} /*else if (arg0.getKeyCode() == KeyEvent.VK_S) {
 		    GameInfoJPanel.this.jframe.startGame();
-		}
+		}*/
 	    }
 
 	    @Override
@@ -190,13 +190,13 @@ public class GameInfoJPanel extends JPanel {
 	});
 	pause.setFocusable(false);
 
-	resume.addActionListener(new ActionListener() {
+	/*resume.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		GameInfoJPanel.this.jframe.resumeGame();
 	    }
 	});
-	resume.setFocusable(false);
+	resume.setFocusable(false);*/
 
 	reset.addActionListener(new ActionListener() {
 	    @Override
