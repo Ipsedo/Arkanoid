@@ -89,7 +89,6 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	    @Override
 	    public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
 		synchronized (MyJFrame.this.paddle) {
 		    MyJFrame.this.paddle.setPos(e.getX());
 		}
@@ -97,7 +96,6 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	    @Override
 	    public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
 		synchronized (MyJFrame.this.paddle) {
 		    MyJFrame.this.paddle.setPos(e.getX());
 		}
@@ -138,7 +136,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.ballsBricksCollisionThread.start();
 	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this);
 	this.endGameDetectionThread.start();
-	
+
 	if (!this.go) {
 	    pauseGame();
 	}
@@ -149,36 +147,38 @@ public class MyJFrame extends JFrame implements Runnable {
      */
     private void killThreads() {
 	this.closed = true;
-	this.ballsBricksCollisionThread.setCancel(true);
 	this.ballsMoveThread.setCancel(true);
 	this.ballsBoundingThread.setCancel(true);
 	this.paddleMoveThread.setCancel(true);
 	this.paddleBoundingThread.setCancel(true);
 	this.ballsCollisionThread.setCancel(true);
+	this.ballsBricksCollisionThread.setCancel(true);
 	this.endGameDetectionThread.setCancel(true);
 
 	try {
-	    this.ballsBricksCollisionThread.join();
 	    this.mainLoop.join();
-	    this.paddleMoveThread.join();
-	    this.ballsCollisionThread.join();
+	    this.ballsMoveThread.join();
 	    this.ballsBoundingThread.join();
 	    this.paddleBoundingThread.join();
-	    this.ballsMoveThread.join();
+	    this.paddleMoveThread.join();
+	    this.ballsCollisionThread.join();
+	    this.ballsBricksCollisionThread.join();
 	    this.endGameDetectionThread.join();
 	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }
 
+    /**
+     * Lance la partie
+     */
     public void startGame() {
 	if (this.closed && !this.go) {
 	    this.go = true;
 	    this.initThreads();
 	}
     }
-    
+
     /**
      * Reprendre la partie
      */
@@ -199,13 +199,11 @@ public class MyJFrame extends JFrame implements Runnable {
 
     /**
      * Creation de level
-     * 
-     * @param x : id du level
-     *            
+     * @param x
      */
     public void level(int x) {
 	this.myIdLevel = x;
-	
+
 	if (!this.closed) {
 	    this.killThreads();
 	}
@@ -219,7 +217,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	}
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
-	
+
 	this.go = false;
 	this.initThreads();
     }
@@ -229,7 +227,6 @@ public class MyJFrame extends JFrame implements Runnable {
      */
     @Override
     public void run() {
-	// TODO Auto-generated method stub
 	while (!this.closed) {
 	    Toolkit.getDefaultToolkit().sync();
 	    this.jPanel.repaint();

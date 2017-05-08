@@ -50,7 +50,6 @@ public class MyJPanel extends JPanel {
 	    this.gameOverImage = ImageIO.read(new File("game_over.png"));
 	    this.levelDone = ImageIO.read(new File("level_done.jpg"));
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }
@@ -78,6 +77,7 @@ public class MyJPanel extends JPanel {
 	Graphics2D g2 = (Graphics2D) g;
 	g2.setBackground(Color.GRAY);
 	g2.clearRect(0, 0, super.getWidth(), super.getHeight());
+
 	if (this.isDead) {
 	    g2.drawImage(this.gameOverImage, 0, 0, this.getWidth(), super.getHeight(), null);
 	} else if (this.isWinner) {

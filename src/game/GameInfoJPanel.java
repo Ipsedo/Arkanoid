@@ -111,7 +111,7 @@ public class GameInfoJPanel extends JPanel {
 		} else if (arg0.getKeyCode() == KeyEvent.VK_T) {
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 		} else if (arg0.getKeyCode() == KeyEvent.VK_S) {
-		    GameInfoJPanel.this.jframe.resumeGame();
+		    GameInfoJPanel.this.jframe.startGame();
 		}
 	    }
 
@@ -154,7 +154,6 @@ public class GameInfoJPanel extends JPanel {
 
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		// GameInfoJPanel.this.jframe.startBall();
 		GameInfoJPanel.this.jframe.startGame();
 	    }
 	});
