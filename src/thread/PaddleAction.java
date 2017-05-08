@@ -32,10 +32,10 @@ public class PaddleAction extends CancelableThread {
 	    synchronized (this.balls) {
 		for (int i = this.balls.size() - 1; i >= 0; i--) {
 		    this.paddle.collide(this.balls.get(i));
-		    if(this.paddle.intersect(this.balls.get(i))) {
+		    if (this.paddle.intersect(this.balls.get(i))) {
 			synchronized (CancelableThread.class) {
 			    CancelableThread.TIME_TO_WAIT -= 0.02f;
-			    if(CancelableThread.TIME_TO_WAIT < 0) {
+			    if (CancelableThread.TIME_TO_WAIT < 0) {
 				CancelableThread.TIME_TO_WAIT = 0f;
 			    }
 			}

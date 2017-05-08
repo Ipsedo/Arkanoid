@@ -21,7 +21,7 @@ public class BallsBricksCollision extends CancelableThread {
 	super("BallsBricksCollision");
 	this.balls = balls;
 	this.bricks = bricks;
-	this.score =  score;
+	this.score = score;
     }
 
     /**
@@ -38,7 +38,7 @@ public class BallsBricksCollision extends CancelableThread {
 			for (int j = this.balls.size() - 1; j >= 0; j--) {
 			    Ball ba = this.balls.get(j);
 			    br.collide(ba);
-			    if(br.intersect(ba)) {
+			    if (br.intersect(ba)) {
 				synchronized (this.score) {
 				    this.score.incrScore(br.getScore());
 				}

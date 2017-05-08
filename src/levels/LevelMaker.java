@@ -128,19 +128,19 @@ public class LevelMaker {
 	} else if (levelId == 3) {
 	    for (int i = 0; i < 20; i++) {
 		float[] pos = new float[] { (float) i / 20f, 0.1f + (float) Math.cos((double) i * Math.PI * 2d / 20d) / 10f };
-		res.add(new Brick(pos, speed, acc, jpanel, 2));
+		res.add(new Brick(pos, speed, acc, jpanel, 1));
 	    }
 
 	    for (int i = 0; i < 20; i++) {
 		float[] pos = new float[] { (float) i / 20f, 0.4f + (float) -Math.cos((double) i * Math.PI * 2d / 20d) / 10f };
-		res.add(new Brick(pos, speed, acc, jpanel, 2));
+		res.add(new Brick(pos, speed, acc, jpanel, 1));
 	    }
 
 	    double radius = 0.15d;
 	    for (int i = 0; i < 16; i++) {
 		double angle = (double) i * Math.PI * 2d / 16d;
 		float[] pos = new float[] { milieu + (float) (radius * Math.cos(angle)), 0.25f + (float) (radius * Math.sin(angle)) };
-		res.add(new Brick(pos, speed, acc, jpanel, 3));
+		res.add(new Brick(pos, speed, acc, jpanel, 2));
 	    }
 	} else if (levelId == 5) {
 	    float h = 0.13f;
@@ -292,7 +292,7 @@ public class LevelMaker {
 	    }
 	    float[] pos12 = new float[] { milieu + (float) (-3) * (Brick.width + 0.01f), h + (float) 7 * (Brick.height + 0.01f) };
 	    res.add(new Brick(pos12, speed, acc, jpanel, 2));
-	    
+
 	    // cou milieu
 	    for (int i = -3; i < 3; i++) {
 		float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h + (float) 8 * (Brick.height + 0.01f) };
@@ -315,7 +315,7 @@ public class LevelMaker {
 	    }
 	    float[] pos13 = new float[] { milieu + (float) 2 * (Brick.width + 0.01f), h + (float) 11 * (Brick.height + 0.01f) };
 	    res.add(new Brick(pos13, speed, acc, jpanel, 2));
-	    
+
 	    // cou bas
 	    for (int i = -2; i < 3; i++) {
 		float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h + (float) 12 * (Brick.height + 0.01f) };
@@ -329,7 +329,7 @@ public class LevelMaker {
 		float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h + (float) 14 * (Brick.height + 0.01f) };
 		res.add(new Brick(pos, speed, acc, jpanel, 1));
 	    }
-	} 
+	}
 	return res;
     }
 

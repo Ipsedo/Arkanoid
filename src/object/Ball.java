@@ -13,7 +13,7 @@ public class Ball extends Item {
 
     /**
      * 
-     * @param rand 
+     * @param rand
      * @param jpanel
      */
     public Ball(Random rand, MyJPanel jpanel) {
@@ -33,7 +33,9 @@ public class Ball extends Item {
     }
 
     /**
-     * On fait rebondir la balle et on renvoie vrai si la balle est sortie (faux sinon)
+     * On fait rebondir la balle et on renvoie vrai si la balle est sortie (faux
+     * sinon)
+     * 
      * @return
      */
     public boolean bounding() {
@@ -59,7 +61,7 @@ public class Ball extends Item {
      */
     public static float[] initSpeed(Random rand) {
 	double angle = rand.nextDouble() * 2d * Math.PI / 3d + Math.PI / 6d;
-	return new float[] { (float) Math.cos(angle) * maxSpeed, (float) -Math.sin(angle) * maxSpeed};
+	return new float[] { (float) Math.cos(angle) * maxSpeed, (float) -Math.sin(angle) * maxSpeed };
     }
 
     /**
