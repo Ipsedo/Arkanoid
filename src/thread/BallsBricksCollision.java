@@ -16,6 +16,7 @@ public class BallsBricksCollision extends CancelableThread {
      * 
      * @param balls
      * @param bricks
+     * @param score
      */
     public BallsBricksCollision(List<Ball> balls, List<Brick> bricks, Score score) {
 	super("BallsBricksCollision");
@@ -25,8 +26,7 @@ public class BallsBricksCollision extends CancelableThread {
     }
 
     /**
-     * Big pb pas encore arrivé d'interblocage : on demande d'abord la liste
-     * puis un de ses élément
+     * 
      */
     public void run() {
 	// TODO régler le pb d'interblocage pas encore arrivé

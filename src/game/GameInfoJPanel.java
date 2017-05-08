@@ -29,7 +29,9 @@ public class GameInfoJPanel extends JPanel {
     private static String Level_6 = "Level 6 - Snake";
 
     /**
-     * Mettre des info de jeux en argument
+     * 
+     * @param f
+     * @param idLevel
      */
     public GameInfoJPanel(MyJFrame f, final int idLevel) {
 	super();
