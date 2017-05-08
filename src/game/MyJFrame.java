@@ -204,7 +204,9 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
 	
-	this.resumeGame();
+	this.jPanel.repaint();
+	
+	//this.resumeGame();
     }
 
     /**

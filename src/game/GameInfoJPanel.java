@@ -76,31 +76,24 @@ public class GameInfoJPanel extends JPanel {
 	    public void itemStateChanged(ItemEvent ie) {
 		if (ie.getItem().equals("Level 0")) {
 		    GameInfoJPanel.this.jframe.level(0);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		    GameInfoJPanel.this.idLevel = 0;
 		} else if (ie.getItem().equals("Level 1")) {
 		    GameInfoJPanel.this.jframe.level(1);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		    GameInfoJPanel.this.idLevel = 1;
 		} else if (ie.getItem().equals("Level 2")) {
 		    GameInfoJPanel.this.jframe.level(2);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		    GameInfoJPanel.this.idLevel = 2;
 		} else if (ie.getItem().equals("Level 3")) {
 		    GameInfoJPanel.this.jframe.level(3);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		    GameInfoJPanel.this.idLevel = 3;
 		} else if (ie.getItem().equals("Level 4")) {
 		    GameInfoJPanel.this.jframe.level(4);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		    GameInfoJPanel.this.idLevel = 4;
 		} else if (ie.getItem().equals("Level 5")) {
 		    GameInfoJPanel.this.jframe.level(5);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		    GameInfoJPanel.this.idLevel = 5;
 		} else if (ie.getItem().equals("Level 6")) {
 		    GameInfoJPanel.this.jframe.level(6);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		    GameInfoJPanel.this.idLevel = 6;
 		}
 	    }
@@ -115,12 +108,10 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.jframe.pauseGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_R) {
 		    GameInfoJPanel.this.jframe.level(0);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_S) {
 		    GameInfoJPanel.this.jframe.resumeGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_T) {
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		}
 	    }
 
@@ -141,7 +132,6 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.idLevel--;
 		    comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		}
 	    }
 
@@ -157,7 +147,6 @@ public class GameInfoJPanel extends JPanel {
 		}
 		comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
-		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 
 	});
@@ -177,7 +166,6 @@ public class GameInfoJPanel extends JPanel {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
-		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 	});
 	retry.setFocusable(false);
@@ -195,7 +183,6 @@ public class GameInfoJPanel extends JPanel {
 	    public void actionPerformed(ActionEvent arg0) {
 		comboBox.setSelectedIndex(0);
 		GameInfoJPanel.this.jframe.level(0);
-		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 	});
 	reset.setFocusable(false);
