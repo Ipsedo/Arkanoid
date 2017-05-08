@@ -38,7 +38,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
     private Thread mainLoop;
     private boolean closed = true;
-    private boolean go = true;
+    // private boolean go = true;
     private int myIdLevel;
 
     private BallsMove ballsMoveThread;
@@ -60,13 +60,15 @@ public class MyJFrame extends JFrame implements Runnable {
 	super.addWindowListener(new WindowAdapter() {
 	    @Override
 	    public void windowClosing(WindowEvent e) {
-		MyJFrame.this.killThreads();
+		if (!MyJFrame.this.closed) {
+		    MyJFrame.this.killThreads();
+		}
 		e.getWindow().dispose();
 	    }
 	});
 
 	CancelableThread.TIME_TO_WAIT = 5L;
-	
+
 	this.myIdLevel = 0;
 
 	this.jPanel = new MyJPanel();
@@ -103,9 +105,12 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	});
 
-	this.initThreads();
+	// this.initThreads();
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
+
+	Toolkit.getDefaultToolkit().sync();
+	this.jPanel.repaint();
 
 	super.getContentPane().add(new GameInfoJPanel(this, this.myIdLevel), BorderLayout.EAST);
 
@@ -133,10 +138,9 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.ballsBricksCollisionThread.start();
 	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this);
 	this.endGameDetectionThread.start();
-	if (this.go) {
-	    this.closed = true;
-	    this.killThreads();
-	}
+	/*
+	 * if (this.go) { this.closed = true; this.killThreads(); }
+	 */
     }
 
     /**
@@ -166,16 +170,14 @@ public class MyJFrame extends JFrame implements Runnable {
 	    e.printStackTrace();
 	}
     }
-    
+
     /**
      * init apres le start
      */
-    public void startBall() {
-	if (this.go) {
-	    this.go = false;
-	    this.initThreads();
-	}
-    }
+    /*
+     * public void startBall() { if (this.go) { this.go = false;
+     * this.initThreads(); } }
+     */
 
     /**
      * Reprendre la partie
@@ -194,7 +196,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.killThreads();
 	}
     }
-    
+
     /**
      * Creation de level
      * 
@@ -202,7 +204,9 @@ public class MyJFrame extends JFrame implements Runnable {
      *            : id du level
      */
     public void level(int x) {
-	this.killThreads();
+	if (!this.closed) {
+	    this.killThreads();
+	}
 	this.myIdLevel = x;
 	synchronized (this.bricks) {
 	    this.bricks.clear();
@@ -214,8 +218,10 @@ public class MyJFrame extends JFrame implements Runnable {
 	}
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
-	this.go = true;
-	this.initThreads();
+	// this.go = true;
+	if (this.closed) {
+	    this.initThreads();
+	}
     }
 
     /**
