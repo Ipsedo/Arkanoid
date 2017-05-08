@@ -25,7 +25,7 @@ public class Score {
     
     public void draw(Graphics2D g2) {
 	g2.setColor(new Color(44, 62, 80));
-	g2.drawChars(("" + this.currentScore).toCharArray(), 0, ("" + this.currentScore).toCharArray().length, (int) (0.5 * this.jpanel.getWidth()), (int) (0.8 * this.jpanel.getHeight()));
+	g2.drawChars(("Score : " + this.currentScore).toCharArray(), 0, ("Score : " + this.currentScore).toCharArray().length, (int) (0.5 * this.jpanel.getWidth()), (int) (0.8 * this.jpanel.getHeight()));
     }
 
 }

@@ -201,9 +201,9 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.balls.addAll(LevelMaker.getBallsFromLevelId(x, new Random(System.currentTimeMillis()), this.jPanel));
 	}
 	
-	synchronized (this.score) {
+	/*synchronized (this.score) {
 	    this.score.reset();
-	}
+	}*/
 	
 	synchronized (CancelableThread.class) {
 	    CancelableThread.TIME_TO_WAIT = 5f;
