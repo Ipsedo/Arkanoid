@@ -27,8 +27,8 @@ import thread.PaddleMove;
 
 public class MyJFrame extends JFrame implements Runnable {
 
-    public static final int WIDTH = 500;
-    public static final int HEIGHT = 500;
+    public static final int WIDTH = 900;
+    public static final int HEIGHT = 800;
 
     private MyJPanel jPanel;
 
@@ -54,7 +54,7 @@ public class MyJFrame extends JFrame implements Runnable {
     public MyJFrame() {
 	super("Arkanoid");
 	super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	super.setLocation(200, 200);
+	super.setLocation(300, 0);
 	super.getContentPane().setLayout(new BorderLayout());
 	super.addWindowListener(new WindowAdapter() {
 	    @Override
