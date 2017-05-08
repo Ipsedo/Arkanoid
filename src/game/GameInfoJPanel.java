@@ -128,25 +128,25 @@ public class GameInfoJPanel extends JPanel {
 		    if (GameInfoJPanel.this.idLevel < levelList.length - 1) {
 			GameInfoJPanel.this.idLevel++;
 		    }
-		} else if (arg0.getKeyCode() == KeyEvent.VK_0) {
+		} else if (arg0.getKeyChar() == '0') {
 		    GameInfoJPanel.this.jframe.level(0);
 		    GameInfoJPanel.this.idLevel = 0;
-		} else if (arg0.getKeyCode() == KeyEvent.VK_1) {
+		} else if (arg0.getKeyChar() == '1') {
 		    GameInfoJPanel.this.jframe.level(1);
 		    GameInfoJPanel.this.idLevel = 1;
-		} else if (arg0.getKeyCode() == KeyEvent.VK_2) {
+		} else if (arg0.getKeyChar() == '2') {
 		    GameInfoJPanel.this.jframe.level(2);
 		    GameInfoJPanel.this.idLevel = 2;
-		} else if (arg0.getKeyCode() == KeyEvent.VK_3) {
+		} else if (arg0.getKeyChar() == '3') {
 		    GameInfoJPanel.this.jframe.level(3);
 		    GameInfoJPanel.this.idLevel = 3;
-		} else if (arg0.getKeyCode() == KeyEvent.VK_4) {
+		} else if (arg0.getKeyChar() == '4') {
 		    GameInfoJPanel.this.jframe.level(4);
 		    GameInfoJPanel.this.idLevel = 4;
-		} else if (arg0.getKeyCode() == KeyEvent.VK_5) {
+		} else if (arg0.getKeyChar() == '5') {
 		    GameInfoJPanel.this.jframe.level(5);
 		    GameInfoJPanel.this.idLevel = 5;
-		} else if (arg0.getKeyCode() == KeyEvent.VK_6) {
+		} else if (arg0.getKeyChar() == '6') {
 		    GameInfoJPanel.this.jframe.level(6);
 		    GameInfoJPanel.this.idLevel = 6;
 		}
