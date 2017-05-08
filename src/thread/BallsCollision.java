@@ -31,7 +31,7 @@ public class BallsCollision extends CancelableThread {
 		}
 	    }
 	    try {
-		Thread.sleep(CancelableThread.TIME_TO_WAIT);
+		Thread.sleep((long) CancelableThread.TIME_TO_WAIT);
 	    } catch (InterruptedException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

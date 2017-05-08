@@ -45,7 +45,7 @@ public class EndGameDetection extends CancelableThread {
 		}
 	    }
 	    try {
-		Thread.sleep(CancelableThread.TIME_TO_WAIT);
+		Thread.sleep((long) CancelableThread.TIME_TO_WAIT);
 	    } catch (InterruptedException ie) {
 		ie.printStackTrace();
 	    }

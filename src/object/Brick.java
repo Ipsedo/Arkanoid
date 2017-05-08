@@ -33,6 +33,10 @@ public class Brick extends Item {
 	return false;
     }
     
+    public int getScore() {
+	return (this.life + 1) * (this.life + 1) * 5;
+    }
+    
     public boolean isAlive(){
 	return this.life > 0;
     }

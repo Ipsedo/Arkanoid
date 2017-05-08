@@ -1,30 +1,27 @@
 package thread;
 
-import game.MyJFrame;
-
 import java.util.List;
 
 import object.Ball;
 import object.Brick;
+import object.Score;
 
 public class BallsBricksCollision extends CancelableThread {
 
     private List<Brick> bricks;
     private List<Ball> balls;
-    private MyJFrame jframe;
-    private long lastCollision;
+    private Score score;
 
     /**
      * 
      * @param balls
      * @param bricks
      */
-    public BallsBricksCollision(List<Ball> balls, List<Brick> bricks, MyJFrame jframe) {
+    public BallsBricksCollision(List<Ball> balls, List<Brick> bricks, Score score) {
 	super("BallsBricksCollision");
 	this.balls = balls;
 	this.bricks = bricks;
-	this.jframe = jframe;
-	this.lastCollision = System.currentTimeMillis();
+	this.score =  score;
     }
 
     /**
@@ -42,9 +39,9 @@ public class BallsBricksCollision extends CancelableThread {
 			    Ball ba = this.balls.get(j);
 			    br.collide(ba);
 			    if(br.intersect(ba)) {
-				long deltaTime = System.currentTimeMillis() - this.lastCollision;
-				deltaTime /= 3000L;
-				this.jframe.incrScore((int) (1L / deltaTime));
+				synchronized (this.score) {
+				    this.score.incrScore(br.getScore());
+				}
 			    }
 			    if (!br.isAlive()) {
 				this.bricks.remove(br);
@@ -54,7 +51,7 @@ public class BallsBricksCollision extends CancelableThread {
 		}
 	    }
 	    try {
-		Thread.sleep(CancelableThread.TIME_TO_WAIT);
+		Thread.sleep((long) CancelableThread.TIME_TO_WAIT);
 	    } catch (InterruptedException e) {
 		e.printStackTrace();
 	    }

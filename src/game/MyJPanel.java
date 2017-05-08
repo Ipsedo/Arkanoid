@@ -14,12 +14,14 @@ import javax.swing.JPanel;
 import object.Ball;
 import object.Brick;
 import object.Paddle;
+import object.Score;
 
 public class MyJPanel extends JPanel {
 
     private List<Ball> balls;
     private List<Brick> bricks;
     private Paddle paddle;
+    private Score score;
 
     private boolean isDead;
     private boolean isWinner;
@@ -40,12 +42,13 @@ public class MyJPanel extends JPanel {
      * @param bricks
      * @param paddle
      */
-    public void init(List<Ball> balls, List<Brick> bricks, Paddle paddle) {
+    public void init(List<Ball> balls, List<Brick> bricks, Paddle paddle, Score score) {
 	this.balls = balls;
 	this.bricks = bricks;
 	this.paddle = paddle;
 	this.isDead = false;
 	this.isWinner = false;
+	this.score = score;
 	try {
 	    this.gameOverImage = ImageIO.read(new File("game_over.png"));
 	    this.levelDone = ImageIO.read(new File("level_done.jpg"));
@@ -83,6 +86,7 @@ public class MyJPanel extends JPanel {
 	} else if (this.isWinner) {
 	    g2.drawImage(this.levelDone, 0, 0, this.getWidth(), super.getHeight(), null);
 	} else {
+	    this.score.draw(g2);
 	    for (int i = 0; i < this.balls.size(); i++)
 		this.balls.get(i).draw(g2);
 	    for (int i = 0; i < this.bricks.size(); i++)

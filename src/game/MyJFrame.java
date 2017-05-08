@@ -16,6 +16,7 @@ import levels.LevelMaker;
 import object.Ball;
 import object.Brick;
 import object.Paddle;
+import object.Score;
 import thread.BallsBounding;
 import thread.BallsBricksCollision;
 import thread.BallsCollision;
@@ -35,6 +36,7 @@ public class MyJFrame extends JFrame implements Runnable {
     private List<Ball> balls;
     private List<Brick> bricks;
     private Paddle paddle;
+    private Score score;
 
     private Thread mainLoop;
     private boolean closed = true;
@@ -47,8 +49,6 @@ public class MyJFrame extends JFrame implements Runnable {
     private BallsCollision ballsCollisionThread;
     private BallsBricksCollision ballsBricksCollisionThread;
     private EndGameDetection endGameDetectionThread;
-    
-    private int currentScore;
 
     /**
      * 
@@ -68,10 +68,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	    }
 	});
 
-	CancelableThread.TIME_TO_WAIT = 5L;
-
 	this.myIdLevel = 0;
-	this.currentScore = 0;
 
 	this.jPanel = new MyJPanel();
 	super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
@@ -86,6 +83,8 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.bricks = LevelMaker.getBricksFromLevelID(0, this.jPanel);
 
 	this.paddle = new Paddle(this.jPanel);
+	
+	this.score = new Score(this.jPanel);
 
 	this.jPanel.addMouseMotionListener(new MouseMotionListener() {
 
@@ -105,7 +104,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	});
 
-	this.jPanel.init(this.balls, this.bricks, this.paddle);
+	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score);
 
 	Toolkit.getDefaultToolkit().sync();
 	this.jPanel.repaint();
@@ -115,10 +114,6 @@ public class MyJFrame extends JFrame implements Runnable {
 	super.setVisible(true);
     }
     
-    public void incrScore(int scoreToAdd) {
-	this.currentScore += scoreToAdd;
-    }
-
     /**
      * Initialisation des Threads de jeu
      */
@@ -136,7 +131,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.paddleBoundingThread.start();
 	this.ballsCollisionThread = new BallsCollision(this.balls);
 	this.ballsCollisionThread.start();
-	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks, this);
+	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks, this.score);
 	this.ballsBricksCollisionThread.start();
 	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this);
 	this.endGameDetectionThread.start();
@@ -186,9 +181,6 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.killThreads();
 	}
     }
-
-    //TODO Lors d'un start puis un reset le niveau se refresh bien!
-    //TODO Lors d'un second start puis reset on a un bugg d'affichage
     //TODO Trouver pour quoi apres la premiere fois de reset cela bug !!!!
     
     /**
@@ -209,9 +201,15 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.balls.addAll(LevelMaker.getBallsFromLevelId(x, new Random(System.currentTimeMillis()), this.jPanel));
 	}
 	
-	this.currentScore = 0;
+	synchronized (this.score) {
+	    this.score.reset();
+	}
+	
+	synchronized (CancelableThread.class) {
+	    CancelableThread.TIME_TO_WAIT = 5f;
+	}
 
-	this.jPanel.init(this.balls, this.bricks, this.paddle);
+	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score);
 	
 	this.jPanel.repaint();
     }
@@ -224,9 +222,8 @@ public class MyJFrame extends JFrame implements Runnable {
 	while (!this.closed) {
 	    Toolkit.getDefaultToolkit().sync();
 	    this.jPanel.repaint();
-	    System.out.println(this.currentScore);
 	    try {
-		Thread.sleep(CancelableThread.TIME_TO_WAIT);
+		Thread.sleep((long) CancelableThread.TIME_TO_WAIT);
 	    } catch (InterruptedException ie) {
 		ie.printStackTrace();
 	    }
