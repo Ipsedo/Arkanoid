@@ -22,7 +22,7 @@ import thread.BallsCollision;
 import thread.BallsMove;
 import thread.CancelableThread;
 import thread.EndGameDetection;
-import thread.PaddleBounding;
+import thread.PaddleAction;
 import thread.PaddleMove;
 
 public class MyJFrame extends JFrame implements Runnable {
@@ -43,10 +43,12 @@ public class MyJFrame extends JFrame implements Runnable {
     private BallsMove ballsMoveThread;
     private BallsBounding ballsBoundingThread;
     private PaddleMove paddleMoveThread;
-    private PaddleBounding paddleBoundingThread;
+    private PaddleAction paddleBoundingThread;
     private BallsCollision ballsCollisionThread;
     private BallsBricksCollision ballsBricksCollisionThread;
     private EndGameDetection endGameDetectionThread;
+    
+    private int currentScore;
 
     /**
      * 
@@ -69,6 +71,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	CancelableThread.TIME_TO_WAIT = 5L;
 
 	this.myIdLevel = 0;
+	this.currentScore = 0;
 
 	this.jPanel = new MyJPanel();
 	super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
@@ -111,6 +114,10 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	super.setVisible(true);
     }
+    
+    public void incrScore(int scoreToAdd) {
+	this.currentScore += scoreToAdd;
+    }
 
     /**
      * Initialisation des Threads de jeu
@@ -125,11 +132,11 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.ballsBoundingThread.start();
 	this.paddleMoveThread = new PaddleMove(this.paddle);
 	this.paddleMoveThread.start();
-	this.paddleBoundingThread = new PaddleBounding(this.balls, this.paddle);
+	this.paddleBoundingThread = new PaddleAction(this.balls, this.paddle);
 	this.paddleBoundingThread.start();
 	this.ballsCollisionThread = new BallsCollision(this.balls);
 	this.ballsCollisionThread.start();
-	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks);
+	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks, this);
 	this.ballsBricksCollisionThread.start();
 	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this);
 	this.endGameDetectionThread.start();
@@ -201,12 +208,12 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.balls.clear();
 	    this.balls.addAll(LevelMaker.getBallsFromLevelId(x, new Random(System.currentTimeMillis()), this.jPanel));
 	}
+	
+	this.currentScore = 0;
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle);
 	
 	this.jPanel.repaint();
-	
-	//this.resumeGame();
     }
 
     /**
@@ -217,6 +224,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	while (!this.closed) {
 	    Toolkit.getDefaultToolkit().sync();
 	    this.jPanel.repaint();
+	    System.out.println(this.currentScore);
 	    try {
 		Thread.sleep(CancelableThread.TIME_TO_WAIT);
 	    } catch (InterruptedException ie) {
