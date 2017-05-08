@@ -27,8 +27,7 @@ public class GameInfoJPanel extends JPanel {
     private static String Level_4 = "Level 4 - Skull";
     private static String Level_5 = "Level 5 - Space";
     private static String Level_6 = "Level 6 - Snake";
-    
-    
+
     /**
      * Mettre des info de jeux en argument
      */
@@ -121,7 +120,37 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.jframe.resumeGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_T) {
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
+		} else if (arg0.getKeyCode() == KeyEvent.VK_B) {
+		    if (GameInfoJPanel.this.idLevel > 0) {
+			GameInfoJPanel.this.idLevel--;
+		    }
+		} else if (arg0.getKeyCode() == KeyEvent.VK_N) {
+		    if (GameInfoJPanel.this.idLevel < levelList.length - 1) {
+			GameInfoJPanel.this.idLevel++;
+		    }
+		} else if (arg0.getKeyCode() == KeyEvent.VK_0) {
+		    GameInfoJPanel.this.jframe.level(0);
+		    GameInfoJPanel.this.idLevel = 0;
+		} else if (arg0.getKeyCode() == KeyEvent.VK_1) {
+		    GameInfoJPanel.this.jframe.level(1);
+		    GameInfoJPanel.this.idLevel = 1;
+		} else if (arg0.getKeyCode() == KeyEvent.VK_2) {
+		    GameInfoJPanel.this.jframe.level(2);
+		    GameInfoJPanel.this.idLevel = 2;
+		} else if (arg0.getKeyCode() == KeyEvent.VK_3) {
+		    GameInfoJPanel.this.jframe.level(3);
+		    GameInfoJPanel.this.idLevel = 3;
+		} else if (arg0.getKeyCode() == KeyEvent.VK_4) {
+		    GameInfoJPanel.this.jframe.level(4);
+		    GameInfoJPanel.this.idLevel = 4;
+		} else if (arg0.getKeyCode() == KeyEvent.VK_5) {
+		    GameInfoJPanel.this.jframe.level(5);
+		    GameInfoJPanel.this.idLevel = 5;
+		} else if (arg0.getKeyCode() == KeyEvent.VK_6) {
+		    GameInfoJPanel.this.jframe.level(6);
+		    GameInfoJPanel.this.idLevel = 6;
 		}
+		comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 	    }
 
 	    @Override
