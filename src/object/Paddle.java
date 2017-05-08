@@ -41,14 +41,14 @@ public class Paddle extends Item {
 	    double angle = dx * Math.PI * 0.4d;
 	    other.mSpeed[0] = -length * (float) Math.sin(angle);
 	    other.mSpeed[1] = -length * (float) Math.cos(angle);
-	    //other.mSpeed[1] = -Math.abs(other.mSpeed[1]);
+	    // other.mSpeed[1] = -Math.abs(other.mSpeed[1]);
 	} else if (other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0], this.mPosition[1] + this.height)) {
 	    other.mSpeed[0] = -Math.abs(other.mSpeed[0]);
 	} else if (other.rect.intersectsLine(this.mPosition[0] + this.width, this.mPosition[1], this.mPosition[0] + this.width, this.mPosition[1] + this.height)) {
 	    other.mSpeed[0] = Math.abs(other.mSpeed[0]);
 	}
     }
-    
+
     public void draw(Graphics2D g2) {
 	g2.setColor(Color.RED);
 	g2.fillRect((int) (this.mPosition[0] * (float) this.getScreenWidth()), (int) (this.mPosition[1] * (float) this.getScreenHeight()), (int) (this.width * (float) this.getScreenWidth()), (int) (this.height * (float) this.getScreenHeight()));

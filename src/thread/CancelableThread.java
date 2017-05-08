@@ -1,7 +1,7 @@
 package thread;
 
 public class CancelableThread extends Thread {
-    
+
     public static float TIME_TO_WAIT = 5f;
 
     protected boolean canceled;
