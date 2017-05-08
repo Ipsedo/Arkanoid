@@ -141,12 +141,11 @@ public class GameInfoJPanel extends JPanel {
 	next.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		GameInfoJPanel.this.idLevel++;
-		if (GameInfoJPanel.this.idLevel > levelList.length - 1) {
-		    GameInfoJPanel.this.idLevel--;
+		if (GameInfoJPanel.this.idLevel < levelList.length - 1) {
+		    GameInfoJPanel.this.idLevel++;
+		    comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
+		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 		}
-		comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
-		GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 	    }
 
 	});

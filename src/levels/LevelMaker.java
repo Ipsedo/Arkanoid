@@ -95,21 +95,21 @@ public class LevelMaker {
 	    for (int i = -1; i < 2; i++) {
 		for (int j = 0; j < 15; j++) {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
-		    res.add(new Brick(pos, speed, acc, jpanel, 2));
+		    res.add(new Brick(pos, speed, acc, jpanel, 1));
 		}
 	    }
 
 	    for (int i = -3; i < 4; i++) {
 		for (int j = 15; j < 17; j++) {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
-		    res.add(new Brick(pos, speed, acc, jpanel, 2));
+		    res.add(new Brick(pos, speed, acc, jpanel, 1));
 		}
 	    }
 
 	    for (int i = -3; i < -1; i++) {
 		for (int j = 1; j < 4; j++) {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
-		    res.add(new Brick(pos, speed, acc, jpanel, 2));
+		    res.add(new Brick(pos, speed, acc, jpanel, 1));
 		}
 	    }
 	} else if (levelId == 2) {
