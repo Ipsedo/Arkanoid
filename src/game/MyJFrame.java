@@ -197,6 +197,10 @@ public class MyJFrame extends JFrame implements Runnable {
 	}
     }
 
+    //TODO Lors d'un start puis un reset le niveau se refresh bien!
+    //TODO Lors d'un second start puis reset on a un bugg d'affichage
+    //TODO Trouver pour quoi apres la premiere fois de reset cela bug !!!!
+    
     /**
      * Creation de level
      * @param x
