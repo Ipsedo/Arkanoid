@@ -18,6 +18,7 @@ public class Brick extends Item {
      * @param mSpeed
      * @param mAcceleration
      * @param jpanel
+     * @param life
      */
     public Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel, int life) {
 	super(mPosition, mSpeed, mAcceleration, width, height, jpanel);

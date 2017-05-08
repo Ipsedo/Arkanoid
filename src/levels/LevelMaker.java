@@ -21,16 +21,32 @@ public class LevelMaker {
      */
     public static List<Ball> getBallsFromLevelId(int levelId, Random rand, MyJPanel jpanel) {
 	if (levelId == 0) {
-	    int nbBall = 20;
+	    int nbBall = 3;
+	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
+	    for (int i = 0; i < nbBall; i++) {
+		res.add(new Ball(rand, jpanel));
+	    }
+	    return res;
+	} else if (levelId == 1) {
+	    int nbBall = 2;
+	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
+	    for (int i = 0; i < nbBall; i++) {
+		res.add(new Ball(rand, jpanel));
+	    }
+	    return res;
+	} else if (levelId == 2) {
+	    int nbBall = 1;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
 	    }
 	    return res;
 	} else {
+	    int nbBall = 1;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
-	    res.add(new Ball(rand, jpanel));
-	    res.add(new Ball(rand, jpanel));
+	    for (int i = 0; i < nbBall; i++) {
+		res.add(new Ball(rand, jpanel));
+	    }
 	    return res;
 	}
     }
@@ -44,7 +60,7 @@ public class LevelMaker {
     public static List<Brick> getBricksFromLevelID(int levelId, MyJPanel jpanel) {
 	List<Brick> res = Collections.synchronizedList(new ArrayList<Brick>());
 	float milieu = 0.5f;
-	
+
 	if (levelId == 0) {
 	    for (int i = -3; i < -1; i++) {
 		for (int j = 0; j < 9; j++) {
@@ -125,21 +141,21 @@ public class LevelMaker {
 		float[] acc = new float[2];
 		res.add(new Brick(pos, speed, acc, jpanel, 2));
 	    }
-	} else if(levelId == 3) {
+	} else if (levelId == 3) {
 	    for (int i = 0; i < 20; i++) {
-		float[] pos = new float[] { (float) i / 20f, 0.1f + (float) Math.cos((double) i * Math.PI * 2d / 20d) / 10f};
+		float[] pos = new float[] { (float) i / 20f, 0.1f + (float) Math.cos((double) i * Math.PI * 2d / 20d) / 10f };
 		float[] speed = new float[2];
 		float[] acc = new float[2];
 		res.add(new Brick(pos, speed, acc, jpanel, 2));
 	    }
-	    
+
 	    for (int i = 0; i < 20; i++) {
-		float[] pos = new float[] { (float) i / 20f, 0.4f + (float) -Math.cos((double) i * Math.PI * 2d / 20d) / 10f};
+		float[] pos = new float[] { (float) i / 20f, 0.4f + (float) -Math.cos((double) i * Math.PI * 2d / 20d) / 10f };
 		float[] speed = new float[2];
 		float[] acc = new float[2];
 		res.add(new Brick(pos, speed, acc, jpanel, 2));
 	    }
-	    
+
 	    double radius = 0.15d;
 	    for (int i = 0; i < 16; i++) {
 		double angle = (double) i * Math.PI * 2d / 16d;
@@ -148,7 +164,75 @@ public class LevelMaker {
 		float[] acc = new float[2];
 		res.add(new Brick(pos, speed, acc, jpanel, 3));
 	    }
-	} else if (levelId == -10) {
+	} else if (levelId == 4) {
+	    float h = 0.13f;
+	    for (int i = -3; i < 4; i++) {
+		for (int j = 0; j < 8; j++) {
+		    if ((i == -2 && j == 2) || (i == -2 && j == 3) || (i == 2 && j == 2) || (i == 2 && j == 3)) {
+			float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+			float[] speed = new float[2];
+			float[] acc = new float[2];
+			res.add(new Brick(pos, speed, acc, jpanel, 3));
+		    } else {
+			float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+			float[] speed = new float[2];
+			float[] acc = new float[2];
+			res.add(new Brick(pos, speed, acc, jpanel, 1));
+		    }
+		}
+	    }
+	    for (int j = 2; j < 7; j++) {
+		float[] pos = new float[] { milieu + (float) (-4) * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		float[] pos1 = new float[] { milieu + (float) 4 * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		float[] speed = new float[2];
+		float[] acc = new float[2];
+		res.add(new Brick(pos, speed, acc, jpanel, 1));
+		res.add(new Brick(pos1, speed, acc, jpanel, 1));
+	    }
+	    for (int j = 4; j < 10; j++) {
+		float[] pos = new float[] { milieu + (float) (-5) * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		float[] pos1 = new float[] { milieu + (float) 5 * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		float[] speed = new float[2];
+		float[] acc = new float[2];
+		res.add(new Brick(pos, speed, acc, jpanel, 2));
+		res.add(new Brick(pos1, speed, acc, jpanel, 2));
+	    }
+	    for (int j = 8; j < 10; j++) {
+		float[] pos = new float[] { milieu + (float) (-3) * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		float[] pos1 = new float[] { milieu + (float) 3 * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		float[] speed = new float[2];
+		float[] acc = new float[2];
+		res.add(new Brick(pos, speed, acc, jpanel, 1));
+		res.add(new Brick(pos1, speed, acc, jpanel, 1));
+	    }
+	    for (int k = -2; k < 0; k++) {
+		for (int j = 10; j < 12; j++) {
+		    float[] pos = new float[] { milieu + (float) k * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		    float[] pos1 = new float[] { milieu + (float) (-k) * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		    float[] speed = new float[2];
+		    float[] acc = new float[2];
+		    res.add(new Brick(pos, speed, acc, jpanel, 2));
+		    res.add(new Brick(pos1, speed, acc, jpanel, 2));
+		}
+	    }
+	    for (int j = -2; j < 0; j++) {
+		float[] pos = new float[] { milieu + (float) 2 * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		float[] pos1 = new float[] { milieu + (float) (-2) * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		float[] speed = new float[2];
+		float[] acc = new float[2];
+		res.add(new Brick(pos, speed, acc, jpanel, 2));
+		res.add(new Brick(pos1, speed, acc, jpanel, 2));
+	    }
+	    for (int j = -4; j < -2; j++) {
+		float[] pos = new float[] { milieu + (float) 3 * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		float[] pos1 = new float[] { milieu + (float) (-3) * (Brick.width + 0.01f), h + (float) j * (Brick.height + 0.01f) };
+		float[] speed = new float[2];
+		float[] acc = new float[2];
+		res.add(new Brick(pos, speed, acc, jpanel, 2));
+		res.add(new Brick(pos1, speed, acc, jpanel, 2));
+	    }
+
+	} else if (levelId > 4) {
 	    float nb = 10;
 	    float decalageWidth = 1f / (float) (nb * nb);
 
