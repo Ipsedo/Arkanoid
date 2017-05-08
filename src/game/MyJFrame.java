@@ -31,7 +31,7 @@ public class MyJFrame extends JFrame implements Runnable {
     public static final int WIDTH = 900;
     public static final int HEIGHT = 800;
     private static final float ratioHW = 750f / 900f;
-    
+
     private MyJPanel jPanel;
 
     private List<Ball> balls;
@@ -77,14 +77,14 @@ public class MyJFrame extends JFrame implements Runnable {
 	super.pack();
 	super.setSize((int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * ratioHW), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
 
-	this.setIconImage(new ImageIcon("icgo_1.png").getImage());
+	this.setIconImage(new ImageIcon("icone_1.png").getImage());
 
 	// On appelle la creation de niveau depuis la classe LevelMaker
 	this.balls = LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()), this.jPanel);
 	this.bricks = LevelMaker.getBricksFromLevelID(0, this.jPanel);
 
 	this.paddle = new Paddle(this.jPanel);
-	
+
 	this.score = new Score(this.jPanel);
 
 	this.jPanel.addMouseMotionListener(new MouseMotionListener() {
@@ -114,7 +114,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	super.setVisible(true);
     }
-    
+
     /**
      * Initialisation des Threads de jeu
      */
@@ -182,17 +182,19 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.killThreads();
 	}
     }
-    //TODO Trouver pour quoi apres la premiere fois de reset cela bug !!!!
-    
+
+    // TODO Trouver pour quoi apres la premiere fois de reset cela bug !!!!
+
     /**
      * Creation de level
+     * 
      * @param x
      */
     public void level(int x) {
 	this.myIdLevel = x;
 
 	this.pauseGame();
-	
+
 	synchronized (this.bricks) {
 	    this.bricks.clear();
 	    this.bricks.addAll(LevelMaker.getBricksFromLevelID(x, this.jPanel));
@@ -201,17 +203,17 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.balls.clear();
 	    this.balls.addAll(LevelMaker.getBallsFromLevelId(x, new Random(System.currentTimeMillis()), this.jPanel));
 	}
-	
-	/*synchronized (this.score) {
-	    this.score.reset();
-	}*/
-	
+
+	/*
+	 * synchronized (this.score) { this.score.reset(); }
+	 */
+
 	synchronized (CancelableThread.class) {
 	    CancelableThread.TIME_TO_WAIT = 5f;
 	}
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score);
-	
+
 	this.jPanel.repaint();
     }
 
