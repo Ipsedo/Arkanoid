@@ -45,7 +45,7 @@ public class GameInfoJPanel extends JPanel {
 	JPanel infoPanel = new JPanel();
 	infoPanel.setLayout(new GridLayout(0, 1));
 
-	String[] levelList = { "Level 0", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5" };
+	String[] levelList = { "Level 0", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6" };
 	final JComboBox<String> comboBox = new JComboBox<String>(levelList);
 	comboBox.setEditable(false);
 	comboBox.setBackground(new Color(189, 195, 199));
@@ -101,6 +101,10 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.jframe.level(5);
 		    GameInfoJPanel.this.jframe.pauseGame();
 		    GameInfoJPanel.this.idLevel = 5;
+		} else if (ie.getItem().equals("Level 6")) {
+		    GameInfoJPanel.this.jframe.level(6);
+		    GameInfoJPanel.this.jframe.pauseGame();
+		    GameInfoJPanel.this.idLevel = 6;
 		}
 	    }
 
