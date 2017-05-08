@@ -36,7 +36,6 @@ public class GameInfoJPanel extends JPanel {
 	JButton start = new JButton("<HTML><BODY align='center'>Start /<BR>Resume</BR><BR>'S'</BR></BODY></HTML>");
 	JButton retry = new JButton("Retry 'T'");
 	JButton pause = new JButton("Pause 'P'");
-	//JButton resume = new JButton("Resume 'O'");
 	JButton reset = new JButton("Reset 'R'");
 
 	JPanel backNext = new JPanel();
@@ -55,7 +54,6 @@ public class GameInfoJPanel extends JPanel {
 	start.setBackground(new Color(189, 195, 199));
 	retry.setBackground(new Color(189, 195, 199));
 	pause.setBackground(new Color(189, 195, 199));
-	//resume.setBackground(new Color(189, 195, 199));
 	reset.setBackground(new Color(189, 195, 199));
 
 	this.add(comboBox, BorderLayout.NORTH);
@@ -65,7 +63,6 @@ public class GameInfoJPanel extends JPanel {
 	infoPanel.add(start);
 	infoPanel.add(retry);
 	infoPanel.add(pause);
-	//infoPanel.add(resume);
 	infoPanel.add(reset);
 	this.add(infoPanel, BorderLayout.CENTER);
 
@@ -118,13 +115,13 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.jframe.pauseGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_R) {
 		    GameInfoJPanel.this.jframe.level(0);
-		} else if (arg0.getKeyCode() == KeyEvent.VK_O) {
+		    GameInfoJPanel.this.jframe.pauseGame();
+		} else if (arg0.getKeyCode() == KeyEvent.VK_S) {
 		    GameInfoJPanel.this.jframe.resumeGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_T) {
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
-		} /*else if (arg0.getKeyCode() == KeyEvent.VK_S) {
-		    GameInfoJPanel.this.jframe.startGame();
-		}*/
+		    GameInfoJPanel.this.jframe.pauseGame();
+		}
 	    }
 
 	    @Override
@@ -140,11 +137,10 @@ public class GameInfoJPanel extends JPanel {
 	back.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		System.out.println("back");
 		if (GameInfoJPanel.this.idLevel > 0) {
 		    GameInfoJPanel.this.idLevel--;
 		    comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
-		    jframe.level(GameInfoJPanel.this.idLevel);
+		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 		    GameInfoJPanel.this.jframe.pauseGame();
 		}
 	    }
@@ -157,7 +153,7 @@ public class GameInfoJPanel extends JPanel {
 	    public void actionPerformed(ActionEvent arg0) {
 		GameInfoJPanel.this.idLevel++;
 		comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
-		jframe.level(GameInfoJPanel.this.idLevel);
+		GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 
@@ -168,7 +164,7 @@ public class GameInfoJPanel extends JPanel {
 
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		GameInfoJPanel.this.jframe.startGame();
+		GameInfoJPanel.this.jframe.resumeGame();
 	    }
 	});
 	start.setFocusable(false);
@@ -178,6 +174,7 @@ public class GameInfoJPanel extends JPanel {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
+		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 	});
 	retry.setFocusable(false);
@@ -190,19 +187,12 @@ public class GameInfoJPanel extends JPanel {
 	});
 	pause.setFocusable(false);
 
-	/*resume.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent arg0) {
-		GameInfoJPanel.this.jframe.resumeGame();
-	    }
-	});
-	resume.setFocusable(false);*/
-
 	reset.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		comboBox.setSelectedIndex(0);
 		GameInfoJPanel.this.jframe.level(0);
+		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 	});
 	reset.setFocusable(false);
