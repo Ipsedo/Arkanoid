@@ -97,6 +97,10 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.jframe.level(4);
 		    GameInfoJPanel.this.jframe.pauseGame();
 		    GameInfoJPanel.this.idLevel = 4;
+		} else if (ie.getItem().equals("Level 5")) {
+		    GameInfoJPanel.this.jframe.level(5);
+		    GameInfoJPanel.this.jframe.pauseGame();
+		    GameInfoJPanel.this.idLevel = 5;
 		}
 	    }
 
