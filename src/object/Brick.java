@@ -86,13 +86,10 @@ public class Brick extends Item {
 
 	if (this.isBonus) {
 	    g2.setColor(Color.BLACK);
-	    g2.fillOval((int) (super.mPosition[0] * (float) super.getScreenWidth()),
-		    (int) (super.mPosition[1] * (float) super.getScreenHeight()),
-		    (int) (super.width * (float) super.getScreenWidth()),
-		    (int) (super.height * (float) super.getScreenHeight()));
+	    g2.fillOval((int) (super.mPosition[0] * (float) super.getScreenWidth()), (int) (super.mPosition[1] * (float) super.getScreenHeight()), (int) (super.width * (float) super.getScreenWidth()), (int) (super.height * (float) super.getScreenHeight()));
 	}
     }
-    
+
     public String toString() {
 	return super.mPosition[0] + " " + super.mPosition[1] + " " + this.life + " " + Boolean.toString(this.isBonus);
     }
