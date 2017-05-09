@@ -28,6 +28,9 @@ public class GameInfoJPanel extends JPanel {
     private static String Level_5 = "Level 5 - Space";
     private static String Level_6 = "Level 6 - Snake";
 
+    private static String Arcade = "Arcade Mode";
+    private static String Story = "Story Mode";
+
     /**
      * 
      * @param f
@@ -40,8 +43,8 @@ public class GameInfoJPanel extends JPanel {
 	this.setBackground(new Color(236, 240, 241));
 	setLayout(new BorderLayout());
 
-	JButton back = new JButton("Back");
-	JButton next = new JButton("Next");
+	final JButton back = new JButton("Back");
+	final JButton next = new JButton("Next");
 
 	JButton start = new JButton("<HTML><BODY align='center'>Start /<BR>Resume</BR><BR>'S'</BR></BODY></HTML>");
 	JButton retry = new JButton("Retry 'T'");
@@ -54,10 +57,18 @@ public class GameInfoJPanel extends JPanel {
 	JPanel infoPanel = new JPanel();
 	infoPanel.setLayout(new GridLayout(0, 1));
 
+	JPanel centerPanel = new JPanel();
+	centerPanel.setLayout(new BorderLayout());
+
 	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5, Level_6 };
 	final JComboBox<String> comboBox = new JComboBox<String>(levelList);
 	comboBox.setEditable(false);
 	comboBox.setBackground(new Color(189, 195, 199));
+
+	final String[] modeList = { Arcade, Story };
+	final JComboBox<String> modeBox = new JComboBox<String>(modeList);
+	modeBox.setEditable(false);
+	modeBox.setBackground(new Color(189, 195, 199));
 
 	back.setBackground(new Color(189, 195, 199));
 	next.setBackground(new Color(189, 195, 199));
@@ -66,15 +77,18 @@ public class GameInfoJPanel extends JPanel {
 	pause.setBackground(new Color(189, 195, 199));
 	reset.setBackground(new Color(189, 195, 199));
 
+	centerPanel.add(modeBox, BorderLayout.NORTH);
+
 	this.add(comboBox, BorderLayout.NORTH);
 
 	infoPanel.add(back);
 	infoPanel.add(next);
 	infoPanel.add(start);
-	infoPanel.add(retry);
 	infoPanel.add(pause);
+	infoPanel.add(retry);
 	infoPanel.add(reset);
-	this.add(infoPanel, BorderLayout.CENTER);
+	centerPanel.add(infoPanel, BorderLayout.CENTER);
+	this.add(centerPanel, BorderLayout.CENTER);
 
 	backNext.add(back);
 	backNext.add(next);
@@ -110,6 +124,25 @@ public class GameInfoJPanel extends JPanel {
 
 	});
 	comboBox.setFocusable(false);
+
+	modeBox.addItemListener(new ItemListener() {
+
+	    @Override
+	    public void itemStateChanged(ItemEvent ie) {
+		 //GameInfoJPanel.this.jframe.resetScore();
+		if (ie.getItem().equals(Arcade)) {
+		    comboBox.setEnabled(true);
+		    back.setEnabled(true);
+		    next.setEnabled(true);
+
+		} else if (ie.getItem().equals(Story)) {
+		    comboBox.setEnabled(false);
+		    back.setEnabled(false);
+		    next.setEnabled(false);
+		}
+	    }
+
+	});
 
 	this.jframe.addKeyListener(new KeyListener() {
 	    @Override
