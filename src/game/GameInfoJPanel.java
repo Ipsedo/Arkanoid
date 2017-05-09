@@ -237,6 +237,7 @@ public class GameInfoJPanel extends JPanel {
 	reset.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
+		GameInfoJPanel.this.idLevel = 0;
 		comboBox.setSelectedIndex(0);
 		GameInfoJPanel.this.jframe.level(0);
 	    }
@@ -245,9 +246,15 @@ public class GameInfoJPanel extends JPanel {
 
     }
     
-    public void levelUp() {
+    public void levelDone() {
 	if(this.idLevel < 6) {
 	    this.idLevel++;
 	}
+	this.jframe.level(this.idLevel);
+	this.jframe.repaint();
+    }
+    
+    public void levelUp() {
+	
     }
 }

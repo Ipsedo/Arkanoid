@@ -194,8 +194,6 @@ public class MyJFrame extends JFrame implements Runnable {
     public void level(int x) {
 	this.myIdLevel = x;
 
-	this.pauseGame();
-
 	synchronized (this.bricks) {
 	    this.bricks.clear();
 	    this.bricks.addAll(LevelMaker.getBricksFromLevelID(x, this.jPanel));
@@ -216,6 +214,8 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score);
 
 	this.jPanel.repaint();
+	
+	this.pauseGame();
     }
 
     /**
