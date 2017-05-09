@@ -41,7 +41,7 @@ public class LevelMaker extends JFrame {
 	this.bricks = Collections.synchronizedList(new ArrayList<Brick>());
 
 	this.jpanel = new MyJPanel() {
-	    
+
 	    @Override
 	    public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -162,7 +162,7 @@ public class LevelMaker extends JFrame {
      */
     public static List<Ball> getBallsFromLevelId(int levelId, Random rand, MyJPanel jpanel) {
 	if (levelId == 0) {
-	    int nbBall = 60;
+	    int nbBall = 2;
 
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
@@ -230,7 +230,7 @@ public class LevelMaker extends JFrame {
 	    for (int i = -2; i < 2; i++) {
 		for (int j = 9; j < 10; j++) {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f + (float) j * (Brick.height + 0.01f) };
-		    res.add(Brick.makeSimpleBrick(pos, speed, acc, jpanel, 1));
+		    res.add(Brick.makeBonusBrick(pos, speed, acc, jpanel));
 		}
 	    }
 	} else if (levelId == 1) {

@@ -1,6 +1,9 @@
 package thread;
 
+import game.MyJPanel;
+
 import java.util.List;
+import java.util.Random;
 
 import object.Ball;
 import object.Brick;
@@ -11,18 +14,23 @@ public class BallsBricksCollision extends CancelableThread {
     private List<Brick> bricks;
     private List<Ball> balls;
     private Score score;
+    private MyJPanel jpanel;
+    private Random rand;
 
     /**
      * 
      * @param balls
      * @param bricks
      * @param score
+     * @param jpanel
      */
-    public BallsBricksCollision(List<Ball> balls, List<Brick> bricks, Score score) {
+    public BallsBricksCollision(List<Ball> balls, List<Brick> bricks, Score score, MyJPanel jpanel) {
 	super("BallsBricksCollision");
 	this.balls = balls;
 	this.bricks = bricks;
 	this.score = score;
+	this.jpanel = jpanel;
+	this.rand = new Random(System.currentTimeMillis());
     }
 
     /**
@@ -41,6 +49,9 @@ public class BallsBricksCollision extends CancelableThread {
 			    if (br.intersect(ba)) {
 				synchronized (this.score) {
 				    this.score.incrScore(br.getScore());
+				}
+				if (br.isBonus()) {
+				    this.balls.add(new Ball(this.rand, this.jpanel));
 				}
 			    }
 			    if (!br.isAlive()) {

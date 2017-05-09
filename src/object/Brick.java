@@ -11,7 +11,7 @@ public class Brick extends Item {
     public static float height = 1f / 50f;
 
     private int life;
-    
+
     private boolean isBonus;
 
     /**
@@ -21,17 +21,35 @@ public class Brick extends Item {
      * @param mAcceleration
      * @param jpanel
      * @param life
+     * @param isBonus
      */
     private Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel, int life, boolean isBonus) {
 	super(mPosition, mSpeed, mAcceleration, width, height, jpanel);
 	this.life = life;
 	this.isBonus = isBonus;
     }
-    
+
+    /**
+     * 
+     * @param mPosition
+     * @param mSpeed
+     * @param mAcceleration
+     * @param jpanel
+     * @return
+     */
     public static Brick makeBonusBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel) {
 	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, 1, true);
     }
-    
+
+    /**
+     * 
+     * @param mPosition
+     * @param mSpeed
+     * @param mAcceleration
+     * @param jpanel
+     * @param life
+     * @return
+     */
     public static Brick makeSimpleBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel, int life) {
 	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, life, false);
     }
@@ -51,7 +69,7 @@ public class Brick extends Item {
     public boolean isAlive() {
 	return this.life > 0;
     }
-    
+
     public boolean isBonus() {
 	return this.isBonus;
     }
@@ -65,5 +83,13 @@ public class Brick extends Item {
 	    g2.setColor(new Color(243, 156, 18));
 	}
 	super.draw(g2);
+
+	if (this.isBonus) {
+	    g2.setColor(Color.BLACK);
+	    g2.fillOval((int) (super.mPosition[0] * (float) super.getScreenWidth()),
+		    (int) (super.mPosition[1] * (float) super.getScreenHeight()),
+		    (int) (super.width * (float) super.getScreenWidth()),
+		    (int) (super.height * (float) super.getScreenHeight()));
+	}
     }
 }
