@@ -131,21 +131,23 @@ public class GameInfoJPanel extends JPanel {
 	    public void itemStateChanged(ItemEvent ie) {
 		// GameInfoJPanel.this.jframe.resetScore();
 		GameInfoJPanel.this.jframe.level(0);
-		comboBox.setSelectedIndex(0);
+		GameInfoJPanel.this.comboBox.setSelectedIndex(0);
+		GameInfoJPanel.this.jframe.pauseGame();
 
 		if (ie.getItem().equals(Arcade)) {
-		    comboBox.setEnabled(true);
+		    GameInfoJPanel.this.comboBox.setEnabled(true);
 		    back.setEnabled(true);
 		    next.setEnabled(true);
 
 		} else if (ie.getItem().equals(Story)) {
-		    comboBox.setEnabled(false);
+		    GameInfoJPanel.this.comboBox.setEnabled(false);
 		    back.setEnabled(false);
 		    next.setEnabled(false);
 		}
 	    }
 
 	});
+	modeBox.setFocusable(false);
 
 	this.jframe.addKeyListener(new KeyListener() {
 	    @Override
@@ -153,6 +155,7 @@ public class GameInfoJPanel extends JPanel {
 		if (arg0.getKeyCode() == KeyEvent.VK_P) {
 		    GameInfoJPanel.this.jframe.pauseGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_R) {
+		    GameInfoJPanel.this.jframe.clearScore();
 		    GameInfoJPanel.this.idLevel = 0;
 		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    GameInfoJPanel.this.jframe.level(0);
@@ -160,6 +163,7 @@ public class GameInfoJPanel extends JPanel {
 		} else if (arg0.getKeyCode() == KeyEvent.VK_S) {
 		    GameInfoJPanel.this.jframe.resumeGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_T) {
+		    GameInfoJPanel.this.jframe.divScore();
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 		    GameInfoJPanel.this.jframe.pauseGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_B) {
@@ -231,6 +235,7 @@ public class GameInfoJPanel extends JPanel {
 
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
+		GameInfoJPanel.this.jframe.divScore();
 		GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 		GameInfoJPanel.this.jframe.pauseGame();
 	    }
@@ -248,6 +253,7 @@ public class GameInfoJPanel extends JPanel {
 	reset.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
+		GameInfoJPanel.this.jframe.clearScore();
 		GameInfoJPanel.this.idLevel = 0;
 		GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		GameInfoJPanel.this.jframe.level(0);

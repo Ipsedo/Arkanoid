@@ -75,7 +75,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
 
 	super.pack();
-	
+
 	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
 
 	this.setIconImage(new ImageIcon("icone_1.png").getImage());
@@ -112,10 +112,22 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.jPanel.repaint();
 
 	this.gameInfo = new GameInfoJPanel(this, this.myIdLevel);
-	
+
 	super.getContentPane().add(this.gameInfo, BorderLayout.EAST);
 
 	super.setVisible(true);
+    }
+
+    public void clearScore() {
+	synchronized (this.score) {
+	    this.score.reset();
+	}
+    }
+
+    public void divScore() {
+	synchronized (this.score) {
+	    this.score.divByTwo();
+	}
     }
 
     /**
@@ -214,8 +226,8 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score);
 
 	this.jPanel.repaint();
-	
-	//this.pauseGame();
+
+	// this.pauseGame();
     }
 
     /**

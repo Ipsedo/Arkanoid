@@ -22,6 +22,10 @@ public class Score {
     public void reset() {
 	this.currentScore = 0;
     }
+    
+    public void divByTwo(){
+	this.currentScore /= 2;
+    }
 
     public void draw(Graphics2D g2) {
 	g2.setColor(new Color(44, 62, 80));
