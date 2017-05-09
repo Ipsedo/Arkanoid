@@ -22,8 +22,8 @@ public class Score {
     public void reset() {
 	this.currentScore = 0;
     }
-    
-    public void divByTwo(){
+
+    public void divByTwo() {
 	this.currentScore /= 2;
     }
 

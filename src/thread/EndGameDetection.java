@@ -43,7 +43,7 @@ public class EndGameDetection extends CancelableThread {
 		}
 		this.jframe.repaint();
 		this.jframe.pauseGame();
-		
+
 	    } else if (this.bricks.isEmpty()) {
 		synchronized (this.jpanel) {
 		    this.jpanel.setWinner(true);

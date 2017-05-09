@@ -50,7 +50,7 @@ public class Ball extends Item {
 	}
 	if (super.mPosition[1] >= 1f) {
 	    super.mSpeed[1] = -Math.abs(super.mSpeed[1]);
-	    //return true;
+	    // return true;
 	}
 	return false;
     }
