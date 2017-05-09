@@ -23,7 +23,8 @@ public class Brick extends Item {
      * @param life
      * @param isBonus
      */
-    private Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel, int life, boolean isBonus) {
+    private Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel,
+	    int life, boolean isBonus) {
 	super(mPosition, mSpeed, mAcceleration, width, height, jpanel);
 	this.life = life;
 	this.isBonus = isBonus;
@@ -37,7 +38,8 @@ public class Brick extends Item {
      * @param jpanel
      * @return
      */
-    public static Brick makeBonusBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel) {
+    public static Brick makeBonusBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration,
+	    MyJPanel jpanel) {
 	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, 1, true);
     }
 
@@ -50,7 +52,8 @@ public class Brick extends Item {
      * @param life
      * @return
      */
-    public static Brick makeSimpleBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel, int life) {
+    public static Brick makeSimpleBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration,
+	    MyJPanel jpanel, int life) {
 	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, life, false);
     }
 
@@ -86,11 +89,15 @@ public class Brick extends Item {
 
 	if (this.isBonus) {
 	    g2.setColor(Color.BLACK);
-	    g2.fillOval((int) (super.mPosition[0] * (float) super.getScreenWidth()), (int) (super.mPosition[1] * (float) super.getScreenHeight()), (int) (super.width * (float) super.getScreenWidth()), (int) (super.height * (float) super.getScreenHeight()));
+	    g2.fillOval((int) (super.mPosition[0] * (float) super.getScreenWidth()),
+		    (int) (super.mPosition[1] * (float) super.getScreenHeight()),
+		    (int) (super.width * (float) super.getScreenWidth()),
+		    (int) (super.height * (float) super.getScreenHeight()));
 	}
     }
 
     public String toString() {
-	return super.mPosition[0] + " " + super.mPosition[1] + " " + this.life + " " + Boolean.toString(this.isBonus);
+	return super.mPosition[0] + " " + super.mPosition[1] + " " + this.life + " "
+		+ Boolean.toString(this.isBonus);
     }
 }

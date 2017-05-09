@@ -36,13 +36,15 @@ public class Item {
      * @param height
      * @param jpanel
      */
-    public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, float width, float height, MyJPanel jpanel) {
+    public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, float width,
+	    float height, MyJPanel jpanel) {
 	this.mPosition = mPosition.clone();
 	this.mSpeed = mSpeed.clone();
 	this.mAcceleration = mAcceleration.clone();
 	this.width = width;
 	this.height = height;
-	this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width, this.height);
+	this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width,
+		this.height);
 	this.jpanel = jpanel;
 	this.color = Color.RED;
 	this.rand = new Random(System.currentTimeMillis());
@@ -62,16 +64,20 @@ public class Item {
      * @param other
      */
     public void collide(Item other) {
-	if (other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0] + this.width, this.mPosition[1])) {
+	if (other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0]
+		+ this.width, this.mPosition[1])) {
 	    other.mSpeed[1] = -Math.abs(other.mSpeed[1]);
 	}
-	if (other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0], this.mPosition[1] + this.height)) {
+	if (other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0],
+		this.mPosition[1] + this.height)) {
 	    other.mSpeed[0] = -Math.abs(other.mSpeed[0]);
 	}
-	if (other.rect.intersectsLine(this.mPosition[0] + this.width, this.mPosition[1], this.mPosition[0] + this.width, this.mPosition[1] + this.height)) {
+	if (other.rect.intersectsLine(this.mPosition[0] + this.width, this.mPosition[1],
+		this.mPosition[0] + this.width, this.mPosition[1] + this.height)) {
 	    other.mSpeed[0] = Math.abs(other.mSpeed[0]);
 	}
-	if (other.rect.intersectsLine(this.mPosition[0], this.mPosition[1] + this.height, this.mPosition[0] + this.width, this.mPosition[1] + this.height)) {
+	if (other.rect.intersectsLine(this.mPosition[0], this.mPosition[1] + this.height,
+		this.mPosition[0] + this.width, this.mPosition[1] + this.height)) {
 	    other.mSpeed[1] = Math.abs(other.mSpeed[1]);
 	}
     }
@@ -88,7 +94,8 @@ public class Item {
 	this.mPosition[0] += this.mSpeed[0];
 	this.mPosition[1] += this.mSpeed[1];
 
-	this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width, this.height);
+	this.rect = new Rectangle2D.Float(this.mPosition[0], this.mPosition[1], this.width,
+		this.height);
     }
 
     /**
@@ -112,8 +119,14 @@ public class Item {
      * @param g2
      */
     public void draw(Graphics2D g2) {
-	g2.fillRect((int) (this.mPosition[0] * (float) this.jpanel.getWidth()), (int) (this.mPosition[1] * (float) this.jpanel.getHeight()), (int) (this.width * (float) this.jpanel.getWidth()), (int) (this.height * (float) this.jpanel.getHeight()));
+	g2.fillRect((int) (this.mPosition[0] * (float) this.jpanel.getWidth()),
+		(int) (this.mPosition[1] * (float) this.jpanel.getHeight()),
+		(int) (this.width * (float) this.jpanel.getWidth()),
+		(int) (this.height * (float) this.jpanel.getHeight()));
 	g2.setColor(Color.BLACK);
-	g2.drawRect((int) (this.mPosition[0] * (float) this.jpanel.getWidth()), (int) (this.mPosition[1] * (float) this.jpanel.getHeight()), (int) (this.width * (float) this.jpanel.getWidth()), (int) (this.height * (float) this.jpanel.getHeight()));
+	g2.drawRect((int) (this.mPosition[0] * (float) this.jpanel.getWidth()),
+		(int) (this.mPosition[1] * (float) this.jpanel.getHeight()),
+		(int) (this.width * (float) this.jpanel.getWidth()),
+		(int) (this.height * (float) this.jpanel.getHeight()));
     }
 }

@@ -23,7 +23,8 @@ public class EndGameDetection extends CancelableThread {
      * @param jpanel
      * @param jframe
      */
-    public EndGameDetection(List<Ball> balls, List<Brick> bricks, MyJPanel jpanel, MyJFrame jframe, GameInfoJPanel gameInfo) {
+    public EndGameDetection(List<Ball> balls, List<Brick> bricks, MyJPanel jpanel, MyJFrame jframe,
+	    GameInfoJPanel gameInfo) {
 	super("EndGameDetection");
 	this.bricks = bricks;
 	this.balls = balls;

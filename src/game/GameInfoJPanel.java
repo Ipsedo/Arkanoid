@@ -47,7 +47,8 @@ public class GameInfoJPanel extends JPanel {
 	final JButton back = new JButton("Back");
 	final JButton next = new JButton("Next");
 
-	JButton start = new JButton("<HTML><BODY align='center'>Start /<BR>Resume</BR><BR>'S'</BR></BODY></HTML>");
+	JButton start = new JButton(
+		"<HTML><BODY align='center'>Start /<BR>Resume</BR><BR>'S'</BR></BODY></HTML>");
 	JButton retry = new JButton("Retry 'T'");
 	JButton pause = new JButton("Pause 'P'");
 	JButton reset = new JButton("Reset 'R'");

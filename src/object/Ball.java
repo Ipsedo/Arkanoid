@@ -17,7 +17,8 @@ public class Ball extends Item {
      * @param jpanel
      */
     public Ball(Random rand, MyJPanel jpanel) {
-	super(new float[] { rand.nextFloat() * 0.2f + 0.4f, 0.7f }, Ball.initSpeed(rand), new float[] { 0f, 0f }, size, size, jpanel);
+	super(new float[] { rand.nextFloat() * 0.2f + 0.4f, 0.7f }, Ball.initSpeed(rand),
+		new float[] { 0f, 0f }, size, size, jpanel);
 	super.color = new Color(44, 62, 80);
     }
 
@@ -62,7 +63,8 @@ public class Ball extends Item {
      */
     public static float[] initSpeed(Random rand) {
 	double angle = rand.nextDouble() * 2d * Math.PI / 3d + Math.PI / 6d;
-	return new float[] { (float) Math.cos(angle) * maxSpeed, (float) -Math.sin(angle) * maxSpeed };
+	return new float[] { (float) Math.cos(angle) * maxSpeed,
+		(float) -Math.sin(angle) * maxSpeed };
     }
 
     /**
@@ -70,8 +72,14 @@ public class Ball extends Item {
      */
     public void draw(Graphics2D g2) {
 	g2.setColor(super.color);
-	g2.fillOval((int) (this.mPosition[0] * (float) super.getScreenWidth()), (int) (this.mPosition[1] * (float) super.getScreenHeight()), (int) (this.width * (float) super.getScreenWidth()), (int) (this.height * (float) super.getScreenHeight()));
+	g2.fillOval((int) (this.mPosition[0] * (float) super.getScreenWidth()),
+		(int) (this.mPosition[1] * (float) super.getScreenHeight()),
+		(int) (this.width * (float) super.getScreenWidth()),
+		(int) (this.height * (float) super.getScreenHeight()));
 	g2.setColor(Color.BLACK);
-	g2.drawOval((int) (this.mPosition[0] * (float) super.getScreenWidth()), (int) (this.mPosition[1] * (float) super.getScreenHeight()), (int) (this.width * (float) super.getScreenWidth()), (int) (this.height * (float) super.getScreenHeight()));
+	g2.drawOval((int) (this.mPosition[0] * (float) super.getScreenWidth()),
+		(int) (this.mPosition[1] * (float) super.getScreenHeight()),
+		(int) (this.width * (float) super.getScreenWidth()),
+		(int) (this.height * (float) super.getScreenHeight()));
     }
 }
