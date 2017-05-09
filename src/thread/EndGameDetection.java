@@ -1,11 +1,10 @@
 package thread;
 
-import game.MyJFrame;
-import game.MyJPanel;
-
-import java.util.ArrayList;
 import java.util.List;
 
+import game.GameInfoJPanel;
+import game.MyJFrame;
+import game.MyJPanel;
 import object.Ball;
 import object.Brick;
 
@@ -15,19 +14,22 @@ public class EndGameDetection extends CancelableThread {
     private List<Brick> bricks;
     private MyJPanel jpanel;
     private MyJFrame jframe;
+    private GameInfoJPanel gameInfo;
 
     /**
      * 
      * @param balls
      * @param bricks
      * @param jpanel
+     * @param jframe
      */
-    public EndGameDetection(List<Ball> balls, List<Brick> bricks, MyJPanel jpanel, MyJFrame jframe) {
+    public EndGameDetection(List<Ball> balls, List<Brick> bricks, MyJPanel jpanel, MyJFrame jframe, GameInfoJPanel gameInfo) {
 	super("EndGameDetection");
 	this.bricks = bricks;
 	this.balls = balls;
 	this.jpanel = jpanel;
 	this.jframe = jframe;
+	this.gameInfo = gameInfo;
     }
 
     /**
@@ -39,10 +41,16 @@ public class EndGameDetection extends CancelableThread {
 		synchronized (this.jpanel) {
 		    this.jpanel.setDead(true);
 		}
+		this.jframe.repaint();
+		//this.gameInfo.levelUp();
+		this.jframe.pauseGame();
 	    } else if (this.bricks.isEmpty()) {
 		synchronized (this.jpanel) {
 		    this.jpanel.setWinner(true);
 		}
+		this.jframe.repaint();
+		this.gameInfo.levelUp();
+		this.jframe.pauseGame();
 	    }
 	    try {
 		Thread.sleep((long) CancelableThread.TIME_TO_WAIT);

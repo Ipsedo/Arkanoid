@@ -33,6 +33,7 @@ public class MyJFrame extends JFrame implements Runnable {
     private static final float ratioHW = 0.9f;
 
     private MyJPanel jPanel;
+    private GameInfoJPanel gameInfo;
 
     private List<Ball> balls;
     private List<Brick> bricks;
@@ -75,7 +76,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
 
 	super.pack();
-	super.setSize(900, 800);
+	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
 
 	this.setIconImage(new ImageIcon("icone_1.png").getImage());
 
@@ -110,7 +111,9 @@ public class MyJFrame extends JFrame implements Runnable {
 	Toolkit.getDefaultToolkit().sync();
 	this.jPanel.repaint();
 
-	super.getContentPane().add(new GameInfoJPanel(this, this.myIdLevel), BorderLayout.EAST);
+	this.gameInfo = new GameInfoJPanel(this, this.myIdLevel);
+	
+	super.getContentPane().add(this.gameInfo, BorderLayout.EAST);
 
 	super.setVisible(true);
     }
@@ -134,7 +137,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.ballsCollisionThread.start();
 	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks, this.score);
 	this.ballsBricksCollisionThread.start();
-	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this);
+	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this, this.gameInfo);
 	this.endGameDetectionThread.start();
     }
 
