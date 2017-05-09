@@ -50,7 +50,7 @@ public class EndGameDetection extends CancelableThread {
 		}
 		this.jframe.repaint();
 		try {
-		    Thread.sleep(500L);
+		    Thread.sleep(1000L);
 		} catch (InterruptedException e) {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();

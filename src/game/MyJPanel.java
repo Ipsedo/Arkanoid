@@ -51,7 +51,7 @@ public class MyJPanel extends JPanel {
 	this.score = score;
 	try {
 	    this.gameOverImage = ImageIO.read(new File("game_over.png"));
-	    this.levelDone = ImageIO.read(new File("level_done.jpg"));
+	    this.levelDone = ImageIO.read(new File("level_done.png"));
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
