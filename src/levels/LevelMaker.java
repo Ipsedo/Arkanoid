@@ -1,16 +1,133 @@
 package levels;
 
+import game.MyJFrame;
 import game.MyJPanel;
 
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import object.Ball;
 import object.Brick;
 
-public class LevelMaker {
+public class LevelMaker extends JFrame {
+
+    private List<Brick> bricks;
+    private MyJPanel jpanel;
+
+    public LevelMaker() {
+	super("Arkanoid - LevelMaker");
+	super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	super.setLocation(300, 0);
+	super.getContentPane().setLayout(new BorderLayout());
+
+	this.bricks = Collections.synchronizedList(new ArrayList<Brick>());
+
+	this.jpanel = new MyJPanel() {
+	    public void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		g2.clearRect(0, 0, this.getWidth(), this.getHeight());
+		for (Brick b : LevelMaker.this.bricks)
+		    b.draw(g2);
+	    }
+	};
+
+	super.addMouseListener(new MouseListener() {
+
+	    @Override
+	    public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		LevelMaker.this.bricks.add(new Brick(new float[] { (float) arg0.getX() / (float) LevelMaker.this.jpanel.getWidth(), (float) arg0.getY() / (float) LevelMaker.this.jpanel.getHeight() }, new float[2], new float[2], LevelMaker.this.jpanel, 1));
+		LevelMaker.this.repaint();
+	    }
+
+	    @Override
+	    public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	    }
+
+	    @Override
+	    public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	    }
+
+	    @Override
+	    public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	    }
+
+	    @Override
+	    public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	    }
+
+	});
+
+	super.getContentPane().add(this.jpanel, BorderLayout.CENTER);
+
+	JButton save = new JButton("Save");
+	save.addActionListener(new ActionListener() {
+
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		LevelMaker.this.toFile("test.txt");
+	    }
+	});
+	
+	super.getContentPane().add(save, BorderLayout.SOUTH);
+
+	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
+
+	super.pack();
+
+	super.setVisible(true);
+    }
+
+    public void toFile(String fileName) {
+	try {
+	    PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+	    for (Brick b : this.bricks)
+		writer.write(b.toString() + "\n");
+	    writer.close();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+    }
+
+    public static List<Brick> createFromFile(String fileName, MyJPanel jpanel) {
+	List<Brick> res = new ArrayList<Brick>();
+	try {
+	    BufferedReader br = new BufferedReader(new FileReader(fileName));
+	    String line;
+	    while ((line = br.readLine()) != null) {
+		String[] tmp = line.split(" ");
+		res.add(new Brick(new float[] { Float.parseFloat(tmp[0]), Float.parseFloat(tmp[1]) }, new float[2], new float[2], jpanel, Integer.parseInt(tmp[2])));
+	    }
+	} catch (IOException ioe) {
+	    ioe.printStackTrace();
+	}
+	return res;
+    }
 
     /**
      * 
@@ -22,7 +139,7 @@ public class LevelMaker {
     public static List<Ball> getBallsFromLevelId(int levelId, Random rand, MyJPanel jpanel) {
 	if (levelId == 0) {
 	    int nbBall = 60;
-	    
+
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
@@ -334,4 +451,7 @@ public class LevelMaker {
 	return res;
     }
 
+    public static void main(String[] args) {
+	LevelMaker lvlmaker = new LevelMaker();
+    }
 }
