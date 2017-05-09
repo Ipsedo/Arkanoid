@@ -30,7 +30,6 @@ public class MyJFrame extends JFrame implements Runnable {
 
     public static final int WIDTH = 900;
     public static final int HEIGHT = 800;
-    private static final float ratioHW = 0.9f;
 
     private MyJPanel jPanel;
 
@@ -75,7 +74,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
 
 	super.pack();
-	super.setSize(900, 800);
+	super.setSize(WIDTH, HEIGHT);
 
 	this.setIconImage(new ImageIcon("icone_1.png").getImage());
 
