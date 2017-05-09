@@ -130,6 +130,8 @@ public class GameInfoJPanel extends JPanel {
 	    public void itemStateChanged(ItemEvent ie) {
 		 //GameInfoJPanel.this.jframe.resetScore();
 		GameInfoJPanel.this.jframe.level(0);
+		comboBox.setSelectedIndex(0);
+		
 		if (ie.getItem().equals(Arcade)) {
 		    comboBox.setEnabled(true);
 		    back.setEnabled(true);

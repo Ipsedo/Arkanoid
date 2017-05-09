@@ -22,6 +22,7 @@ public class LevelMaker {
     public static List<Ball> getBallsFromLevelId(int levelId, Random rand, MyJPanel jpanel) {
 	if (levelId == 0) {
 	    int nbBall = 6;
+	    
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
