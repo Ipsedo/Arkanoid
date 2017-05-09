@@ -2,7 +2,6 @@ package game;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,6 +29,8 @@ public class GameInfoJPanel extends JPanel {
 
     private static String Arcade = "Arcade Mode";
     private static String Story = "Story Mode";
+
+    private JComboBox comboBox;
 
     /**
      * 
@@ -61,9 +62,9 @@ public class GameInfoJPanel extends JPanel {
 	centerPanel.setLayout(new BorderLayout());
 
 	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5, Level_6 };
-	final JComboBox<String> comboBox = new JComboBox<String>(levelList);
-	comboBox.setEditable(false);
-	comboBox.setBackground(new Color(189, 195, 199));
+	this.comboBox = new JComboBox<String>(levelList);
+	this.comboBox.setEditable(false);
+	this.comboBox.setBackground(new Color(189, 195, 199));
 
 	final String[] modeList = { Arcade, Story };
 	final JComboBox<String> modeBox = new JComboBox<String>(modeList);
@@ -94,7 +95,7 @@ public class GameInfoJPanel extends JPanel {
 	backNext.add(next);
 	this.add(backNext, BorderLayout.SOUTH);
 
-	comboBox.addItemListener(new ItemListener() {
+	this.comboBox.addItemListener(new ItemListener() {
 
 	    @Override
 	    public void itemStateChanged(ItemEvent ie) {
@@ -123,15 +124,15 @@ public class GameInfoJPanel extends JPanel {
 	    }
 
 	});
-	comboBox.setFocusable(false);
+	this.comboBox.setFocusable(false);
 
 	modeBox.addItemListener(new ItemListener() {
 	    @Override
 	    public void itemStateChanged(ItemEvent ie) {
-		 //GameInfoJPanel.this.jframe.resetScore();
+		// GameInfoJPanel.this.jframe.resetScore();
 		GameInfoJPanel.this.jframe.level(0);
 		comboBox.setSelectedIndex(0);
-		
+
 		if (ie.getItem().equals(Arcade)) {
 		    comboBox.setEnabled(true);
 		    back.setEnabled(true);
@@ -152,24 +153,31 @@ public class GameInfoJPanel extends JPanel {
 		if (arg0.getKeyCode() == KeyEvent.VK_P) {
 		    GameInfoJPanel.this.jframe.pauseGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_R) {
+		    GameInfoJPanel.this.idLevel = 0;
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    GameInfoJPanel.this.jframe.level(0);
+		    GameInfoJPanel.this.jframe.pauseGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_S) {
 		    GameInfoJPanel.this.jframe.resumeGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_T) {
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
+		    GameInfoJPanel.this.jframe.pauseGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_B) {
 		    if (GameInfoJPanel.this.idLevel > 0) {
 			GameInfoJPanel.this.idLevel--;
 		    }
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
+		    GameInfoJPanel.this.jframe.pauseGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_N) {
 		    if (GameInfoJPanel.this.idLevel < levelList.length - 1) {
 			GameInfoJPanel.this.idLevel++;
 		    }
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
+		    GameInfoJPanel.this.jframe.pauseGame();
 		} else if (arg0.getKeyChar() >= '0' && arg0.getKeyChar() <= '6') {
 		    GameInfoJPanel.this.jframe.level(arg0.getKeyChar() - '0');
 		    GameInfoJPanel.this.idLevel = arg0.getKeyChar() - '0';
 		}
-		comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 	    }
 
 	    @Override
@@ -189,6 +197,7 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.idLevel--;
 		    comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
+		    GameInfoJPanel.this.jframe.pauseGame();
 		}
 	    }
 
@@ -202,6 +211,7 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.idLevel++;
 		    comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
+		    GameInfoJPanel.this.jframe.pauseGame();
 		}
 	    }
 
@@ -222,6 +232,7 @@ public class GameInfoJPanel extends JPanel {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
+		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 	});
 	retry.setFocusable(false);
@@ -238,23 +249,26 @@ public class GameInfoJPanel extends JPanel {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		GameInfoJPanel.this.idLevel = 0;
-		comboBox.setSelectedIndex(0);
+		GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		GameInfoJPanel.this.jframe.level(0);
+		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 	});
 	reset.setFocusable(false);
 
     }
-    
+
     public void levelDone() {
-	if(this.idLevel < 6) {
+	if (this.idLevel < 6) {
 	    this.idLevel++;
 	}
+	this.comboBox.setSelectedIndex(this.idLevel);
 	this.jframe.level(this.idLevel);
 	this.jframe.repaint();
+	this.jframe.pauseGame();
     }
-    
+
     public void levelUp() {
-	
+
     }
 }

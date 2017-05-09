@@ -215,7 +215,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	this.jPanel.repaint();
 	
-	this.pauseGame();
+	//this.pauseGame();
     }
 
     /**

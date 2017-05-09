@@ -29,21 +29,21 @@ public class LevelMaker {
 	    }
 	    return res;
 	} else if (levelId == 1) {
-	    int nbBall = 5;
+	    int nbBall = 60;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
 	    }
 	    return res;
 	} else if (levelId == 2) {
-	    int nbBall = 4;
+	    int nbBall = 60;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
 	    }
 	    return res;
 	} else {
-	    int nbBall = 3;
+	    int nbBall = 60;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
