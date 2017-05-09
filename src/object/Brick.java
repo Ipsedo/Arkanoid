@@ -92,4 +92,8 @@ public class Brick extends Item {
 		    (int) (super.height * (float) super.getScreenHeight()));
 	}
     }
+    
+    public String toString() {
+	return super.mPosition[0] + " " + super.mPosition[1] + " " + this.life + " " + Boolean.toString(this.isBonus);
+    }
 }

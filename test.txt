@@ -1,71 +1,73 @@
-object.Brick@37f2fb79
-object.Brick@890e4ef
-object.Brick@4e0ccde3
-object.Brick@60f4de73
-object.Brick@407dd827
-object.Brick@4fc5fb5b
-object.Brick@678e4495
-object.Brick@21cf0951
-object.Brick@fdd51af
-object.Brick@6fa27c2c
-object.Brick@7a1d27a1
-object.Brick@23c13c32
-object.Brick@46f451cc
-object.Brick@3a4b1622
-object.Brick@29781ee5
-object.Brick@3f29754
-object.Brick@67ecccd7
-object.Brick@5742c0e
-object.Brick@6c128573
-object.Brick@7b4df792
-object.Brick@7a460658
-object.Brick@5e765142
-object.Brick@26b76ee2
-object.Brick@3252fcc1
-object.Brick@78ec4815
-object.Brick@147cea0b
-object.Brick@9214618
-object.Brick@2c300709
-object.Brick@36065e7a
-object.Brick@4559c603
-object.Brick@464b5936
-object.Brick@6a6f16b9
-object.Brick@6e9e6000
-object.Brick@657cda0e
-object.Brick@79e2ad7e
-object.Brick@6b2ab625
-object.Brick@76295520
-object.Brick@75865d41
-object.Brick@19e387d2
-object.Brick@27c69155
-object.Brick@1b7a40d8
-object.Brick@5c517aa3
-object.Brick@5909bbec
-object.Brick@4a56d5a1
-object.Brick@3e330b3
-object.Brick@54b0d60e
-object.Brick@40f2c1af
-object.Brick@3c75efcd
-object.Brick@26092658
-object.Brick@745b8431
-object.Brick@2272ccac
-object.Brick@31ea54a8
-object.Brick@5ebe8f2b
-object.Brick@766cf2c1
-object.Brick@424f570c
-object.Brick@216314f9
-object.Brick@b0e1029
-object.Brick@1a651173
-object.Brick@222ac204
-object.Brick@1b57de64
-object.Brick@60a31a7f
-object.Brick@52ff6191
-object.Brick@26b1b328
-object.Brick@330ed64
-object.Brick@7bb87f9f
-object.Brick@52e27a90
-object.Brick@7961ab17
-object.Brick@7dbe2292
-object.Brick@45c2ee3d
-object.Brick@4b52aef
-object.Brick@7078007d
+0.3983051 0.14565827 1 false
+0.3898305 0.13725491 1 false
+0.3644068 0.11484594 1 false
+0.32485875 0.11484594 1 false
+0.31638417 0.12044818 1 false
+0.2937853 0.19607843 1 false
+0.3022599 0.20168068 1 false
+0.29661018 0.18207283 1 false
+0.29661018 0.15966387 1 false
+0.3022599 0.14845939 1 false
+0.3079096 0.13725491 1 false
+0.33898306 0.20728292 1 false
+0.38418078 0.2184874 1 false
+0.38700566 0.24089636 1 false
+0.39548022 0.27450982 1 false
+0.3983051 0.29411766 1 false
+0.4039548 0.2717087 1 false
+0.4124294 0.26050422 1 false
+0.4180791 0.30532214 1 false
+0.4124294 0.33333334 1 false
+0.40960452 0.3529412 1 false
+0.4124294 0.37535015 1 false
+0.4124294 0.4117647 1 false
+0.4180791 0.45378152 1 false
+0.42090395 0.46778712 1 false
+0.42372882 0.4397759 1 false
+0.4124294 0.38935575 1 false
+0.42090395 0.49019608 1 false
+0.40960452 0.50980395 1 false
+0.40960452 0.5126051 1 false
+0.40960452 0.53781515 1 false
+0.42090395 0.54901963 1 false
+0.45762712 0.57703084 1 false
+0.47457626 0.5826331 1 false
+0.50564975 0.5854342 1 false
+0.5480226 0.57983196 1 false
+0.5677966 0.5686275 1 false
+0.579096 0.557423 1 false
+0.59039545 0.53781515 1 false
+0.59322035 0.52100843 1 false
+0.59322035 0.50980395 1 false
+0.579096 0.49579832 1 false
+0.579096 0.4789916 1 false
+0.5706215 0.4509804 1 false
+0.5706215 0.43417367 1 false
+0.5706215 0.4117647 1 false
+0.5706215 0.40616247 1 false
+0.5706215 0.3837535 1 false
+0.5706215 0.3669468 1 false
+0.5706215 0.3557423 1 false
+0.57344633 0.34453782 1 false
+0.57344633 0.33333334 1 false
+0.57344633 0.31932774 1 false
+0.5762712 0.30532214 1 false
+0.5762712 0.29131654 1 false
+0.579096 0.28011206 1 false
+0.58474576 0.26050422 1 false
+0.59039545 0.24929972 1 false
+0.60169494 0.22969188 1 false
+0.6129944 0.20168068 1 false
+0.6129944 0.18487395 1 false
+0.6129944 0.15966387 1 false
+0.59322035 0.1092437 1 false
+0.58474576 0.10084034 1 false
+0.5677966 0.08963586 1 false
+0.49435028 0.078431375 1 false
+0.47740114 0.086834736 1 false
+0.4519774 0.14565827 1 false
+0.4661017 0.12044818 1 false
+0.4858757 0.11204482 1 false
+0.5451977 0.084033616 1 false
+0.6384181 0.13725491 1 false
+0.6242938 0.14285715 1 false

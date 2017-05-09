@@ -131,7 +131,7 @@ public class LevelMaker extends JFrame {
 	try {
 	    PrintWriter writer = new PrintWriter(fileName, "UTF-8");
 	    for (Brick b : this.bricks)
-		writer.write(b.toString() + "\n");
+		writer.write(b + "\n");
 	    writer.close();
 	} catch (IOException e) {
 	    e.printStackTrace();
