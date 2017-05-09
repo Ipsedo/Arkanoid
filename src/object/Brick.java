@@ -11,6 +11,8 @@ public class Brick extends Item {
     public static float height = 1f / 50f;
 
     private int life;
+    
+    private boolean isBonus;
 
     /**
      * 
@@ -20,9 +22,18 @@ public class Brick extends Item {
      * @param jpanel
      * @param life
      */
-    public Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel, int life) {
+    private Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel, int life, boolean isBonus) {
 	super(mPosition, mSpeed, mAcceleration, width, height, jpanel);
 	this.life = life;
+	this.isBonus = isBonus;
+    }
+    
+    public static Brick makeBonusBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel) {
+	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, 1, true);
+    }
+    
+    public static Brick makeSimpleBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel, int life) {
+	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, life, false);
     }
 
     public boolean intersect(Item other) {
@@ -39,6 +50,10 @@ public class Brick extends Item {
 
     public boolean isAlive() {
 	return this.life > 0;
+    }
+    
+    public boolean isBonus() {
+	return this.isBonus;
     }
 
     public void draw(Graphics2D g2) {
