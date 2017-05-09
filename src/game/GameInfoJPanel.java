@@ -126,16 +126,10 @@ public class GameInfoJPanel extends JPanel {
 	comboBox.setFocusable(false);
 
 	modeBox.addItemListener(new ItemListener() {
-
 	    @Override
 	    public void itemStateChanged(ItemEvent ie) {
 		 //GameInfoJPanel.this.jframe.resetScore();
-<<<<<<< HEAD
-=======
 		GameInfoJPanel.this.jframe.level(0);
-		comboBox.setSelectedIndex(0);
-		
->>>>>>> refs/remotes/origin/master
 		if (ie.getItem().equals(Arcade)) {
 		    comboBox.setEnabled(true);
 		    back.setEnabled(true);

@@ -75,11 +75,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
 
 	super.pack();
-<<<<<<< HEAD
 	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
-=======
-	super.setSize(WIDTH, HEIGHT);
->>>>>>> refs/remotes/origin/master
 
 	this.setIconImage(new ImageIcon("icone_1.png").getImage());
 
