@@ -21,28 +21,32 @@ public class LevelMaker {
      */
     public static List<Ball> getBallsFromLevelId(int levelId, Random rand, MyJPanel jpanel) {
 	if (levelId == 0) {
+<<<<<<< HEAD
 	    int nbBall = 10;
+=======
+	    int nbBall = 6;
+>>>>>>> refs/remotes/origin/master
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
 	    }
 	    return res;
 	} else if (levelId == 1) {
-	    int nbBall = 2;
+	    int nbBall = 5;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
 	    }
 	    return res;
 	} else if (levelId == 2) {
-	    int nbBall = 1;
+	    int nbBall = 4;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
 	    }
 	    return res;
 	} else {
-	    int nbBall = 1;
+	    int nbBall = 3;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
