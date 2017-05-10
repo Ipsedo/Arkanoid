@@ -83,7 +83,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	// On appelle la creation de niveau depuis la classe LevelMaker
 	this.balls = LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()), this.jPanel);
 	this.bricks = LevelMaker.getBricksFromLevelID(0, this.jPanel);
-	// this.bricks = LevelMaker.createFromFile("test.txt", this.jPanel);
+	//this.bricks = LevelMaker.createFromFile("test.txt", this.jPanel);
 
 	this.paddle = new Paddle(this.jPanel);
 
