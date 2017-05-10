@@ -132,6 +132,8 @@ public class GameInfoJPanel extends JPanel {
 		} else if (ie.getItem().equals(Level_6)) {
 		    GameInfoJPanel.this.jframe.level(6);
 		    GameInfoJPanel.this.idLevel = 6;
+		} else {
+		    GameInfoJPanel.this.jframe.startLevelFromFile((String) ie.getItem());
 		}
 	    }
 
@@ -142,17 +144,18 @@ public class GameInfoJPanel extends JPanel {
 	    @Override
 	    public void itemStateChanged(ItemEvent ie) {
 		// GameInfoJPanel.this.jframe.resetScore();
-		GameInfoJPanel.this.jframe.level(0);
-		GameInfoJPanel.this.comboBox.setSelectedIndex(0);
-		GameInfoJPanel.this.jframe.pauseGame();
 
 		if (ie.getItem().equals(Arcade)) {
+		    GameInfoJPanel.this.jframe.level(0);
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    DefaultComboBoxModel model = new DefaultComboBoxModel(levelList);
 		    GameInfoJPanel.this.comboBox.setModel(model);
 		    GameInfoJPanel.this.comboBox.setEnabled(true);
 		    back.setEnabled(true);
 		    next.setEnabled(true);
 		} else if (ie.getItem().equals(Story)) {
+		    GameInfoJPanel.this.jframe.level(0);
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    DefaultComboBoxModel model = new DefaultComboBoxModel(levelList);
 		    GameInfoJPanel.this.comboBox.setModel(model);
 		    GameInfoJPanel.this.comboBox.setEnabled(false);
@@ -160,12 +163,18 @@ public class GameInfoJPanel extends JPanel {
 		    next.setEnabled(false);
 		} else if (ie.getItem().equals(Edit)) {
 		    GameInfoJPanel.this.comboBox.removeAllItems();
-		    DefaultComboBoxModel model = new DefaultComboBoxModel(GameInfoJPanel.this.listFile().toArray());
+		    DefaultComboBoxModel model = new DefaultComboBoxModel(GameInfoJPanel.this
+			    .listFile().toArray());
 		    GameInfoJPanel.this.comboBox.setModel(model);
 		    GameInfoJPanel.this.comboBox.setEnabled(true);
+		    if (!GameInfoJPanel.this.listFile().isEmpty())
+			GameInfoJPanel.this.jframe.startLevelFromFile(GameInfoJPanel.this.listFile()
+				.get(0));
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    back.setEnabled(false);
 		    next.setEnabled(false);
 		}
+		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 
 	});

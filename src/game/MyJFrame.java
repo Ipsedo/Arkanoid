@@ -230,6 +230,30 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	// this.pauseGame();
     }
+    
+    public void startLevelFromFile(String fileName) {
+	
+	synchronized (this.bricks) {
+	    this.bricks.clear();
+	    this.bricks.addAll(LevelMaker.createFromFile(fileName, this.jPanel));
+	}
+	synchronized (this.balls) {
+	    this.balls.clear();
+	    this.balls.addAll(LevelMaker.getBallsFromLevelId(3 , new Random(System.currentTimeMillis()), this.jPanel));
+	}
+
+	/*
+	 * synchronized (this.score) { this.score.reset(); }
+	 */
+
+	synchronized (CancelableThread.class) {
+	    CancelableThread.TIME_TO_WAIT = 5f;
+	}
+
+	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score);
+
+	this.jPanel.repaint();
+    }
 
     /**
      * Thread du rendu graphique

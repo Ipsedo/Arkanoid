@@ -95,7 +95,7 @@ public class LevelMaker extends JFrame {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		LevelMaker.this.toFile("test.txt");
+		LevelMaker.this.toFile("test2.txt");
 	    }
 	});
 
