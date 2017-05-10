@@ -67,6 +67,7 @@ public class GameInfoJPanel extends JPanel {
 	centerPanel.setLayout(new BorderLayout());
 
 	final ArrayList<String> editList = new ArrayList<String>();
+	editList.add("Bonjour");
 
 	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5,
 		Level_6 };
