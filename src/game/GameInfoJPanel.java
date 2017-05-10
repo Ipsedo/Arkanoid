@@ -17,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import levels.LevelMaker;
+
 public class GameInfoJPanel extends JPanel {
 
     private MyJFrame jframe;
@@ -166,8 +168,8 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    GameInfoJPanel.this.comboBox.setModel(new DefaultComboBoxModel(levelList));
 		    GameInfoJPanel.this.comboBox.setEnabled(false);
-		    //new file
-		    GameInfoJPanel.this.remove(nFile);		    
+		    // new file
+		    GameInfoJPanel.this.remove(nFile);
 		    GameInfoJPanel.this.add(backNext, BorderLayout.SOUTH);
 		    back.setEnabled(false);
 		    next.setEnabled(false);
@@ -235,6 +237,15 @@ public class GameInfoJPanel extends JPanel {
 	    }
 	});
 	this.jframe.setFocusable(true);
+
+	nFile.addActionListener(new ActionListener() {
+
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		LevelMaker lvlmaker = new LevelMaker();
+	    }
+
+	});
 
 	back.addActionListener(new ActionListener() {
 	    @Override
