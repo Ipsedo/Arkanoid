@@ -9,6 +9,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,9 +27,12 @@ public class GameInfoJPanel extends JPanel {
     private static String Level_4 = "Level 4 - Skull";
     private static String Level_5 = "Level 5 - Space";
     private static String Level_6 = "Level 6 - Snake";
+    
+    private static String File_0, File_1, File_2, File_3, File_4, File_5, File_6, File_7, File_8, File_9;
 
     private static String Arcade = "Arcade Mode";
     private static String Story = "Story Mode";
+    private static String Edit = "Edit Mode";
 
     private JComboBox comboBox;
 
@@ -62,12 +66,15 @@ public class GameInfoJPanel extends JPanel {
 	JPanel centerPanel = new JPanel();
 	centerPanel.setLayout(new BorderLayout());
 
-	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5, Level_6 };
+	final String[] editList = { File_0, File_1, File_2, File_3, File_4, File_5, File_6, File_7, File_8, File_9 };
+
+	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5,
+		Level_6 };
 	this.comboBox = new JComboBox<String>(levelList);
 	this.comboBox.setEditable(false);
 	this.comboBox.setBackground(new Color(189, 195, 199));
 
-	final String[] modeList = { Arcade, Story };
+	final String[] modeList = { Arcade, Story, Edit };
 	final JComboBox<String> modeBox = new JComboBox<String>(modeList);
 	modeBox.setEditable(false);
 	modeBox.setBackground(new Color(189, 195, 199));
@@ -136,12 +143,19 @@ public class GameInfoJPanel extends JPanel {
 		GameInfoJPanel.this.jframe.pauseGame();
 
 		if (ie.getItem().equals(Arcade)) {
+		    comboBox = new JComboBox<String>(levelList);
 		    GameInfoJPanel.this.comboBox.setEnabled(true);
 		    back.setEnabled(true);
 		    next.setEnabled(true);
 
 		} else if (ie.getItem().equals(Story)) {
+		    comboBox = new JComboBox<String>(levelList);
 		    GameInfoJPanel.this.comboBox.setEnabled(false);
+		    back.setEnabled(false);
+		    next.setEnabled(false);
+		} else if (ie.getItem().equals(Edit)) {
+		    GameInfoJPanel.this.comboBox.removeAll();;
+		    comboBox = new JComboBox<String>(editList);
 		    back.setEnabled(false);
 		    next.setEnabled(false);
 		}
