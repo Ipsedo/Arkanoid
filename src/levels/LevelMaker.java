@@ -57,8 +57,8 @@ public class LevelMaker extends JFrame {
 	    public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		LevelMaker.this.bricks.add(Brick.makeSimpleBrick(new float[] {
-			(float) arg0.getX() / (float) LevelMaker.this.jpanel.getWidth(),
-			(float) arg0.getY() / (float) LevelMaker.this.jpanel.getHeight() },
+			(float) arg0.getX() / (float) LevelMaker.this.getWidth(),
+			(float) arg0.getY() / (float) LevelMaker.this.getHeight()},
 			new float[2], new float[2], LevelMaker.this.jpanel, 1));
 		LevelMaker.this.repaint();
 	    }
@@ -88,8 +88,6 @@ public class LevelMaker extends JFrame {
 	    }
 
 	});
-
-	// super.getContentPane().add(this.jpanel, BorderLayout.CENTER);
 
 	JButton save = new JButton("Save");
 	save.addActionListener(new ActionListener() {
@@ -125,7 +123,7 @@ public class LevelMaker extends JFrame {
 	super.getContentPane().add(jpanel, BorderLayout.SOUTH);
 	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
 
-	super.pack();
+	//super.pack();
 
 	super.setVisible(true);
     }
