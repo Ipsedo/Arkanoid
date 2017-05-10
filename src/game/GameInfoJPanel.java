@@ -9,8 +9,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -27,8 +29,9 @@ public class GameInfoJPanel extends JPanel {
     private static String Level_4 = "Level 4 - Skull";
     private static String Level_5 = "Level 5 - Space";
     private static String Level_6 = "Level 6 - Snake";
-    
-    private static String File_0, File_1, File_2, File_3, File_4, File_5, File_6, File_7, File_8, File_9;
+
+    private static String File_0, File_1, File_2, File_3, File_4, File_5, File_6, File_7, File_8,
+	    File_9;
 
     private static String Arcade = "Arcade Mode";
     private static String Story = "Story Mode";
@@ -50,6 +53,8 @@ public class GameInfoJPanel extends JPanel {
 
 	final JButton back = new JButton("Back");
 	final JButton next = new JButton("Next");
+	final JButton sound = new JButton("Sound");
+	final JButton nFile = new JButton(" New file ");
 
 	JButton start = new JButton(
 		"<HTML><BODY align='center'>Start /<BR>Resume</BR><BR>'S'</BR></BODY></HTML>");
@@ -57,16 +62,17 @@ public class GameInfoJPanel extends JPanel {
 	JButton pause = new JButton("Pause 'P'");
 	JButton reset = new JButton("Reset 'R'");
 
-	JPanel backNext = new JPanel();
+	final JPanel backNext = new JPanel();
 	backNext.setLayout(new GridLayout(0, 2));
 
 	JPanel infoPanel = new JPanel();
 	infoPanel.setLayout(new GridLayout(0, 1));
 
-	JPanel centerPanel = new JPanel();
+	final JPanel centerPanel = new JPanel();
 	centerPanel.setLayout(new BorderLayout());
 
 	final ArrayList<String> editList = new ArrayList<String>();
+
 	editList.add("Bonjour");
 
 	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5,
@@ -80,6 +86,8 @@ public class GameInfoJPanel extends JPanel {
 	modeBox.setEditable(false);
 	modeBox.setBackground(new Color(189, 195, 199));
 
+	nFile.setBackground(new Color(189, 195, 199));
+	sound.setBackground(new Color(189, 195, 199));
 	back.setBackground(new Color(189, 195, 199));
 	next.setBackground(new Color(189, 195, 199));
 	start.setBackground(new Color(189, 195, 199));
@@ -91,13 +99,12 @@ public class GameInfoJPanel extends JPanel {
 
 	this.add(comboBox, BorderLayout.NORTH);
 
-	infoPanel.add(back);
-	infoPanel.add(next);
 	infoPanel.add(start);
 	infoPanel.add(pause);
 	infoPanel.add(retry);
 	infoPanel.add(reset);
 	centerPanel.add(infoPanel, BorderLayout.CENTER);
+	centerPanel.add(sound, BorderLayout.SOUTH);
 	this.add(centerPanel, BorderLayout.CENTER);
 
 	backNext.add(back);
@@ -129,6 +136,8 @@ public class GameInfoJPanel extends JPanel {
 		} else if (ie.getItem().equals(Level_6)) {
 		    GameInfoJPanel.this.jframe.level(6);
 		    GameInfoJPanel.this.idLevel = 6;
+		} else {
+		    GameInfoJPanel.this.jframe.startLevelFromFile((String) ie.getItem());
 		}
 	    }
 
@@ -139,28 +148,44 @@ public class GameInfoJPanel extends JPanel {
 	    @Override
 	    public void itemStateChanged(ItemEvent ie) {
 		// GameInfoJPanel.this.jframe.resetScore();
-		GameInfoJPanel.this.jframe.level(0);
-		GameInfoJPanel.this.comboBox.setSelectedIndex(0);
-		GameInfoJPanel.this.jframe.pauseGame();
 
 		if (ie.getItem().equals(Arcade)) {
-		    comboBox = new JComboBox<String>(levelList);
+		    // comboBx
+		    GameInfoJPanel.this.jframe.level(0);
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
+		    GameInfoJPanel.this.comboBox.setModel(new DefaultComboBoxModel(levelList));
 		    GameInfoJPanel.this.comboBox.setEnabled(true);
+		    // new file
+		    GameInfoJPanel.this.remove(nFile);
+		    GameInfoJPanel.this.add(backNext, BorderLayout.SOUTH);
 		    back.setEnabled(true);
 		    next.setEnabled(true);
-
 		} else if (ie.getItem().equals(Story)) {
-		    comboBox = new JComboBox<String>(levelList);
+		    // comboBox
+		    GameInfoJPanel.this.jframe.level(0);
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
+		    GameInfoJPanel.this.comboBox.setModel(new DefaultComboBoxModel(levelList));
 		    GameInfoJPanel.this.comboBox.setEnabled(false);
+		    //new file
+		    GameInfoJPanel.this.remove(nFile);		    
+		    GameInfoJPanel.this.add(backNext, BorderLayout.SOUTH);
 		    back.setEnabled(false);
 		    next.setEnabled(false);
-		} else if (ie.getItem().equals(Edit)) {		    
+		} else if (ie.getItem().equals(Edit)) {
+		    // comboBox
 		    GameInfoJPanel.this.comboBox.removeAllItems();
-		    for (String s : editList)
-			comboBox.addItem(s);
-		    back.setEnabled(false);
-		    next.setEnabled(false);
+		    GameInfoJPanel.this.comboBox.setModel(new DefaultComboBoxModel(
+			    GameInfoJPanel.this.listFile().toArray()));
+		    GameInfoJPanel.this.comboBox.setEnabled(true);
+		    if (!GameInfoJPanel.this.listFile().isEmpty())
+			GameInfoJPanel.this.jframe.startLevelFromFile(GameInfoJPanel.this.listFile()
+				.get(0));
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
+		    // new file
+		    GameInfoJPanel.this.remove(backNext);
+		    GameInfoJPanel.this.add(nFile, BorderLayout.SOUTH);
 		}
+		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 
 	});
@@ -279,6 +304,24 @@ public class GameInfoJPanel extends JPanel {
 	});
 	reset.setFocusable(false);
 
+    }
+
+    public ArrayList<String> listFile() {
+	ArrayList<String> res = new ArrayList<>();
+	File directory = new File("./");
+
+	File[] fList = directory.listFiles();
+
+	for (File file : fList) {
+
+	    if (file.isFile() && file.getName().endsWith(".txt")) {
+
+		res.add(file.getName());
+
+	    }
+
+	}
+	return res;
     }
 
     public void levelDone() {
