@@ -38,7 +38,7 @@ public class LevelMaker extends JFrame {
 
     public LevelMaker() {
 	super("Arkanoid - LevelMaker");
-	super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	super.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	super.setLocation(300, 0);
 	super.getContentPane().setLayout(new BorderLayout());
 
@@ -142,12 +142,18 @@ public class LevelMaker extends JFrame {
 	jpanel.add(save);
 	jpanel.add(undo);
 	jpanel.add(jTextField);
+	save.setFocusable(false);
+	undo.setFocusable(false);
+	//jTextField.setFocusable(false);
+	jpanel.setFocusable(false);
+	this.jpanel.setFocusable(false);
 
 	super.getContentPane().add(this.jpanel, BorderLayout.CENTER);
 	super.getContentPane().add(jpanel, BorderLayout.SOUTH);
 	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
 
 	// super.pack();
+	super.setFocusable(false);
 
 	super.setVisible(true);
     }
@@ -563,9 +569,5 @@ public class LevelMaker extends JFrame {
 	    }
 	}
 	return res;
-    }
-
-    public static void main(String[] args) {
-	LevelMaker lvlmaker = new LevelMaker();
     }
 }

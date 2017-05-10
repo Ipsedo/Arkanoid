@@ -78,7 +78,7 @@ public class MyJPanel extends JPanel {
      */
     public void paintComponent(Graphics g) {
 	Graphics2D g2 = (Graphics2D) g;
-	g2.setBackground(Color.GRAY);
+	g2.setBackground(new Color(189, 195, 199));
 	g2.clearRect(0, 0, super.getWidth(), super.getHeight());
 
 	if (this.isDead) {
