@@ -66,7 +66,7 @@ public class GameInfoJPanel extends JPanel {
 	JPanel centerPanel = new JPanel();
 	centerPanel.setLayout(new BorderLayout());
 
-	final String[] editList = { File_0, File_1, File_2, File_3, File_4, File_5, File_6, File_7, File_8, File_9 };
+	final ArrayList<String> editList = new ArrayList<String>();
 
 	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5,
 		Level_6 };
@@ -153,9 +153,10 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.comboBox.setEnabled(false);
 		    back.setEnabled(false);
 		    next.setEnabled(false);
-		} else if (ie.getItem().equals(Edit)) {
-		    GameInfoJPanel.this.comboBox.removeAll();;
-		    comboBox = new JComboBox<String>(editList);
+		} else if (ie.getItem().equals(Edit)) {		    
+		    GameInfoJPanel.this.comboBox.removeAllItems();
+		    for (String s : editList)
+			comboBox.addItem(s);
 		    back.setEnabled(false);
 		    next.setEnabled(false);
 		}
