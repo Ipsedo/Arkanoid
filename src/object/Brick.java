@@ -1,9 +1,11 @@
 package object;
 
-import game.MyJPanel;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.List;
+import java.util.Random;
+
+import game.MyJPanel;
 
 public class Brick extends Item {
 
@@ -12,7 +14,7 @@ public class Brick extends Item {
 
     private int life;
 
-    private boolean isBonus;
+    private int isBonus;
 
     /**
      * 
@@ -24,7 +26,7 @@ public class Brick extends Item {
      * @param isBonus
      */
     private Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel,
-	    int life, boolean isBonus) {
+	    int life, int isBonus) {
 	super(mPosition, mSpeed, mAcceleration, width, height, jpanel);
 	this.life = life;
 	this.isBonus = isBonus;
@@ -40,7 +42,7 @@ public class Brick extends Item {
      */
     public static Brick makeBonusBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration,
 	    MyJPanel jpanel) {
-	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, 1, true);
+	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, 1, 1);
     }
 
     /**
@@ -54,7 +56,7 @@ public class Brick extends Item {
      */
     public static Brick makeSimpleBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration,
 	    MyJPanel jpanel, int life) {
-	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, life, false);
+	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, life, 0);
     }
 
     public boolean intersect(Item other) {
@@ -73,8 +75,18 @@ public class Brick extends Item {
 	return this.life > 0;
     }
 
-    public boolean isBonus() {
-	return this.isBonus;
+    public void updateBalls(List<Ball> balls, MyJPanel jpanel, Random rand) {
+	if (this.isBonus == 3) {
+	    balls.add(new Ball(rand, jpanel));
+	}
+    }
+
+    public void updatePaddle(Paddle paddle) {
+	if (this.isBonus == 1) {
+	    paddle.width += 0.05f;
+	} else if (this.isBonus == 2) {
+	    paddle.width -= 0.05f;
+	}
     }
 
     public void draw(Graphics2D g2) {
@@ -87,17 +99,18 @@ public class Brick extends Item {
 	}
 	super.draw(g2);
 
-	if (this.isBonus) {
+	if (this.isBonus != 0) {
 	    g2.setColor(Color.BLACK);
-	    g2.fillOval((int) ((super.mPosition[0] + super.width / 2f - super.height / 2) * (float) super.getScreenWidth()),
-		    (int) (super.mPosition[1] * (float) super.getScreenHeight()),
-		    (int) (super.height * (float) super.getScreenWidth()),
-		    (int) (super.height * (float) super.getScreenHeight()));
+	    g2.fillOval((int) ((super.mPosition[0] + super.width / 2f - super.height / 2)
+		    * (float) super.getScreenWidth()), (int) (super.mPosition[1]
+			    * (float) super.getScreenHeight()), (int) (super.height
+				    * (float) super.getScreenWidth()), (int) (super.height
+					    * (float) super.getScreenHeight()));
 	}
     }
 
     public String toString() {
-	return super.mPosition[0] + " " + super.mPosition[1] + " " + this.life + " "
-		+ Boolean.toString(this.isBonus);
+	return super.mPosition[0] + " " + super.mPosition[1] + " " + this.life + " " + Integer
+		.toString(this.isBonus);
     }
 }

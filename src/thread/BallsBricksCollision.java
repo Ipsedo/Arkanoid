@@ -1,12 +1,12 @@
 package thread;
 
-import game.MyJPanel;
-
 import java.util.List;
 import java.util.Random;
 
+import game.MyJPanel;
 import object.Ball;
 import object.Brick;
+import object.Paddle;
 import object.Score;
 
 public class BallsBricksCollision extends CancelableThread {
@@ -16,6 +16,7 @@ public class BallsBricksCollision extends CancelableThread {
     private Score score;
     private MyJPanel jpanel;
     private Random rand;
+    private Paddle paddle;
 
     /**
      * 
@@ -23,14 +24,17 @@ public class BallsBricksCollision extends CancelableThread {
      * @param bricks
      * @param score
      * @param jpanel
+     * @param paddle
      */
-    public BallsBricksCollision(List<Ball> balls, List<Brick> bricks, Score score, MyJPanel jpanel) {
+    public BallsBricksCollision(List<Ball> balls, List<Brick> bricks, Score score, MyJPanel jpanel,
+	    Paddle paddle) {
 	super("BallsBricksCollision");
 	this.balls = balls;
 	this.bricks = bricks;
 	this.score = score;
 	this.jpanel = jpanel;
 	this.rand = new Random(System.currentTimeMillis());
+	this.paddle = paddle;
     }
 
     /**
@@ -47,12 +51,9 @@ public class BallsBricksCollision extends CancelableThread {
 			    Ball ba = this.balls.get(j);
 			    br.collide(ba);
 			    if (br.intersect(ba)) {
-				synchronized (this.score) {
-				    this.score.incrScore(br.getScore());
-				}
-				if (br.isBonus()) {
-				    this.balls.add(new Ball(this.rand, this.jpanel));
-				}
+				this.score.incrScore(br.getScore());
+				br.updateBalls(this.balls, this.jpanel, this.rand);
+				br.updatePaddle(this.paddle);
 			    }
 			    if (!br.isAlive()) {
 				this.bricks.remove(br);

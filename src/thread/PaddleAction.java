@@ -34,7 +34,7 @@ public class PaddleAction extends CancelableThread {
 		    this.paddle.collide(this.balls.get(i));
 		    if (this.paddle.intersect(this.balls.get(i))) {
 			synchronized (CancelableThread.class) {
-			    CancelableThread.TIME_TO_WAIT -= 0.02f;
+			    CancelableThread.TIME_TO_WAIT -= 0.005f;
 			    if (CancelableThread.TIME_TO_WAIT < 0) {
 				CancelableThread.TIME_TO_WAIT = 0f;
 			    }

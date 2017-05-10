@@ -148,7 +148,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.paddleBoundingThread.start();
 	this.ballsCollisionThread = new BallsCollision(this.balls);
 	this.ballsCollisionThread.start();
-	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks, this.score, this.jPanel);
+	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks, this.score, this.jPanel, this.paddle);
 	this.ballsBricksCollisionThread.start();
 	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this, this.gameInfo);
 	this.endGameDetectionThread.start();
