@@ -89,8 +89,6 @@ public class LevelMaker extends JFrame {
 
 	});
 
-	// super.getContentPane().add(this.jpanel, BorderLayout.CENTER);
-
 	JButton save = new JButton("Save");
 	save.addActionListener(new ActionListener() {
 
