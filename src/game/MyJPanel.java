@@ -80,6 +80,9 @@ public class MyJPanel extends JPanel {
 	Graphics2D g2 = (Graphics2D) g;
 	g2.setBackground(new Color(189, 195, 199));
 	g2.clearRect(0, 0, super.getWidth(), super.getHeight());
+	
+	g2.setColor(new Color(236, 240, 241));
+	g2.fillRect(0, (int) (0.969 * this.getHeight()), this.getWidth(), (int) (0.016 * this.getHeight()));
 
 	if (this.isDead) {
 	    g2.drawImage(this.gameOverImage, 0, 0, this.getWidth(), super.getHeight(), null);
