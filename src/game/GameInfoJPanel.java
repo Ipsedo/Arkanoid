@@ -9,6 +9,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -281,7 +282,21 @@ public class GameInfoJPanel extends JPanel {
     }
     
     public ArrayList<String> listFile() {
-	return new ArrayList<>();
+	ArrayList<String> res = new ArrayList<>();
+        File directory = new File("./");
+
+        File[] fList = directory.listFiles();
+
+        for (File file : fList){
+
+            if (file.isFile()){
+
+                res.add(file.getName());
+
+            }
+
+        }
+	return res;
     }
 
     public void levelDone() {
