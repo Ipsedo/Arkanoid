@@ -279,6 +279,10 @@ public class GameInfoJPanel extends JPanel {
 	reset.setFocusable(false);
 
     }
+    
+    public ArrayList<String> listFile() {
+	return new ArrayList<>();
+    }
 
     public void levelDone() {
 	if (this.idLevel < 6) {
