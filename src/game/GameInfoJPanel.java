@@ -160,7 +160,7 @@ public class GameInfoJPanel extends JPanel {
 		    next.setEnabled(false);
 		} else if (ie.getItem().equals(Edit)) {
 		    GameInfoJPanel.this.comboBox.removeAllItems();
-		    DefaultComboBoxModel model = new DefaultComboBoxModel(editList.toArray());
+		    DefaultComboBoxModel model = new DefaultComboBoxModel(GameInfoJPanel.this.listFile().toArray());
 		    GameInfoJPanel.this.comboBox.setModel(model);
 		    GameInfoJPanel.this.comboBox.setEnabled(true);
 		    back.setEnabled(false);
@@ -294,7 +294,7 @@ public class GameInfoJPanel extends JPanel {
 
 	for (File file : fList) {
 
-	    if (file.isFile()) {
+	    if (file.isFile() && file.getName().endsWith(".txt")) {
 
 		res.add(file.getName());
 
