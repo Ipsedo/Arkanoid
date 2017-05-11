@@ -51,7 +51,6 @@ public class EndGameDetection extends CancelableThread {
 		synchronized (this.jpanel) {
 		    this.jpanel.setWinner(true);
 		}
-
 		Thread tmp = new Thread() {
 		    public void run() {
 			EndGameDetection.this.jframe.pauseGame();

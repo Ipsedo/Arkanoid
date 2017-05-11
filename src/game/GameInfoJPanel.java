@@ -150,7 +150,7 @@ public class GameInfoJPanel extends JPanel {
 		} else if (ie.getItem().equals(Level_6) && ie.getStateChange() == ItemEvent.SELECTED) {
 		    GameInfoJPanel.this.jframe.level(6);
 		    GameInfoJPanel.this.idLevel = 6;
-		} else if (GameInfoJPanel.this.editMode){
+		} else if (GameInfoJPanel.this.editMode && ie.getStateChange() == ItemEvent.SELECTED){
 		    GameInfoJPanel.this.jframe.startLevelFromFile((String) ie.getItem());
 		}
 		GameInfoJPanel.this.jframe.pauseGame();
