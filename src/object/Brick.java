@@ -25,38 +25,11 @@ public class Brick extends Item {
      * @param life
      * @param isBonus
      */
-    private Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel,
+    public Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel,
 	    int life, int isBonus) {
 	super(mPosition, mSpeed, mAcceleration, width, height, jpanel);
 	this.life = life;
 	this.isBonus = isBonus;
-    }
-
-    /**
-     * 
-     * @param mPosition
-     * @param mSpeed
-     * @param mAcceleration
-     * @param jpanel
-     * @return
-     */
-    public static Brick makeBonusBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration,
-	    MyJPanel jpanel, int life, int bonus) {
-	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, life, bonus);
-    }
-
-    /**
-     * 
-     * @param mPosition
-     * @param mSpeed
-     * @param mAcceleration
-     * @param jpanel
-     * @param life
-     * @return
-     */
-    public static Brick makeSimpleBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration,
-	    MyJPanel jpanel, int life) {
-	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, life, 0);
     }
 
     public boolean intersect(Item other) {
