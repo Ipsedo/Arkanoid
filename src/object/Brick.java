@@ -63,7 +63,11 @@ public class Brick extends Item {
     }
     
     public void makeExplosion(List<Point> points, MyJPanel jpanel) {
-	points.add(new Point(this.mPosition.clone(), new Random(System.currentTimeMillis()), jpanel));
+	float[] pos = new float[] {this.mPosition[0] + this.width / 2f, this.mPosition[1] + this.height / 2f};
+	Random rand = new Random(System.currentTimeMillis());
+	for(int i = 0; i < 10; i++) {
+	    points.add(new Point(pos.clone(), rand, jpanel));
+	}
     }
 
     public void draw(Graphics2D g2) {
