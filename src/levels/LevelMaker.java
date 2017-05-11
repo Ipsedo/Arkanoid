@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedReader;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -35,6 +38,11 @@ public class LevelMaker extends JFrame {
     private List<Brick> bricks;
     private MyJPanel jpanel;
     private String fileName;
+    private Integer currBrickLife;
+    private int currBrickBonus;
+
+    private final Integer[] brickLife = new Integer[] { 1, 2, 3 };
+    private final String[] brickBonus = new String[] { "None", "Ball", "Paddle_UP", "Paddle_DOWN" };
 
     public LevelMaker() {
 	super("Arkanoid - LevelMaker");
@@ -65,10 +73,15 @@ public class LevelMaker extends JFrame {
 	    public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		if ((float) arg0.getY() / (float) LevelMaker.this.jpanel.getHeight() < 0.5f) {
-		    LevelMaker.this.bricks.add(Brick.makeSimpleBrick(new float[] { (float) arg0
-			    .getX() / (float) LevelMaker.this.jpanel.getWidth(), (float) arg0.getY()
-				    / (float) LevelMaker.this.jpanel.getHeight() }, new float[2],
-			    new float[2], LevelMaker.this.jpanel, 1));
+		    if (LevelMaker.this.currBrickBonus == 0) {
+			LevelMaker.this.bricks.add(Brick.makeSimpleBrick(new float[] { (float) arg0
+				.getX() / (float) LevelMaker.this.jpanel.getWidth(), (float) arg0
+					.getY() / (float) LevelMaker.this.jpanel.getHeight() },
+				new float[2], new float[2], LevelMaker.this.jpanel,
+				LevelMaker.this.currBrickLife));
+		    } else {
+			
+		    }
 		    LevelMaker.this.repaint();
 		}
 	    }
@@ -137,14 +150,53 @@ public class LevelMaker extends JFrame {
 
 	});
 
+	this.currBrickLife = 1;
+
+	JComboBox<Integer> lifeChooser = new JComboBox<Integer>(this.brickLife);
+	lifeChooser.setEditable(false);
+	lifeChooser.addItemListener(new ItemListener() {
+
+	    @Override
+	    public void itemStateChanged(ItemEvent arg0) {
+		// TODO Auto-generated method stub
+		LevelMaker.this.currBrickLife = (Integer) arg0.getItem();
+	    }
+
+	});
+
+	JComboBox<String> bonusChooser = new JComboBox<String>(this.brickBonus);
+	bonusChooser.setEditable(false);
+	bonusChooser.addItemListener(new ItemListener() {
+
+	    @Override
+	    public void itemStateChanged(ItemEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getItem().equals(LevelMaker.this.brickBonus[0])) {
+		    LevelMaker.this.currBrickBonus = 0;
+		} else if (e.getItem().equals(LevelMaker.this.brickBonus[1])) {
+		    LevelMaker.this.currBrickBonus = 3;
+		} else if (e.getItem().equals(LevelMaker.this.brickBonus[2])) {
+		    LevelMaker.this.currBrickBonus = 2;
+		} else if (e.getItem().equals(LevelMaker.this.brickBonus[3])) {
+		    LevelMaker.this.currBrickBonus = 1;
+		}
+	    }
+
+	});
+
+	JPanel jpanel1 = new JPanel();
+	jpanel1.setLayout(new GridLayout(1, 0));
+	jpanel1.add(lifeChooser);
+	jpanel1.add(bonusChooser);
+
 	JPanel jpanel = new JPanel();
-	jpanel.setLayout(new GridLayout(3, 1));
+	jpanel.setLayout(new GridLayout(4, 1));
 	jpanel.add(save);
 	jpanel.add(undo);
 	jpanel.add(jTextField);
+	jpanel.add(jpanel1);
 	save.setFocusable(false);
 	undo.setFocusable(false);
-	//jTextField.setFocusable(false);
 	jpanel.setFocusable(false);
 	this.jpanel.setFocusable(false);
 
@@ -176,9 +228,13 @@ public class LevelMaker extends JFrame {
 	    String line;
 	    while ((line = br.readLine()) != null) {
 		String[] tmp = line.split(" ");
-		res.add(Brick.makeSimpleBrick(new float[] { Float.parseFloat(tmp[0]), Float
-			.parseFloat(tmp[1]) }, new float[2], new float[2], jpanel, Integer.parseInt(
-				tmp[2])));
+		if (tmp[3].equals("0")) {
+		    res.add(Brick.makeSimpleBrick(new float[] { Float.parseFloat(tmp[0]), Float
+			    .parseFloat(tmp[1]) }, new float[2], new float[2], jpanel, Integer
+				    .parseInt(tmp[2])));
+		} else {
+
+		}
 	    }
 	} catch (IOException ioe) {
 	    ioe.printStackTrace();

@@ -99,7 +99,6 @@ public class Brick extends Item {
 	}
 	super.draw(g2);
 
-	// Bonus ball++
 	if (this.isBonus == 3) {
 	    g2.setColor(Color.BLACK);
 	    g2.fillOval((int) ((super.mPosition[0] + super.width / 2f - super.height / 2)
@@ -107,24 +106,10 @@ public class Brick extends Item {
 			    * (float) super.getScreenHeight()), (int) (super.height
 				    * (float) super.getScreenWidth()), (int) (super.height
 					    * (float) super.getScreenHeight()));
-	}
-	// Bonus paddle size++
-	else if (this.isBonus == 1) {
-	    g2.setColor(Color.GREEN);
-	    g2.fillRect((int) ((super.mPosition[0] + 9 * super.width / 20f)
-		    * (float) super.getScreenWidth()), (int) (super.mPosition[1]
-			    * (float) super.getScreenHeight()) + 1, (int) (super.width / 10
-				    * (float) super.getScreenWidth()), (int) (super.height
-					    * (float) super.getScreenHeight()) - 1);
+	} else if (this.isBonus == 1) {
 	    
-	    g2.fillRect((int) ((super.mPosition[0] + 2 * super.width / 8) * (float) super.getScreenWidth()), 
-		    	(int) ((super.mPosition[1] + 4 * super.height / 10f) * (float) super.getScreenHeight()), 
-		    	(int) (super.width / 2 * (float) super.getScreenWidth()), 
-		    	(int) (super.height / 5 * (float) super.getScreenHeight()));
-	}
-	// Bonus paddle size--
-	else if (this.isBonus == 1) {
-
+	} else if (this.isBonus == 2) {
+	    
 	}
     }
 
