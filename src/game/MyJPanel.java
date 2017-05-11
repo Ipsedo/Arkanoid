@@ -87,7 +87,7 @@ public class MyJPanel extends JPanel {
 	if (this.isDead) {
 	    g2.drawImage(this.gameOverImage, 0, 0, this.getWidth(), super.getHeight(), null);
 	} else if (this.isWinner) {
-	    g2.drawImage(this.levelDone, 0, 0, this.getWidth(), super.getHeight(), null);
+	    g2.drawImage(this.levelDone, (int) (0.1 * this.getWidth()), (int) (0.1 * this.getHeight()), (int) (0.8 * this.getWidth()), (int) (0.8 * this.getHeight()), null);
 	} else {
 	    this.score.draw(g2);
 	    for (int i = 0; i < this.balls.size(); i++)
