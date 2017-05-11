@@ -59,6 +59,7 @@ public class EndGameDetection extends CancelableThread {
 			    // TODO Auto-generated catch block
 			    e.printStackTrace();
 			}
+			System.out.println("double Refresh");
 			EndGameDetection.this.gameInfo.levelDone();
 		    }
 		};

@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -57,7 +58,7 @@ public class MyJPanel extends JPanel {
 	try {
 	    this.gameOverImage = ImageIO.read(new File("game_over.png"));
 	    this.levelDone = ImageIO.read(new File("level_done.png"));
-	    this.background = ImageIO.read(new File("wall_1.jpg"));
+	    this.background = new Random(System.currentTimeMillis()).nextBoolean() ? ImageIO.read(new File("wall_3.jpg")) : ImageIO.read(new File("wall_2.jpg"));
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
