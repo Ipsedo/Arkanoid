@@ -50,7 +50,7 @@ public class BallsBricksCollision extends CancelableThread {
 			    Ball ba = this.balls.get(j);
 			    br.collide(ba);
 			    if (br.intersect(ba)) {
-				Sound.brickSound();
+				//Sound.brickSound();
 				this.score.incrScore(br.getScore());
 				br.updateBalls(this.balls, this.jpanel, this.rand);
 				br.updatePaddle(this.paddle);
