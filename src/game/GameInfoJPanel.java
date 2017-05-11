@@ -238,7 +238,7 @@ public class GameInfoJPanel extends JPanel {
 			GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 			GameInfoJPanel.this.jframe.pauseGame();
 		    } else {
-			GameInfoJPanel.this.jframe.clearScore();
+			GameInfoJPanel.this.jframe.divScore();
 			GameInfoJPanel.this.jframe.startLevelFromFile(GameInfoJPanel.this.listFile()
 				.get(0));
 			GameInfoJPanel.this.comboBox.setSelectedIndex(0);
