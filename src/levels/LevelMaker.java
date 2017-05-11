@@ -265,7 +265,7 @@ public class LevelMaker extends JFrame {
 	    }
 	    return res;
 	} else {
-	    int nbBall = 400;
+	    int nbBall = 40;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
