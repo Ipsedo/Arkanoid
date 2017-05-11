@@ -25,6 +25,7 @@ import thread.CancelableThread;
 import thread.EndGameDetection;
 import thread.PaddleAction;
 import thread.PaddleMove;
+import util.Sound;
 
 public class MyJFrame extends JFrame implements Runnable {
 

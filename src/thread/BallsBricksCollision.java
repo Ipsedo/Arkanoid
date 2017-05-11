@@ -27,8 +27,7 @@ public class BallsBricksCollision extends CancelableThread {
      * @param jpanel
      * @param paddle
      */
-    public BallsBricksCollision(List<Ball> balls, List<Brick> bricks, Score score, MyJPanel jpanel,
-	    Paddle paddle) {
+    public BallsBricksCollision(List<Ball> balls, List<Brick> bricks, Score score, MyJPanel jpanel, Paddle paddle) {
 	super("BallsBricksCollision");
 	this.balls = balls;
 	this.bricks = bricks;
@@ -42,7 +41,6 @@ public class BallsBricksCollision extends CancelableThread {
      * 
      */
     public void run() {
-	// TODO régler le pb d'interblocage pas encore arrivé
 	while (!this.canceled) {
 	    synchronized (this.bricks) {
 		for (int i = this.bricks.size() - 1; i >= 0; i--) {

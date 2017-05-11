@@ -1,9 +1,8 @@
 package util;
 
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
-import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -26,18 +25,26 @@ public class Sound {
     }
 
     private static void playSound(String file) {
-	try {
-	    AudioInputStream ais = AudioSystem.getAudioInputStream(new File(file));
-            Clip test = AudioSystem.getClip();
-            test.open(ais);
-            test.start();
-            test.drain();
-            test.close();
-	} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
+	/*try {
+	        DataLine.Info daInfo = new DataLine.Info(Clip.class, null);
+	        try {
+	            URL sounURL = Sound.class.getResource("/home/samuel/Documents/L3/S6/Projet_IHM_Concurentielle/Arkanoid/" + file);
+
+	            AudioInputStream inputStream = AudioSystem.getAudioInputStream(sounURL);
+	            DataLine.Info info = new DataLine.Info(Clip.class, inputStream.getFormat());
+	            Clip clip = (Clip) AudioSystem.getLine(info);
+	            clip.open(inputStream);
+	            clip.start();
+	        } catch (LineUnavailableException e) {
+	            e.printStackTrace();
+	        } catch (UnsupportedAudioFileException ex) {
+	            ex.printStackTrace();
+	        } catch (IOException ex) {
+	            ex.printStackTrace();
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }*/
 
     }
-
 }
