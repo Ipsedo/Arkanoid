@@ -44,8 +44,7 @@ public class GameInfoJPanel extends JPanel {
     private static String Story = "Story Mode";
     private static String Edit = "Edit Mode";
 
-    @SuppressWarnings("rawtypes")
-    private JComboBox comboBox;
+    private JComboBox<String> comboBox;
 
     /**
      * 
@@ -86,8 +85,7 @@ public class GameInfoJPanel extends JPanel {
 	final JPanel centerPanel = new JPanel();
 	centerPanel.setLayout(new BorderLayout());
 
-	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5,
-		Level_6 };
+	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5, Level_6 };
 	this.comboBox = new JComboBox<String>(levelList);
 	this.comboBox.setEditable(false);
 	this.comboBox.setBackground(new Color(189, 195, 199));
@@ -131,28 +129,28 @@ public class GameInfoJPanel extends JPanel {
 	this.comboBox.addItemListener(new ItemListener() {
 	    @Override
 	    public void itemStateChanged(ItemEvent ie) {
-		if (ie.getItem().equals(Level_0)) {
+		if (ie.getItem().equals(Level_0) && ie.getStateChange() == ItemEvent.SELECTED) {
 		    GameInfoJPanel.this.jframe.level(0);
 		    GameInfoJPanel.this.idLevel = 0;
-		} else if (ie.getItem().equals(Level_1)) {
+		} else if (ie.getItem().equals(Level_1) && ie.getStateChange() == ItemEvent.SELECTED) {
 		    GameInfoJPanel.this.jframe.level(1);
 		    GameInfoJPanel.this.idLevel = 1;
-		} else if (ie.getItem().equals(Level_2)) {
+		} else if (ie.getItem().equals(Level_2) && ie.getStateChange() == ItemEvent.SELECTED) {
 		    GameInfoJPanel.this.jframe.level(2);
 		    GameInfoJPanel.this.idLevel = 2;
-		} else if (ie.getItem().equals(Level_3)) {
+		} else if (ie.getItem().equals(Level_3) && ie.getStateChange() == ItemEvent.SELECTED) {
 		    GameInfoJPanel.this.jframe.level(3);
 		    GameInfoJPanel.this.idLevel = 3;
-		} else if (ie.getItem().equals(Level_4)) {
+		} else if (ie.getItem().equals(Level_4) && ie.getStateChange() == ItemEvent.SELECTED) {
 		    GameInfoJPanel.this.jframe.level(4);
 		    GameInfoJPanel.this.idLevel = 4;
-		} else if (ie.getItem().equals(Level_5)) {
+		} else if (ie.getItem().equals(Level_5) && ie.getStateChange() == ItemEvent.SELECTED) {
 		    GameInfoJPanel.this.jframe.level(5);
 		    GameInfoJPanel.this.idLevel = 5;
-		} else if (ie.getItem().equals(Level_6)) {
+		} else if (ie.getItem().equals(Level_6) && ie.getStateChange() == ItemEvent.SELECTED) {
 		    GameInfoJPanel.this.jframe.level(6);
 		    GameInfoJPanel.this.idLevel = 6;
-		} else {
+		} else if (GameInfoJPanel.this.editMode){
 		    GameInfoJPanel.this.jframe.startLevelFromFile((String) ie.getItem());
 		}
 		GameInfoJPanel.this.jframe.pauseGame();
@@ -169,7 +167,6 @@ public class GameInfoJPanel extends JPanel {
 
 		if (ie.getItem().equals(Arcade)) {
 		    // comboBx
-		    GameInfoJPanel.this.jframe.level(0);
 		    GameInfoJPanel.this.comboBox.setModel(new DefaultComboBoxModel(levelList));
 		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    GameInfoJPanel.this.comboBox.setEnabled(true);
@@ -181,7 +178,6 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.editMode = false;
 		} else if (ie.getItem().equals(Story)) {
 		    // comboBox
-		    GameInfoJPanel.this.jframe.level(0);
 		    GameInfoJPanel.this.comboBox.setModel(new DefaultComboBoxModel(levelList));
 		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    GameInfoJPanel.this.comboBox.setEnabled(false);
@@ -198,8 +194,8 @@ public class GameInfoJPanel extends JPanel {
 			    GameInfoJPanel.this.listFile().toArray()));
 		    GameInfoJPanel.this.comboBox.setEnabled(true);
 		    if (!GameInfoJPanel.this.listFile().isEmpty())
-			GameInfoJPanel.this.jframe.startLevelFromFile(GameInfoJPanel.this.listFile()
-				.get(0));
+			GameInfoJPanel.this.jframe.startLevelFromFile(GameInfoJPanel.this
+				.listFile().get(0));
 		    if (!GameInfoJPanel.this.listFile().isEmpty()) {
 			GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    }
@@ -208,7 +204,6 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.remove(backNext);
 		    GameInfoJPanel.this.add(newRefresh, BorderLayout.SOUTH);
 		}
-		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 
 	});
@@ -222,45 +217,45 @@ public class GameInfoJPanel extends JPanel {
 		} else if (arg0.getKeyCode() == KeyEvent.VK_R) {
 		    if (!GameInfoJPanel.this.editMode) {
 			GameInfoJPanel.this.jframe.clearScore();
-			GameInfoJPanel.this.idLevel = 0;
-			GameInfoJPanel.this.comboBox.setSelectedIndex(0);
-			GameInfoJPanel.this.jframe.level(0);
-			GameInfoJPanel.this.jframe.pauseGame();
+			if (GameInfoJPanel.this.idLevel != 0) {
+			    GameInfoJPanel.this.idLevel = 0;
+			    GameInfoJPanel.this.jframe.pauseGame();
+			    GameInfoJPanel.this.comboBox
+				    .setSelectedIndex(GameInfoJPanel.this.idLevel);
+			} else {
+
+			    GameInfoJPanel.this.jframe.pauseGame();
+			    GameInfoJPanel.this.jframe.level(0);
+			}
 		    } else {
 			GameInfoJPanel.this.jframe.clearScore();
-			GameInfoJPanel.this.jframe.startLevelFromFile(GameInfoJPanel.this.listFile()
-				.get(0));
 			GameInfoJPanel.this.comboBox.setSelectedIndex(0);
-			GameInfoJPanel.this.jframe.pauseGame();
 		    }
 		} else if (arg0.getKeyCode() == KeyEvent.VK_S) {
 		    GameInfoJPanel.this.jframe.resumeGame();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_T) {
 		    if (!GameInfoJPanel.this.editMode) {
 			GameInfoJPanel.this.jframe.divScore();
-			GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 			GameInfoJPanel.this.jframe.pauseGame();
+			GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 		    } else {
 			GameInfoJPanel.this.jframe.divScore();
-			GameInfoJPanel.this.jframe.startLevelFromFile(GameInfoJPanel.this.listFile()
-				.get(0));
 			GameInfoJPanel.this.comboBox.setSelectedIndex(0);
-			GameInfoJPanel.this.jframe.pauseGame();
 		    }
 		} else if (arg0.getKeyCode() == KeyEvent.VK_B) {
 		    if (GameInfoJPanel.this.idLevel > 0) {
 			GameInfoJPanel.this.idLevel--;
 		    }
-		    GameInfoJPanel.this.comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		    GameInfoJPanel.this.jframe.pauseGame();
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		} else if (arg0.getKeyCode() == KeyEvent.VK_N) {
 		    if (GameInfoJPanel.this.idLevel < levelList.length - 1) {
 			GameInfoJPanel.this.idLevel++;
 		    }
-		    GameInfoJPanel.this.comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		    GameInfoJPanel.this.jframe.pauseGame();
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		} else if (arg0.getKeyChar() >= '0' && arg0.getKeyChar() <= '6') {
-		    GameInfoJPanel.this.jframe.level(arg0.getKeyChar() - '0');
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(arg0.getKeyChar() - '0');
 		    GameInfoJPanel.this.idLevel = arg0.getKeyChar() - '0';
 		}
 	    }
@@ -302,9 +297,8 @@ public class GameInfoJPanel extends JPanel {
 	    public void actionPerformed(ActionEvent arg0) {
 		if (GameInfoJPanel.this.idLevel > 0) {
 		    GameInfoJPanel.this.idLevel--;
-		    comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
-		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 		    GameInfoJPanel.this.jframe.pauseGame();
+		    comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		}
 	    }
 
@@ -316,9 +310,8 @@ public class GameInfoJPanel extends JPanel {
 	    public void actionPerformed(ActionEvent arg0) {
 		if (GameInfoJPanel.this.idLevel < levelList.length - 1) {
 		    GameInfoJPanel.this.idLevel++;
-		    comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
-		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 		    GameInfoJPanel.this.jframe.pauseGame();
+		    comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		}
 	    }
 
@@ -340,14 +333,11 @@ public class GameInfoJPanel extends JPanel {
 	    public void actionPerformed(ActionEvent arg0) {
 		if (!GameInfoJPanel.this.editMode) {
 		    GameInfoJPanel.this.jframe.divScore();
+		    GameInfoJPanel.this.jframe.pauseGame();
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		} else {
-		    GameInfoJPanel.this.jframe.clearScore();
-		    GameInfoJPanel.this.jframe.startLevelFromFile(GameInfoJPanel.this.listFile()
-			    .get(0));
+		    GameInfoJPanel.this.jframe.divScore();
 		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		}
 	    }
 	});
@@ -366,16 +356,17 @@ public class GameInfoJPanel extends JPanel {
 	    public void actionPerformed(ActionEvent arg0) {
 		if (!GameInfoJPanel.this.editMode) {
 		    GameInfoJPanel.this.jframe.clearScore();
-		    GameInfoJPanel.this.idLevel = 0;
-		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
-		    GameInfoJPanel.this.jframe.level(0);
-		    GameInfoJPanel.this.jframe.pauseGame();
+		    if (GameInfoJPanel.this.idLevel != 0) {
+			GameInfoJPanel.this.idLevel = 0;
+			GameInfoJPanel.this.jframe.pauseGame();
+			GameInfoJPanel.this.comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
+		    } else {
+			GameInfoJPanel.this.jframe.pauseGame();
+			GameInfoJPanel.this.jframe.level(0);
+		    }
 		} else {
 		    GameInfoJPanel.this.jframe.clearScore();
-		    GameInfoJPanel.this.jframe.startLevelFromFile(GameInfoJPanel.this.listFile()
-			    .get(0));
 		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		}
 	    }
 	});
@@ -402,7 +393,7 @@ public class GameInfoJPanel extends JPanel {
 		this.idLevel++;
 	    }
 	    this.comboBox.setSelectedIndex(this.idLevel);
-	    //this.jframe.level(this.idLevel);
+	    // this.jframe.level(this.idLevel);
 	}
     }
 

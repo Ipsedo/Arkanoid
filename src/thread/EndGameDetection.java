@@ -52,22 +52,19 @@ public class EndGameDetection extends CancelableThread {
 		    this.jpanel.setWinner(true);
 		}
 
-		if (!this.haveFinish) {
-		    Thread tmp = new Thread() {
-			public void run() {
-			    EndGameDetection.this.jframe.pauseGame();
-			    EndGameDetection.this.jframe.repaint();
-			    try {
-				Thread.sleep(1000L);
-			    } catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			    }
-			    EndGameDetection.this.gameInfo.levelDone();
+		Thread tmp = new Thread() {
+		    public void run() {
+			EndGameDetection.this.jframe.pauseGame();
+			EndGameDetection.this.jframe.repaint();
+			try {
+			    Thread.sleep(1000L);
+			} catch (InterruptedException e) {
+			    e.printStackTrace();
 			}
-		    };
-		    tmp.start();
-		}
+			EndGameDetection.this.gameInfo.levelDone();
+		    }
+		};
+		tmp.start();
 		this.haveFinish = true;
 	    }
 	    try {
