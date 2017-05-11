@@ -8,7 +8,7 @@ import java.util.Random;
 import object.Ball;
 import object.Brick;
 import object.Paddle;
-import object.Point;
+import object.Particule;
 import object.Score;
 import util.Sound;
 
@@ -20,7 +20,7 @@ public class BallsBricksCollision extends CancelableThread {
     private MyJPanel jpanel;
     private Random rand;
     private Paddle paddle;
-    private List<Point> points;
+    private List<Particule> points;
 
     /**
      * 
@@ -31,7 +31,7 @@ public class BallsBricksCollision extends CancelableThread {
      * @param paddle
      */
     public BallsBricksCollision(List<Ball> balls, List<Brick> bricks, Score score, MyJPanel jpanel,
-	    Paddle paddle, List<Point> points) {
+	    Paddle paddle, List<Particule> points) {
 	super("BallsBricksCollision");
 	this.balls = balls;
 	this.bricks = bricks;
@@ -57,11 +57,8 @@ public class BallsBricksCollision extends CancelableThread {
 			    if (br.intersect(ba)) {
 				Sound.brickSound();
 				this.score.incrScore(br.getScore());
-				synchronized (this.points) {
-				    br.makeExplosion(this.points, this.jpanel);
-				}
-				br.updateBalls(this.balls, this.jpanel, this.rand);
-				br.updatePaddle(this.paddle);
+				br.makeExplosion(this.points, this.jpanel);
+				br.makeBonus(this.paddle, this.balls, this.jpanel, this.rand);
 			    }
 			    if (!br.isAlive()) {
 				this.bricks.remove(br);

@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import object.Ball;
 import object.Brick;
 import object.Paddle;
-import object.Point;
+import object.Particule;
 import object.Score;
 
 public class MyJPanel extends JPanel {
@@ -23,7 +23,7 @@ public class MyJPanel extends JPanel {
     private List<Brick> bricks;
     private Paddle paddle;
     private Score score;
-    private List<Point> points;
+    private List<Particule> points;
 
     private boolean isDead;
     private boolean isWinner;
@@ -45,7 +45,7 @@ public class MyJPanel extends JPanel {
      * @param paddle
      */
     public void init(List<Ball> balls, List<Brick> bricks, Paddle paddle, Score score,
-	    List<Point> points) {
+	    List<Particule> points) {
 	this.balls = balls;
 	this.bricks = bricks;
 	this.paddle = paddle;

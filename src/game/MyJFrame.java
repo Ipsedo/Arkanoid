@@ -18,7 +18,7 @@ import levels.LevelMaker;
 import object.Ball;
 import object.Brick;
 import object.Paddle;
-import object.Point;
+import object.Particule;
 import object.Score;
 import thread.BallsBounding;
 import thread.BallsBricksCollision;
@@ -40,7 +40,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
     private List<Ball> balls;
     private List<Brick> bricks;
-    private List<Point> points;
+    private List<Particule> points;
     private Paddle paddle;
     private Score score;
 
@@ -90,7 +90,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.balls = LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()),
 		this.jPanel);
 	this.bricks = LevelMaker.getBricksFromLevelID(0, this.jPanel);
-	this.points = Collections.synchronizedList(new ArrayList<Point>());
+	this.points = Collections.synchronizedList(new ArrayList<Particule>());
 	
 	
 	this.paddle = new Paddle(this.jPanel);

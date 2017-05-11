@@ -2,13 +2,13 @@ package thread;
 
 import java.util.List;
 
-import object.Point;
+import object.Particule;
 
 public class PointsAction extends CancelableThread {
 
-    private List<Point> points;
+    private List<Particule> points;
 
-    public PointsAction(List<Point> points) {
+    public PointsAction(List<Particule> points) {
 	super("PointsAction");
 	this.points = points;
     }

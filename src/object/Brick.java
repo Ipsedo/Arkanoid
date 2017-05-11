@@ -49,24 +49,24 @@ public class Brick extends Item {
     }
 
     public void updateBalls(List<Ball> balls, MyJPanel jpanel, Random rand) {
-	if (this.isBonus == 3) {
-	    balls.add(new Ball(rand, jpanel));
-	}
+	
     }
 
-    public void updatePaddle(Paddle paddle) {
+    public void makeBonus(Paddle paddle, List<Ball> balls, MyJPanel jpanel, Random rand) {
 	if (this.isBonus == 2 && paddle.width < 0.6f) {
 	    paddle.width += 0.02f;
 	} else if (this.isBonus == 1 && paddle.width > 0.11f) {
 	    paddle.width -= 0.02f;
+	} else if (this.isBonus == 3) {
+	    balls.add(new Ball(rand, jpanel));
 	}
     }
     
-    public void makeExplosion(List<Point> points, MyJPanel jpanel) {
+    public void makeExplosion(List<Particule> points, MyJPanel jpanel) {
 	float[] pos = new float[] {this.mPosition[0] + this.width / 2f, this.mPosition[1] + this.height / 2f};
 	Random rand = new Random(System.currentTimeMillis());
 	for(int i = 0; i < 100; i++) {
-	    points.add(new Point(pos.clone(), rand, jpanel));
+	    points.add(new Particule(pos.clone(), rand, jpanel));
 	}
     }
 

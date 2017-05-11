@@ -8,13 +8,13 @@ import java.util.Random;
 
 import util.Vector;
 
-public class Point {
+public class Particule {
     
     private float[] mPosition;
     private float[] mSpeed;
     private MyJPanel jpanel;
     
-    public Point(float[] mPosition, Random rand, MyJPanel jpanel) {
+    public Particule(float[] mPosition, Random rand, MyJPanel jpanel) {
 	float maxSpeed = rand.nextFloat() * 0.01f;
 	this.mPosition = mPosition;
 	double angle = rand.nextDouble() * Math.PI * 2d;
