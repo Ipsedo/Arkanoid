@@ -47,23 +47,19 @@ public class BallsBricksCollision extends CancelableThread {
      */
     public void run() {
 	while (!this.canceled) {
-	    synchronized (this.bricks) {
-		for (int i = this.bricks.size() - 1; i >= 0; i--) {
-		    Brick br = this.bricks.get(i);
-		    synchronized (this.balls) {
-			for (int j = this.balls.size() - 1; j >= 0; j--) {
-			    Ball ba = this.balls.get(j);
-			    br.collide(ba);
-			    if (br.intersect(ba)) {
-				Sound.brickSound();
-				this.score.incrScore(br.getScore());
-				br.makeExplosion(this.points, this.jpanel);
-				br.makeBonus(this.paddle, this.balls, this.jpanel, this.rand);
-			    }
-			    if (!br.isAlive()) {
-				this.bricks.remove(br);
-			    }
-			}
+	    for (int i = this.bricks.size() - 1; i >= 0; i--) {
+		Brick br = this.bricks.get(i);
+		for (int j = this.balls.size() - 1; j >= 0; j--) {
+		    Ball ba = this.balls.get(j);
+		    br.collide(ba);
+		    if (br.intersect(ba)) {
+			Sound.brickSound();
+			this.score.incrScore(br.getScore());
+			br.makeExplosion(this.points, this.jpanel);
+			br.makeBonus(this.paddle, this.balls, this.jpanel, this.rand);
+		    }
+		    if (!br.isAlive()) {
+			this.bricks.remove(br);
 		    }
 		}
 	    }

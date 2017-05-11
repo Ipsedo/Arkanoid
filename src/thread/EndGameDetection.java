@@ -39,21 +39,15 @@ public class EndGameDetection extends CancelableThread {
     public void run() {
 	while (!this.canceled) {
 	    if (this.balls.isEmpty()) {
-		synchronized (this.jpanel) {
-		    this.jpanel.setDead(true);
-		}
+		this.jpanel.setDead(true);
 		this.jframe.repaint();
 		this.jframe.pauseGame();
-
 	    } else if (this.bricks.isEmpty()) {
-		synchronized (this.jpanel) {
-		    this.jpanel.setWinner(true);
-		}
+		this.jpanel.setWinner(true);
 		this.jframe.repaint();
 		try {
 		    Thread.sleep(1000L);
 		} catch (InterruptedException e) {
-		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 		}
 		this.gameInfo.levelDone();
