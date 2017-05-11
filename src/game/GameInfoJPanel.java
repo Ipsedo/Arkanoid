@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 
 import levels.LevelMaker;
 
+@SuppressWarnings("serial")
 public class GameInfoJPanel extends JPanel {
 
     private MyJFrame jframe;
@@ -35,6 +36,7 @@ public class GameInfoJPanel extends JPanel {
     private static String Level_5 = "Level 5 - Space";
     private static String Level_6 = "Level 6 - Snake";
 
+    @SuppressWarnings("unused")
     private static String File_0, File_1, File_2, File_3, File_4, File_5, File_6, File_7, File_8,
 	    File_9;
 
@@ -42,6 +44,7 @@ public class GameInfoJPanel extends JPanel {
     private static String Story = "Story Mode";
     private static String Edit = "Edit Mode";
 
+    @SuppressWarnings("rawtypes")
     private JComboBox comboBox;
 
     /**
@@ -60,7 +63,8 @@ public class GameInfoJPanel extends JPanel {
 	final JButton back = new JButton("Back");
 	final JButton next = new JButton("Next");
 	final JCheckBox sound = new JCheckBox("Sound");
-	final JButton nFile = new JButton(" New file ");
+	final JButton nFile = new JButton("Edit");
+	final JButton refresh = new JButton("Load");
 
 	this.editMode = false;
 
@@ -73,15 +77,14 @@ public class GameInfoJPanel extends JPanel {
 	final JPanel backNext = new JPanel();
 	backNext.setLayout(new GridLayout(0, 2));
 
+	final JPanel newRefresh = new JPanel();
+	newRefresh.setLayout(new GridLayout(0, 2));
+
 	JPanel infoPanel = new JPanel();
 	infoPanel.setLayout(new GridLayout(0, 1));
 
 	final JPanel centerPanel = new JPanel();
 	centerPanel.setLayout(new BorderLayout());
-
-	final ArrayList<String> editList = new ArrayList<String>();
-
-	editList.add("Bonjour");
 
 	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5,
 		Level_6 };
@@ -92,9 +95,10 @@ public class GameInfoJPanel extends JPanel {
 	final String[] modeList = { Arcade, Story, Edit };
 	final JComboBox<String> modeBox = new JComboBox<String>(modeList);
 	modeBox.setEditable(false);
-	modeBox.setBackground(new Color(189, 195, 199));
 
+	modeBox.setBackground(new Color(189, 195, 199));
 	nFile.setBackground(new Color(189, 195, 199));
+	refresh.setBackground(new Color(189, 195, 199));
 	sound.setBackground(new Color(189, 195, 199));
 	back.setBackground(new Color(189, 195, 199));
 	next.setBackground(new Color(189, 195, 199));
@@ -102,7 +106,7 @@ public class GameInfoJPanel extends JPanel {
 	retry.setBackground(new Color(189, 195, 199));
 	pause.setBackground(new Color(189, 195, 199));
 	reset.setBackground(new Color(189, 195, 199));
-	
+
 	sound.setHorizontalAlignment(JCheckBox.CENTER);
 
 	centerPanel.add(modeBox, BorderLayout.NORTH);
@@ -121,8 +125,10 @@ public class GameInfoJPanel extends JPanel {
 	backNext.add(next);
 	this.add(backNext, BorderLayout.SOUTH);
 
-	this.comboBox.addItemListener(new ItemListener() {
+	newRefresh.add(nFile);
+	newRefresh.add(refresh);
 
+	this.comboBox.addItemListener(new ItemListener() {
 	    @Override
 	    public void itemStateChanged(ItemEvent ie) {
 		if (ie.getItem().equals(Level_0)) {
@@ -155,6 +161,7 @@ public class GameInfoJPanel extends JPanel {
 	this.comboBox.setFocusable(false);
 
 	modeBox.addItemListener(new ItemListener() {
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
 	    @Override
 	    public void itemStateChanged(ItemEvent ie) {
 		// GameInfoJPanel.this.jframe.resetScore();
@@ -166,7 +173,7 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.comboBox.setModel(new DefaultComboBoxModel(levelList));
 		    GameInfoJPanel.this.comboBox.setEnabled(true);
 		    // new file
-		    GameInfoJPanel.this.remove(nFile);
+		    GameInfoJPanel.this.remove(newRefresh);
 		    GameInfoJPanel.this.add(backNext, BorderLayout.SOUTH);
 		    back.setEnabled(true);
 		    next.setEnabled(true);
@@ -178,7 +185,7 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.comboBox.setModel(new DefaultComboBoxModel(levelList));
 		    GameInfoJPanel.this.comboBox.setEnabled(false);
 		    // new file
-		    GameInfoJPanel.this.remove(nFile);
+		    GameInfoJPanel.this.remove(newRefresh);
 		    GameInfoJPanel.this.add(backNext, BorderLayout.SOUTH);
 		    back.setEnabled(false);
 		    next.setEnabled(false);
@@ -196,7 +203,7 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.editMode = true;
 		    // new file
 		    GameInfoJPanel.this.remove(backNext);
-		    GameInfoJPanel.this.add(nFile, BorderLayout.SOUTH);
+		    GameInfoJPanel.this.add(newRefresh, BorderLayout.SOUTH);
 		}
 		GameInfoJPanel.this.jframe.pauseGame();
 	    }
@@ -269,11 +276,23 @@ public class GameInfoJPanel extends JPanel {
 
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		LevelMaker lvlmaker = new LevelMaker();
+		new LevelMaker();
 	    }
 
 	});
 	nFile.setFocusable(false);
+
+	refresh.addActionListener(new ActionListener() {
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		GameInfoJPanel.this.listFile();
+		GameInfoJPanel.this.comboBox.setModel(new DefaultComboBoxModel(GameInfoJPanel.this
+			.listFile().toArray()));
+	    }
+
+	});
+	refresh.setFocusable(false);
 
 	back.addActionListener(new ActionListener() {
 	    @Override
