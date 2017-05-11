@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -16,6 +18,7 @@ import levels.LevelMaker;
 import object.Ball;
 import object.Brick;
 import object.Paddle;
+import object.Point;
 import object.Score;
 import thread.BallsBounding;
 import thread.BallsBricksCollision;
@@ -25,7 +28,7 @@ import thread.CancelableThread;
 import thread.EndGameDetection;
 import thread.PaddleAction;
 import thread.PaddleMove;
-import util.Sound;
+import thread.PointsAction;
 
 public class MyJFrame extends JFrame implements Runnable {
 
@@ -37,6 +40,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
     private List<Ball> balls;
     private List<Brick> bricks;
+    private List<Point> points;
     private Paddle paddle;
     private Score score;
 
@@ -51,6 +55,7 @@ public class MyJFrame extends JFrame implements Runnable {
     private BallsCollision ballsCollisionThread;
     private BallsBricksCollision ballsBricksCollisionThread;
     private EndGameDetection endGameDetectionThread;
+    private PointsAction pointsActionThread;
 
     /**
      * 
@@ -85,8 +90,9 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.balls = LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()),
 		this.jPanel);
 	this.bricks = LevelMaker.getBricksFromLevelID(0, this.jPanel);
-	// this.bricks = LevelMaker.createFromFile("test.txt", this.jPanel);
-
+	this.points = Collections.synchronizedList(new ArrayList<Point>());
+	
+	
 	this.paddle = new Paddle(this.jPanel);
 
 	this.score = new Score(this.jPanel);
@@ -109,7 +115,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	});
 
-	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score);
+	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score, this.points);
 
 	Toolkit.getDefaultToolkit().sync();
 	this.jPanel.repaint();
@@ -151,11 +157,13 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.ballsCollisionThread = new BallsCollision(this.balls);
 	this.ballsCollisionThread.start();
 	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks,
-		this.score, this.jPanel, this.paddle);
+		this.score, this.jPanel, this.paddle, this.points);
 	this.ballsBricksCollisionThread.start();
 	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel,
 		this, this.gameInfo);
 	this.endGameDetectionThread.start();
+	this.pointsActionThread = new PointsAction(this.points);
+	this.pointsActionThread.start();
     }
 
     /**
@@ -170,6 +178,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.ballsCollisionThread.setCancel(true);
 	this.ballsBricksCollisionThread.setCancel(true);
 	this.endGameDetectionThread.setCancel(true);
+	this.pointsActionThread.setCancel(true);
 
 	try {
 	    this.mainLoop.join();
@@ -180,6 +189,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	    this.ballsCollisionThread.join();
 	    this.ballsBricksCollisionThread.join();
 	    this.endGameDetectionThread.join();
+	    this.pointsActionThread.join();
 	} catch (InterruptedException e) {
 	    e.printStackTrace();
 	}
@@ -224,6 +234,10 @@ public class MyJFrame extends JFrame implements Runnable {
 	synchronized (this.paddle) {
 	    this.paddle.resetPaddle();
 	}
+	
+	synchronized (this.points) {
+	    this.points.clear();
+	}
 
 	/*
 	 * synchronized (this.score) { this.score.reset(); }
@@ -233,7 +247,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	    CancelableThread.TIME_TO_WAIT = 5f;
 	}
 
-	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score);
+	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score, this.points);
 
 	this.jPanel.repaint();
 
@@ -255,8 +269,12 @@ public class MyJFrame extends JFrame implements Runnable {
 	synchronized (CancelableThread.class) {
 	    CancelableThread.TIME_TO_WAIT = 5f;
 	}
+	
+	synchronized (this.points) {
+	    this.points.clear();
+	}
 
-	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score);
+	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score, this.points);
 
 	this.jPanel.repaint();
     }

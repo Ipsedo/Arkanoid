@@ -61,6 +61,10 @@ public class Brick extends Item {
 	    paddle.width -= 0.02f;
 	}
     }
+    
+    public void makeExplosion(List<Point> points, MyJPanel jpanel) {
+	points.add(new Point(this.mPosition.clone(), new Random(System.currentTimeMillis()), jpanel));
+    }
 
     public void draw(Graphics2D g2) {
 	if (this.life == 3) {
