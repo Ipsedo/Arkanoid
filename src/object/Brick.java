@@ -41,8 +41,8 @@ public class Brick extends Item {
      * @return
      */
     public static Brick makeBonusBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration,
-	    MyJPanel jpanel) {
-	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, 1, 1);
+	    MyJPanel jpanel, int life, int bonus) {
+	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, life, bonus);
     }
 
     /**
@@ -99,7 +99,6 @@ public class Brick extends Item {
 	}
 	super.draw(g2);
 
-	// Bonus ball++
 	if (this.isBonus == 3) {
 	    g2.setColor(Color.BLACK);
 	    g2.fillOval((int) ((super.mPosition[0] + super.width / 2f - super.height / 2)
