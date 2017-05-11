@@ -99,13 +99,17 @@ public class Brick extends Item {
 	}
 	super.draw(g2);
 
-	if (this.isBonus != 0) {
+	if (this.isBonus == 3) {
 	    g2.setColor(Color.BLACK);
 	    g2.fillOval((int) ((super.mPosition[0] + super.width / 2f - super.height / 2)
 		    * (float) super.getScreenWidth()), (int) (super.mPosition[1]
 			    * (float) super.getScreenHeight()), (int) (super.height
 				    * (float) super.getScreenWidth()), (int) (super.height
 					    * (float) super.getScreenHeight()));
+	} else if (this.isBonus == 1) {
+	    
+	} else if (this.isBonus == 2) {
+	    
 	}
     }
 
