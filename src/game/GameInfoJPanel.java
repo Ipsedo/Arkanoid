@@ -169,8 +169,8 @@ public class GameInfoJPanel extends JPanel {
 		if (ie.getItem().equals(Arcade)) {
 		    // comboBx
 		    GameInfoJPanel.this.jframe.level(0);
-		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    GameInfoJPanel.this.comboBox.setModel(new DefaultComboBoxModel(levelList));
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    GameInfoJPanel.this.comboBox.setEnabled(true);
 		    // new file
 		    GameInfoJPanel.this.remove(newRefresh);
@@ -181,8 +181,8 @@ public class GameInfoJPanel extends JPanel {
 		} else if (ie.getItem().equals(Story)) {
 		    // comboBox
 		    GameInfoJPanel.this.jframe.level(0);
-		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    GameInfoJPanel.this.comboBox.setModel(new DefaultComboBoxModel(levelList));
+		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
 		    GameInfoJPanel.this.comboBox.setEnabled(false);
 		    // new file
 		    GameInfoJPanel.this.remove(newRefresh);
@@ -199,7 +199,9 @@ public class GameInfoJPanel extends JPanel {
 		    if (!GameInfoJPanel.this.listFile().isEmpty())
 			GameInfoJPanel.this.jframe.startLevelFromFile(GameInfoJPanel.this.listFile()
 				.get(0));
-		    GameInfoJPanel.this.comboBox.setSelectedIndex(0);
+		    if (!GameInfoJPanel.this.listFile().isEmpty()) {
+			GameInfoJPanel.this.comboBox.setSelectedIndex(0);
+		    }
 		    GameInfoJPanel.this.editMode = true;
 		    // new file
 		    GameInfoJPanel.this.remove(backNext);
@@ -383,17 +385,12 @@ public class GameInfoJPanel extends JPanel {
     public ArrayList<String> listFile() {
 	ArrayList<String> res = new ArrayList<>();
 	File directory = new File("./");
-
 	File[] fList = directory.listFiles();
 
 	for (File file : fList) {
-
 	    if (file.isFile() && file.getName().endsWith(".txt")) {
-
 		res.add(file.getName());
-
 	    }
-
 	}
 	return res;
     }
