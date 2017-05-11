@@ -21,7 +21,9 @@ public class PaddleMove extends CancelableThread {
      */
     public void run() {
 	while (!this.canceled) {
-	    this.paddle.move(new float[2]);
+	    synchronized (this.paddle) {
+		this.paddle.move(new float[2]);
+	    }
 	    try {
 		Thread.sleep((long) CancelableThread.TIME_TO_WAIT);
 	    } catch (InterruptedException ie) {

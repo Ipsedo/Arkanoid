@@ -22,11 +22,11 @@ public class BallsMove extends CancelableThread {
      */
     public void run() {
 	while (!this.canceled) {
-	    //synchronized (this.balls) {
+	    synchronized (this.balls) {
 		for (int i = this.balls.size() - 1; i >= 0; i--) {
 		    this.balls.get(i).move(new float[2]);
 		}
-	    //}
+	    }
 	    try {
 		Thread.sleep((long) CancelableThread.TIME_TO_WAIT);
 	    } catch (InterruptedException ie) {

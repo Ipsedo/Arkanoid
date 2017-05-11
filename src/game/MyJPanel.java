@@ -30,6 +30,7 @@ public class MyJPanel extends JPanel {
 
     private Image gameOverImage;
     private Image levelDone;
+    private Image background;
 
     /**
      * 
@@ -56,6 +57,7 @@ public class MyJPanel extends JPanel {
 	try {
 	    this.gameOverImage = ImageIO.read(new File("game_over.png"));
 	    this.levelDone = ImageIO.read(new File("level_done.png"));
+	    this.background = ImageIO.read(new File("wall_1.jpg"));
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
@@ -85,10 +87,12 @@ public class MyJPanel extends JPanel {
 	g2.setBackground(new Color(189, 195, 199));
 	g2.clearRect(0, 0, super.getWidth(), super.getHeight());
 
-	g2.setColor(new Color(236, 240, 241));
+	/*g2.setColor(new Color(236, 240, 241));
 	g2.fillRect(0, (int) (0.969 * this.getHeight()), this.getWidth(), (int) (0.016 * this
-		.getHeight()));
+		.getHeight()));*/
 
+	g2.drawImage(this.background, 0, 0, this.getWidth(), super.getHeight(), null);
+	
 	if (this.isDead) {
 	    g2.drawImage(this.gameOverImage, 0, 0, this.getWidth(), super.getHeight(), null);
 	} else if (this.isWinner) {
