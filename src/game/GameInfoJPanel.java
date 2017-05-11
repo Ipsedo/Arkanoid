@@ -12,8 +12,10 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -53,10 +55,11 @@ public class GameInfoJPanel extends JPanel {
 	this.idLevel = idLevel;
 	this.setBackground(new Color(236, 240, 241));
 	setLayout(new BorderLayout());
+	this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 	final JButton back = new JButton("Back");
 	final JButton next = new JButton("Next");
-	final JButton sound = new JButton("Sound");
+	final JCheckBox sound = new JCheckBox("Sound");
 	final JButton nFile = new JButton(" New file ");
 
 	this.editMode = false;
@@ -99,6 +102,8 @@ public class GameInfoJPanel extends JPanel {
 	retry.setBackground(new Color(189, 195, 199));
 	pause.setBackground(new Color(189, 195, 199));
 	reset.setBackground(new Color(189, 195, 199));
+	
+	sound.setHorizontalAlignment(JCheckBox.CENTER);
 
 	centerPanel.add(modeBox, BorderLayout.NORTH);
 

@@ -42,7 +42,7 @@ public class LevelMaker extends JFrame {
     private int currBrickBonus;
 
     private final Integer[] brickLife = new Integer[] { 1, 2, 3 };
-    private final String[] brickBonus = new String[] { "None", "Ball", "Paddle_UP", "Paddle_DOWN" };
+    private final String[] brickBonus = new String[] { "None", "Ball", "Paddle size +", "Paddle size -" };
 
     public LevelMaker() {
 	super("Arkanoid - LevelMaker");
@@ -52,6 +52,10 @@ public class LevelMaker extends JFrame {
 
 	this.bricks = Collections.synchronizedList(new ArrayList<Brick>());
 
+	
+
+	this.fileName = "myFile";
+	
 	this.jpanel = new MyJPanel() {
 
 	    @Override
@@ -64,8 +68,6 @@ public class LevelMaker extends JFrame {
 		    b.draw(g2);
 	    }
 	};
-
-	this.fileName = "myFile";
 
 	this.jpanel.addMouseListener(new MouseListener() {
 
@@ -181,8 +183,22 @@ public class LevelMaker extends JFrame {
 	});
 
 	JPanel jpanel1 = new JPanel();
+	JTextField vieBrique = new JTextField("Vie de brique : ");
+	JTextField choixBonus = new JTextField("Choix bonus : ");
+	JTextField rien = new JTextField();
+	
+	vieBrique.setHorizontalAlignment(JTextField.RIGHT);
+	choixBonus.setHorizontalAlignment(JTextField.RIGHT);
+	
+	vieBrique.setEditable(false);
+	choixBonus.setEditable(false);
+	rien.setEditable(false);
+	
 	jpanel1.setLayout(new GridLayout(1, 0));
+	jpanel1.add(vieBrique);
 	jpanel1.add(lifeChooser);
+	jpanel1.add(rien);
+	jpanel1.add(choixBonus);
 	jpanel1.add(bonusChooser);
 
 	JPanel jpanel = new JPanel();
