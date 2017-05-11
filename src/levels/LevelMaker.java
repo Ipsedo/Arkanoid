@@ -42,7 +42,8 @@ public class LevelMaker extends JFrame {
     private int currBrickBonus;
 
     private final Integer[] brickLife = new Integer[] { 1, 2, 3 };
-    private final String[] brickBonus = new String[] { "None", "Ball", "Paddle size +", "Paddle size -" };
+    private final String[] brickBonus = new String[] { "None", "Ball", "Paddle size +",
+	    "Paddle size -" };
 
     public LevelMaker() {
 	super("Arkanoid - LevelMaker");
@@ -52,10 +53,8 @@ public class LevelMaker extends JFrame {
 
 	this.bricks = Collections.synchronizedList(new ArrayList<Brick>());
 
-	
-
 	this.fileName = "myFile";
-	
+
 	this.jpanel = new MyJPanel() {
 
 	    @Override
@@ -70,41 +69,36 @@ public class LevelMaker extends JFrame {
 	};
 
 	this.jpanel.addMouseListener(new MouseListener() {
-
 	    @Override
 	    public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		if ((float) arg0.getY() / (float) LevelMaker.this.jpanel.getHeight() < 0.5f) {
-		    LevelMaker.this.bricks.add(new Brick(new float[] { (float) arg0
-				.getX() / (float) LevelMaker.this.jpanel.getWidth(), (float) arg0
-				.getY() / (float) LevelMaker.this.jpanel.getHeight() },
-			new float[2], new float[2], LevelMaker.this.jpanel,
-			LevelMaker.this.currBrickLife, LevelMaker.this.currBrickBonus));
+		    LevelMaker.this.bricks.add(new Brick(new float[] { (float) arg0.getX()
+			    / (float) LevelMaker.this.jpanel.getWidth(), (float) arg0.getY()
+				    / (float) LevelMaker.this.jpanel.getHeight() }, new float[2],
+			    new float[2], LevelMaker.this.jpanel, LevelMaker.this.currBrickLife,
+			    LevelMaker.this.currBrickBonus));
 		    LevelMaker.this.repaint();
 		}
 	    }
 
 	    @Override
 	    public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	    }
 
 	    @Override
 	    public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	    }
 
 	    @Override
 	    public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	    }
 
 	    @Override
 	    public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
 	    }
 
@@ -112,17 +106,14 @@ public class LevelMaker extends JFrame {
 
 	JButton save = new JButton("Save");
 	save.addActionListener(new ActionListener() {
-
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		LevelMaker.this.toFile(LevelMaker.this.fileName + ".txt");
 	    }
 	});
 
 	JButton undo = new JButton("Undo");
 	undo.addActionListener(new ActionListener() {
-
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
@@ -138,28 +129,24 @@ public class LevelMaker extends JFrame {
 	JTextField jTextField = new JTextField();
 	jTextField.setText("myFile");
 	jTextField.setColumns(10);
-	jTextField.addCaretListener(new CaretListener() {
 
+	jTextField.addCaretListener(new CaretListener() {
 	    @Override
 	    public void caretUpdate(CaretEvent arg0) {
-		// TODO Auto-generated method stub
 		LevelMaker.this.fileName = ((JTextField) arg0.getSource()).getText();
 	    }
-
 	});
 
 	this.currBrickLife = 1;
 
 	JComboBox<Integer> lifeChooser = new JComboBox<Integer>(this.brickLife);
 	lifeChooser.setEditable(false);
-	lifeChooser.addItemListener(new ItemListener() {
 
+	lifeChooser.addItemListener(new ItemListener() {
 	    @Override
 	    public void itemStateChanged(ItemEvent arg0) {
-		// TODO Auto-generated method stub
 		LevelMaker.this.currBrickLife = (Integer) arg0.getItem();
 	    }
-
 	});
 
 	JComboBox<String> bonusChooser = new JComboBox<String>(this.brickBonus);
@@ -168,7 +155,6 @@ public class LevelMaker extends JFrame {
 
 	    @Override
 	    public void itemStateChanged(ItemEvent e) {
-		// TODO Auto-generated method stub
 		if (e.getItem().equals(LevelMaker.this.brickBonus[0])) {
 		    LevelMaker.this.currBrickBonus = 0;
 		} else if (e.getItem().equals(LevelMaker.this.brickBonus[1])) {
@@ -179,21 +165,20 @@ public class LevelMaker extends JFrame {
 		    LevelMaker.this.currBrickBonus = 1;
 		}
 	    }
-
 	});
 
 	JPanel jpanel1 = new JPanel();
 	JTextField vieBrique = new JTextField("Vie de brique : ");
 	JTextField choixBonus = new JTextField("Choix bonus : ");
 	JTextField rien = new JTextField();
-	
+
 	vieBrique.setHorizontalAlignment(JTextField.RIGHT);
 	choixBonus.setHorizontalAlignment(JTextField.RIGHT);
-	
+
 	vieBrique.setEditable(false);
 	choixBonus.setEditable(false);
 	rien.setEditable(false);
-	
+
 	jpanel1.setLayout(new GridLayout(1, 0));
 	jpanel1.add(vieBrique);
 	jpanel1.add(lifeChooser);
@@ -216,9 +201,7 @@ public class LevelMaker extends JFrame {
 	super.getContentPane().add(jpanel, BorderLayout.SOUTH);
 	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
 
-	// super.pack();
 	super.setFocusable(false);
-
 	super.setVisible(true);
     }
 
@@ -236,13 +219,14 @@ public class LevelMaker extends JFrame {
     public static List<Brick> createFromFile(String fileName, MyJPanel jpanel) {
 	List<Brick> res = new ArrayList<Brick>();
 	try {
+	    @SuppressWarnings("resource")
 	    BufferedReader br = new BufferedReader(new FileReader(fileName));
 	    String line;
 	    while ((line = br.readLine()) != null) {
 		String[] tmp = line.split(" ");
-		res.add(new Brick(new float[] { Float.parseFloat(tmp[0]), Float
-			    .parseFloat(tmp[1]) }, new float[2], new float[2], jpanel, Integer
-				    .parseInt(tmp[2]), Integer.parseInt(tmp[3])));
+		res.add(new Brick(new float[] { Float.parseFloat(tmp[0]), Float.parseFloat(
+			tmp[1]) }, new float[2], new float[2], jpanel, Integer.parseInt(tmp[2]),
+			Integer.parseInt(tmp[3])));
 	    }
 	} catch (IOException ioe) {
 	    ioe.printStackTrace();
@@ -259,7 +243,7 @@ public class LevelMaker extends JFrame {
      */
     public static List<Ball> getBallsFromLevelId(int levelId, Random rand, MyJPanel jpanel) {
 	if (levelId == 0) {
-	    int nbBall = 2;
+	    int nbBall = 40;
 
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
@@ -267,21 +251,21 @@ public class LevelMaker extends JFrame {
 	    }
 	    return res;
 	} else if (levelId == 1) {
-	    int nbBall = 60;
+	    int nbBall = 3;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
 	    }
 	    return res;
 	} else if (levelId == 2) {
-	    int nbBall = 60;
+	    int nbBall = 3;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
 	    }
 	    return res;
 	} else {
-	    int nbBall = 60;
+	    int nbBall = 20;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
@@ -298,10 +282,12 @@ public class LevelMaker extends JFrame {
      */
     public static List<Brick> getBricksFromLevelID(int levelId, MyJPanel jpanel) {
 	List<Brick> res = Collections.synchronizedList(new ArrayList<Brick>());
+	Random rand = new Random(System.currentTimeMillis());
 	float milieu = 0.5f;
 	float[] speed = new float[2];
 	float[] acc = new float[2];
 
+	// LEVEL 0
 	if (levelId == 0) {
 	    for (int i = -3; i < -1; i++) {
 		for (int j = 0; j < 9; j++) {
@@ -334,7 +320,9 @@ public class LevelMaker extends JFrame {
 		    res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
 		}
 	    }
-	} else if (levelId == 1) {
+	}
+	// LEVEL 1
+	else if (levelId == 1) {
 	    for (int i = -1; i < 2; i++) {
 		for (int j = 0; j < 15; j++) {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f
@@ -358,32 +346,36 @@ public class LevelMaker extends JFrame {
 		    res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
 		}
 	    }
-	} else if (levelId == 2) {
+	}
+	// LEVEL 2
+	else if (levelId == 2) {
 	    double radius = 0.2d;
 	    for (int i = 0; i < 24; i++) {
 		double angle = (double) i * Math.PI * 2d / 24d;
 		float[] pos = new float[] { milieu + (float) (radius * Math.cos(angle)), 0.25f
 			+ (float) (radius * Math.sin(angle)) };
-		res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
+		res.add(new Brick(pos, speed, acc, jpanel, 1, rand.nextBoolean() ? 0 : 1));
 	    }
 	    radius = 0.1d;
 	    for (int i = 0; i < 12; i++) {
 		double angle = (double) i * Math.PI * 2d / 12d;
 		float[] pos = new float[] { milieu + (float) (radius * Math.cos(angle)), 0.25f
 			+ (float) (radius * Math.sin(angle)) };
-		res.add(new Brick(pos, speed, acc, jpanel, 2, 0));
+		res.add(new Brick(pos, speed, acc, jpanel, 2, rand.nextBoolean() ? 0 : 3));
 	    }
-	} else if (levelId == 3) {
+	}
+	// LEVEL 3
+	else if (levelId == 3) {
 	    for (int i = 0; i < 20; i++) {
 		float[] pos = new float[] { (float) i / 20f, 0.1f + (float) Math.cos((double) i
 			* Math.PI * 2d / 20d) / 10f };
-		res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
+		res.add(new Brick(pos, speed, acc, jpanel, 1, rand.nextBoolean() ? 0 : 2));
 	    }
 
 	    for (int i = 0; i < 20; i++) {
 		float[] pos = new float[] { (float) i / 20f, 0.4f + (float) -Math.cos((double) i
 			* Math.PI * 2d / 20d) / 10f };
-		res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
+		res.add(new Brick(pos, speed, acc, jpanel, 1, rand.nextBoolean() ? 0 : 1));
 	    }
 
 	    double radius = 0.15d;
@@ -391,76 +383,11 @@ public class LevelMaker extends JFrame {
 		double angle = (double) i * Math.PI * 2d / 16d;
 		float[] pos = new float[] { milieu + (float) (radius * Math.cos(angle)), 0.25f
 			+ (float) (radius * Math.sin(angle)) };
-		res.add(new Brick(pos, speed, acc, jpanel, 2, 0));
+		res.add(new Brick(pos, speed, acc, jpanel, 2, rand.nextBoolean() ? 0 : 3));
 	    }
-	} else if (levelId == 5) {
-	    float h = 0.13f;
-	    for (int i = -3; i < 4; i++) {
-		for (int j = 0; j < 8; j++) {
-		    if ((i == -2 && j == 2) || (i == -2 && j == 3) || (i == 2 && j == 2) || (i == 2
-			    && j == 3)) {
-			float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h
-				+ (float) j * (Brick.height + 0.01f) };
-			res.add(new Brick(pos, speed, acc, jpanel, 3, 0));
-		    } else {
-			float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h
-				+ (float) j * (Brick.height + 0.01f) };
-			res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
-		    }
-		}
-	    }
-	    for (int j = 2; j < 7; j++) {
-		float[] pos = new float[] { milieu + (float) (-4) * (Brick.width + 0.01f), h
-			+ (float) j * (Brick.height + 0.01f) };
-		float[] pos1 = new float[] { milieu + (float) 4 * (Brick.width + 0.01f), h
-			+ (float) j * (Brick.height + 0.01f) };
-		res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
-		res.add(new Brick(pos1, speed, acc, jpanel, 1, 0));
-	    }
-	    for (int j = 4; j < 10; j++) {
-		float[] pos = new float[] { milieu + (float) (-5) * (Brick.width + 0.01f), h
-			+ (float) j * (Brick.height + 0.01f) };
-		float[] pos1 = new float[] { milieu + (float) 5 * (Brick.width + 0.01f), h
-			+ (float) j * (Brick.height + 0.01f) };
-		res.add(new Brick(pos, speed, acc, jpanel, 2, 0));
-		res.add(new Brick(pos1, speed, acc, jpanel, 2, 0));
-	    }
-	    for (int j = 8; j < 10; j++) {
-		float[] pos = new float[] { milieu + (float) (-3) * (Brick.width + 0.01f), h
-			+ (float) j * (Brick.height + 0.01f) };
-		float[] pos1 = new float[] { milieu + (float) 3 * (Brick.width + 0.01f), h
-			+ (float) j * (Brick.height + 0.01f) };
-		res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
-		res.add(new Brick(pos1, speed, acc, jpanel, 1, 0));
-	    }
-	    for (int k = -2; k < 0; k++) {
-		for (int j = 10; j < 12; j++) {
-		    float[] pos = new float[] { milieu + (float) k * (Brick.width + 0.01f), h
-			    + (float) j * (Brick.height + 0.01f) };
-		    float[] pos1 = new float[] { milieu + (float) (-k) * (Brick.width + 0.01f), h
-			    + (float) j * (Brick.height + 0.01f) };
-		    res.add(new Brick(pos, speed, acc, jpanel, 2, 0));
-		    res.add(new Brick(pos1, speed, acc, jpanel, 2, 0));
-		}
-	    }
-	    for (int j = -2; j < 0; j++) {
-		float[] pos = new float[] { milieu + (float) 2 * (Brick.width + 0.01f), h
-			+ (float) j * (Brick.height + 0.01f) };
-		float[] pos1 = new float[] { milieu + (float) (-2) * (Brick.width + 0.01f), h
-			+ (float) j * (Brick.height + 0.01f) };
-		res.add(new Brick(pos, speed, acc, jpanel, 2, 0));
-		res.add(new Brick(pos1, speed, acc, jpanel, 2, 0));
-	    }
-	    for (int j = -4; j < -2; j++) {
-		float[] pos = new float[] { milieu + (float) 3 * (Brick.width + 0.01f), h
-			+ (float) j * (Brick.height + 0.01f) };
-		float[] pos1 = new float[] { milieu + (float) (-3) * (Brick.width + 0.01f), h
-			+ (float) j * (Brick.height + 0.01f) };
-		res.add(new Brick(pos, speed, acc, jpanel, 2, 0));
-		res.add(new Brick(pos1, speed, acc, jpanel, 2, 0));
-	    }
-
-	} else if (levelId == 4) {
+	}
+	// LEVEL 4
+	else if (levelId == 4) {
 	    float h = 0.13f;
 
 	    for (int i = -3; i < 3; i++) {
@@ -503,11 +430,12 @@ public class LevelMaker extends JFrame {
 		res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
 		res.add(new Brick(pos1, speed, acc, jpanel, 1, 0));
 	    }
+	    // Bouche bas
 	    for (int i = -2; i < 2; i++) {
 		for (int j = 11; j < 13; j++) {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h
 			    + (float) j * (Brick.height + 0.01f) };
-		    res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
+		    res.add(new Brick(pos, speed, acc, jpanel, 1, rand.nextBoolean() ? 1 : 2));
 		}
 	    }
 	    float[] pos = new float[] { milieu + (float) (-2) * (Brick.width + 0.01f), h + (float) 8
@@ -520,10 +448,91 @@ public class LevelMaker extends JFrame {
 		    * (Brick.height + 0.01f) };
 	    res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
 	    res.add(new Brick(pos1, speed, acc, jpanel, 1, 0));
-	    res.add(new Brick(pos2, speed, acc, jpanel, 3, 0));
-	    res.add(new Brick(pos3, speed, acc, jpanel, 3, 0));
+	    res.add(new Brick(pos2, speed, acc, jpanel, 3, 3));
+	    res.add(new Brick(pos3, speed, acc, jpanel, 3, 3));
 
-	} else if (levelId == 6) {
+	}
+	// LEVEL 5
+	else if (levelId == 5) {
+	    float h = 0.13f;
+	    // corps
+	    for (int i = -3; i < 4; i++) {
+		for (int j = 0; j < 8; j++) {
+		    if ((i == -2 && j == 2) || (i == 2 && j == 2)) {
+			float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h
+				+ (float) j * (Brick.height + 0.01f) };
+			res.add(new Brick(pos, speed, acc, jpanel, 3, 0));
+		    } else if ((i == -2 && j == 3) || (i == 2 && j == 3)) {
+			float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h
+				+ (float) j * (Brick.height + 0.01f) };
+			res.add(new Brick(pos, speed, acc, jpanel, 3, 3));
+		    } else {
+			float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h
+				+ (float) j * (Brick.height + 0.01f) };
+			res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
+		    }
+		}
+	    }
+	    // joues
+	    for (int j = 2; j < 7; j++) {
+		float[] pos = new float[] { milieu + (float) (-4) * (Brick.width + 0.01f), h
+			+ (float) j * (Brick.height + 0.01f) };
+		float[] pos1 = new float[] { milieu + (float) 4 * (Brick.width + 0.01f), h
+			+ (float) j * (Brick.height + 0.01f) };
+		res.add(new Brick(pos, speed, acc, jpanel, 1, rand.nextBoolean() ? 0 : 1));
+		res.add(new Brick(pos1, speed, acc, jpanel, 1, rand.nextBoolean() ? 0 : 2));
+	    }
+	    // bras
+	    for (int j = 4; j < 10; j++) {
+		float[] pos = new float[] { milieu + (float) (-5) * (Brick.width + 0.01f), h
+			+ (float) j * (Brick.height + 0.01f) };
+		float[] pos1 = new float[] { milieu + (float) 5 * (Brick.width + 0.01f), h
+			+ (float) j * (Brick.height + 0.01f) };
+		res.add(new Brick(pos, speed, acc, jpanel, 2, 0));
+		res.add(new Brick(pos1, speed, acc, jpanel, 2, 0));
+	    }
+	    // jambes
+	    for (int j = 8; j < 10; j++) {
+		float[] pos = new float[] { milieu + (float) (-3) * (Brick.width + 0.01f), h
+			+ (float) j * (Brick.height + 0.01f) };
+		float[] pos1 = new float[] { milieu + (float) 3 * (Brick.width + 0.01f), h
+			+ (float) j * (Brick.height + 0.01f) };
+		res.add(new Brick(pos, speed, acc, jpanel, 1, rand.nextBoolean() ? 0 : 2));
+		res.add(new Brick(pos1, speed, acc, jpanel, 1, rand.nextBoolean() ? 0 : 1));
+	    }
+	    // poings
+	    for (int k = -2; k < 0; k++) {
+		for (int j = 10; j < 12; j++) {
+		    float[] pos = new float[] { milieu + (float) k * (Brick.width + 0.01f), h
+			    + (float) j * (Brick.height + 0.01f) };
+		    float[] pos1 = new float[] { milieu + (float) (-k) * (Brick.width + 0.01f), h
+			    + (float) j * (Brick.height + 0.01f) };
+		    res.add(new Brick(pos, speed, acc, jpanel, 2, 0));
+		    res.add(new Brick(pos1, speed, acc, jpanel, 2, 0));
+		}
+	    }
+	    // antennes bas
+	    for (int j = -2; j < 0; j++) {
+		float[] pos = new float[] { milieu + (float) 2 * (Brick.width + 0.01f), h
+			+ (float) j * (Brick.height + 0.01f) };
+		float[] pos1 = new float[] { milieu + (float) (-2) * (Brick.width + 0.01f), h
+			+ (float) j * (Brick.height + 0.01f) };
+		res.add(new Brick(pos, speed, acc, jpanel, 2, rand.nextBoolean() ? 0 : 1));
+		res.add(new Brick(pos1, speed, acc, jpanel, 2, rand.nextBoolean() ? 0 : 2));
+	    }
+	    // antennes hautes
+	    for (int j = -4; j < -2; j++) {
+		float[] pos = new float[] { milieu + (float) 3 * (Brick.width + 0.01f), h
+			+ (float) j * (Brick.height + 0.01f) };
+		float[] pos1 = new float[] { milieu + (float) (-3) * (Brick.width + 0.01f), h
+			+ (float) j * (Brick.height + 0.01f) };
+		res.add(new Brick(pos, speed, acc, jpanel, 2, 0));
+		res.add(new Brick(pos1, speed, acc, jpanel, 2, 0));
+	    }
+
+	}
+	// LEVEL 6
+	else if (levelId == 6) {
 	    float h = 0.1f;
 
 	    // bouche haut
@@ -544,7 +553,7 @@ public class LevelMaker extends JFrame {
 	    // oeil
 	    float[] pos8 = new float[] { milieu + (float) 1 * (Brick.width + 0.01f), h + (float) 3
 		    * (Brick.height + 0.01f) };
-	    res.add(new Brick(pos8, speed, acc, jpanel, 3, 0));
+	    res.add(new Brick(pos8, speed, acc, jpanel, 3, 3));
 	    // langue
 	    float[] pos10 = new float[] { milieu + (float) 3 * (Brick.width + 0.01f), h + (float) 3
 		    * (Brick.height + 0.01f) };
@@ -568,7 +577,7 @@ public class LevelMaker extends JFrame {
 	    for (int i = -4; i < 3; i++) {
 		float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h
 			+ (float) 5 * (Brick.height + 0.01f) };
-		res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
+		res.add(new Brick(pos, speed, acc, jpanel, 1, rand.nextBoolean() ? (rand.nextBoolean() ? 0 : 1) : (rand.nextBoolean() ? 0 : 2)));
 	    }
 	    for (int i = -5; i < 2; i++) {
 		float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h
@@ -596,7 +605,7 @@ public class LevelMaker extends JFrame {
 	    for (int i = -4; i < 4; i++) {
 		float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h
 			+ (float) 9 * (Brick.height + 0.01f) };
-		res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
+		res.add(new Brick(pos, speed, acc, jpanel, 1, rand.nextBoolean() ? (rand.nextBoolean() ? 0 : 1) : (rand.nextBoolean() ? 0 : 2)));
 	    }
 	    for (int i = -3; i < 5; i++) {
 		float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h
@@ -624,7 +633,7 @@ public class LevelMaker extends JFrame {
 	    for (int i = -3; i < 4; i++) {
 		float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h
 			+ (float) 13 * (Brick.height + 0.01f) };
-		res.add(new Brick(pos, speed, acc, jpanel, 1, 0));
+		res.add(new Brick(pos, speed, acc, jpanel, 1, rand.nextBoolean() ? (rand.nextBoolean() ? 0 : 1) : (rand.nextBoolean() ? 0 : 2)));
 	    }
 	    for (int i = -5; i < 3; i++) {
 		float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), h

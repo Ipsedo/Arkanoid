@@ -18,7 +18,7 @@ public class Paddle extends Item {
      */
     public Paddle(MyJPanel jpanel) {
 	super(new float[] { 0.5f, 1f - initialHeight }, new float[] { 0f, 0f }, new float[] { 0f,
-		0f }, 0.2f, initialHeight - 0.015f, jpanel);
+		0f }, 0.15f, initialHeight - 0.015f, jpanel);
     }
 
     /**
@@ -31,7 +31,7 @@ public class Paddle extends Item {
     }
     
     public void resetPaddle() {
-	super.width = 0.2f;
+	super.width = 0.15f;
     }
 
     /**
@@ -59,15 +59,16 @@ public class Paddle extends Item {
     }
 
     public void draw(Graphics2D g2) {
+	System.out.println(this.width);
 	g2.setColor(Color.RED);
-	g2.fillRect((int) (this.mPosition[0] * (float) this.getScreenWidth()),
-		(int) (this.mPosition[1] * (float) this.getScreenHeight()),
-		(int) (this.width * (float) this.getScreenWidth()),
-		(int) (this.height * (float) this.getScreenHeight()));
+	g2.fillRect((int) (super.mPosition[0] * (float) super.getScreenWidth()),
+		(int) (super.mPosition[1] * (float) super.getScreenHeight()),
+		(int) (super.width * (float) super.getScreenWidth()),
+		(int) (super.height * (float) super.getScreenHeight()));
 	g2.setColor(Color.BLACK);
-	g2.drawRect((int) (this.mPosition[0] * (float) this.getScreenWidth()),
-		(int) (this.mPosition[1] * (float) this.getScreenHeight()),
-		(int) (this.width * (float) this.getScreenWidth()),
-		(int) (this.height * (float) this.getScreenHeight()));
+	g2.drawRect((int) (super.mPosition[0] * (float) super.getScreenWidth()),
+		(int) (super.mPosition[1] * (float) super.getScreenHeight()),
+		(int) (super.width * (float) super.getScreenWidth()),
+		(int) (super.height * (float) super.getScreenHeight()));
     }
 }
