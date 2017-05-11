@@ -111,11 +111,10 @@ public class Brick extends Item {
 	// Bonus paddle size++
 	else if (this.isBonus == 1) {
 	    g2.setColor(Color.GREEN);
-	    g2.fillRect((int) ((super.mPosition[0] + 9 * super.width / 20f)
-		    * (float) super.getScreenWidth()), (int) (super.mPosition[1]
-			    * (float) super.getScreenHeight()) + 1, (int) (super.width / 10
-				    * (float) super.getScreenWidth()), (int) (super.height
-					    * (float) super.getScreenHeight()) - 1);
+	    g2.fillRect((int) ((super.mPosition[0] + 9 * super.width / 20f) * (float) super.getScreenWidth()), 
+		    	(int) ((super.mPosition[1] + 4 * super.height / 10f) * (float) super.getScreenHeight()) + 1,
+		    	(int) (super.width / 10 * (float) super.getScreenWidth()), 
+		    	(int) (super.height * (float) super.getScreenHeight()) - 1);
 	    
 	    g2.fillRect((int) ((super.mPosition[0] + 2 * super.width / 8) * (float) super.getScreenWidth()), 
 		    	(int) ((super.mPosition[1] + 4 * super.height / 10f) * (float) super.getScreenHeight()), 
