@@ -19,7 +19,7 @@ public class Ball extends Item {
     public Ball(Random rand, MyJPanel jpanel) {
 	super(new float[] { rand.nextFloat() * 0.2f + 0.4f, 0.7f }, Ball.initSpeed(rand),
 		new float[] { 0f, 0f }, size, size, jpanel);
-	super.color = new Color(44, 62, 80);
+	super.color = new Color(238, 238, 238);
     }
 
     /**
