@@ -59,7 +59,6 @@ public class Paddle extends Item {
     }
 
     public void draw(Graphics2D g2) {
-	System.out.println(this.width);
 	g2.setColor(Color.RED);
 	g2.fillRect((int) (super.mPosition[0] * (float) super.getScreenWidth()),
 		(int) (super.mPosition[1] * (float) super.getScreenHeight()),
