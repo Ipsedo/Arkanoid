@@ -135,7 +135,6 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.idLevel = GameInfoJPanel.this.comboBox.getSelectedIndex();
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 		} else if (ie.getStateChange() == ItemEvent.SELECTED) {
-		    System.out.println("CHANGE");
 		    GameInfoJPanel.this.jframe.startLevelFromFile((String) ie.getItem());
 		}
 	    }
