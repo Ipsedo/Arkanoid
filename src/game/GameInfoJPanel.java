@@ -155,7 +155,6 @@ public class GameInfoJPanel extends JPanel {
 		} else {
 		    GameInfoJPanel.this.jframe.startLevelFromFile((String) ie.getItem());
 		}
-		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 
 	});
@@ -262,8 +261,6 @@ public class GameInfoJPanel extends JPanel {
 		} else if (arg0.getKeyChar() >= '0' && arg0.getKeyChar() <= '6') {
 		    GameInfoJPanel.this.jframe.level(arg0.getKeyChar() - '0');
 		    GameInfoJPanel.this.idLevel = arg0.getKeyChar() - '0';
-		    GameInfoJPanel.this.comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
-		    GameInfoJPanel.this.jframe.pauseGame();
 		}
 	    }
 
@@ -405,9 +402,7 @@ public class GameInfoJPanel extends JPanel {
 	    }
 	    this.comboBox.setSelectedIndex(this.idLevel);
 	    this.jframe.level(this.idLevel);
-	    this.jframe.repaint();
 	}
-	this.jframe.pauseGame();
     }
 
     public void levelUp() {

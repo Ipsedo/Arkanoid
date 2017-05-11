@@ -164,12 +164,15 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.endGameDetectionThread.start();
 	this.pointsActionThread = new PointsAction(this.points);
 	this.pointsActionThread.start();
+	
+	System.out.println("INIT");
     }
 
     /**
      * Terminer toutes les Threads de jeu
      */
     private void killThreads() {
+	
 	this.closed = true;
 	this.ballsMoveThread.setCancel(true);
 	this.ballsBoundingThread.setCancel(true);
@@ -193,6 +196,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	} catch (InterruptedException e) {
 	    e.printStackTrace();
 	}
+	System.out.println("KILL");
     }
 
     /**

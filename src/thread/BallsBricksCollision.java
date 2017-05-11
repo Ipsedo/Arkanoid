@@ -46,6 +46,7 @@ public class BallsBricksCollision extends CancelableThread {
      * 
      */
     public void run() {
+	Random rand = new Random(System.currentTimeMillis());
 	while (!this.canceled) {
 	    synchronized (this.bricks) {
 		for (int i = this.bricks.size() - 1; i >= 0; i--) {
@@ -57,8 +58,10 @@ public class BallsBricksCollision extends CancelableThread {
 			    if (br.intersect(ba)) {
 				Sound.brickSound();
 				this.score.incrScore(br.getScore());
-				br.makeExplosion(this.points, this.jpanel);
-				br.makeBonus(this.paddle, this.balls, this.jpanel, this.rand);
+				synchronized (this.points) {
+				    br.makeExplosion(this.points, this.jpanel);
+				}
+				br.makeBonus(this.paddle, this.balls, this.jpanel, rand);
 			    }
 			    if (!br.isAlive()) {
 				this.bricks.remove(br);
