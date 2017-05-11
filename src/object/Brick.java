@@ -82,9 +82,9 @@ public class Brick extends Item {
     }
 
     public void updatePaddle(Paddle paddle) {
-	if (this.isBonus == 1) {
+	if (this.isBonus == 2 && paddle.width < 0.6f) {
 	    paddle.width += 0.05f;
-	} else if (this.isBonus == 2) {
+	} else if (this.isBonus == 1 && paddle.width > 0.11f) {
 	    paddle.width -= 0.05f;
 	}
     }
@@ -108,7 +108,7 @@ public class Brick extends Item {
 					    * (float) super.getScreenHeight()));
 	}
 	// Bonus paddle size++
-	else if (this.isBonus == 1) {
+	else if (this.isBonus == 2) {
 	    g2.setColor(new Color(46, 240, 113));
 	    g2.fillRect((int) ((super.mPosition[0] + 9 * super.width / 20f) * (float) super.getScreenWidth()), 
 		    	(int) ((super.mPosition[1] + super.height / 10f) * (float) super.getScreenHeight()),
