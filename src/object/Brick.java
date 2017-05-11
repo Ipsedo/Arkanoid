@@ -56,9 +56,9 @@ public class Brick extends Item {
 
     public void updatePaddle(Paddle paddle) {
 	if (this.isBonus == 2 && paddle.width < 0.6f) {
-	    paddle.width += 0.05f;
+	    paddle.width += 0.02f;
 	} else if (this.isBonus == 1 && paddle.width > 0.11f) {
-	    paddle.width -= 0.05f;
+	    paddle.width -= 0.02f;
 	}
     }
 
