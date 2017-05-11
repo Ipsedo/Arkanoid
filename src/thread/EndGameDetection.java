@@ -52,8 +52,9 @@ public class EndGameDetection extends CancelableThread {
 		Thread tmp =  new Thread() {
 		    public void run() {
 			EndGameDetection.this.jframe.pauseGame();
+			EndGameDetection.this.jframe.repaint();
 			try {
-			    Thread.sleep(10L);
+			    Thread.sleep(1000L);
 			} catch (InterruptedException e) {
 			    // TODO Auto-generated catch block
 			    e.printStackTrace();
@@ -61,12 +62,6 @@ public class EndGameDetection extends CancelableThread {
 			EndGameDetection.this.gameInfo.levelDone();
 		    }
 		};
-		try {
-		    Thread.sleep(1000L);
-		} catch (InterruptedException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		}
 		tmp.start();
 	    }
 	    try {
