@@ -407,6 +407,7 @@ public class GameInfoJPanel extends JPanel {
 	    this.jframe.level(this.idLevel);
 	    this.jframe.repaint();
 	}
+	this.jframe.pauseGame();
     }
 
     public void levelUp() {
