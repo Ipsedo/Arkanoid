@@ -8,6 +8,7 @@ import object.Ball;
 import object.Brick;
 import object.Paddle;
 import object.Score;
+import util.Sound;
 
 public class BallsBricksCollision extends CancelableThread {
 
@@ -51,6 +52,7 @@ public class BallsBricksCollision extends CancelableThread {
 			    Ball ba = this.balls.get(j);
 			    br.collide(ba);
 			    if (br.intersect(ba)) {
+				Sound.brickSound();
 				this.score.incrScore(br.getScore());
 				br.updateBalls(this.balls, this.jpanel, this.rand);
 				br.updatePaddle(this.paddle);

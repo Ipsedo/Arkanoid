@@ -7,6 +7,7 @@ import java.util.List;
 import object.Ball;
 import object.Brick;
 import object.Paddle;
+import util.Sound;
 
 public class PaddleAction extends CancelableThread {
 
@@ -33,6 +34,7 @@ public class PaddleAction extends CancelableThread {
 		for (int i = this.balls.size() - 1; i >= 0; i--) {
 		    this.paddle.collide(this.balls.get(i));
 		    if (this.paddle.intersect(this.balls.get(i))) {
+			Sound.paddleSound();
 			synchronized (CancelableThread.class) {
 			    CancelableThread.TIME_TO_WAIT -= 0.005f;
 			    if (CancelableThread.TIME_TO_WAIT < 0) {
