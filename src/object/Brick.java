@@ -109,21 +109,25 @@ public class Brick extends Item {
 					    * (float) super.getScreenHeight()));
 	}
 	// Bonus paddle size++
-	else if (this.isBonus == 1) {
-	    g2.setColor(Color.GREEN);
+	else if (this.isBonus == 2) {
+	    g2.setColor(new Color(46, 240, 113));
 	    g2.fillRect((int) ((super.mPosition[0] + 9 * super.width / 20f) * (float) super.getScreenWidth()), 
-		    	(int) ((super.mPosition[1] + 4 * super.height / 10f) * (float) super.getScreenHeight()) + 1,
+		    	(int) (super.mPosition[1] * (float) super.getScreenHeight()) + 2,
 		    	(int) (super.width / 10 * (float) super.getScreenWidth()), 
-		    	(int) (super.height * (float) super.getScreenHeight()) - 1);
+		    	(int) (super.height * (float) super.getScreenHeight()) - 3);
 	    
-	    g2.fillRect((int) ((super.mPosition[0] + 2 * super.width / 8) * (float) super.getScreenWidth()), 
-		    	(int) ((super.mPosition[1] + 4 * super.height / 10f) * (float) super.getScreenHeight()), 
-		    	(int) (super.width / 2 * (float) super.getScreenWidth()), 
+	    g2.fillRect((int) ((super.mPosition[0] + 6 * super.width / 20) * (float) super.getScreenWidth()), 
+		    	(int) ((super.mPosition[1] + 18 * super.height / 40f) * (float) super.getScreenHeight()), 
+		    	(int) (super.width / 3 * (float) super.getScreenWidth() + 3), 
 		    	(int) (super.height / 5 * (float) super.getScreenHeight()));
 	}
 	// Bonus paddle size--
 	else if (this.isBonus == 1) {
-
+	    g2.setColor(new Color(207, 0, 15));
+	    g2.fillRect((int) ((super.mPosition[0] + 6 * super.width / 20) * (float) super.getScreenWidth()), 
+		    	(int) ((super.mPosition[1] + 18 * super.height / 40f) * (float) super.getScreenHeight()), 
+		    	(int) (super.width / 3 * (float) super.getScreenWidth() + 3), 
+		    	(int) (super.height / 5 * (float) super.getScreenHeight()));
 	}
     }
 
