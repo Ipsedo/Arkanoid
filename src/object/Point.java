@@ -15,25 +15,26 @@ public class Point {
     private MyJPanel jpanel;
     
     public Point(float[] mPosition, Random rand, MyJPanel jpanel) {
+	float maxSpeed = rand.nextFloat() * 0.01f;
 	this.mPosition = mPosition;
-	double angle = rand.nextDouble();
-	this.mSpeed = new float[]{0.03f * (float) Math.cos(angle), 0.03f * (float) Math.sin(angle)};
+	double angle = rand.nextDouble() * Math.PI * 2d;
+	this.mSpeed = new float[]{maxSpeed * (float) Math.cos(angle), maxSpeed * (float) Math.sin(angle)};
 	this.jpanel = jpanel;
     }
     
     public void move() {
 	this.mPosition[0] += this.mSpeed[0];
 	this.mPosition[1] += this.mSpeed[1];
-	this.mSpeed[0] /= 2f;
-	this.mSpeed[1] /= 2f;
+	this.mSpeed[0] /= 1.1f;
+	this.mSpeed[1] /= 1.1f;
     }
     
     public boolean isAlive() {
-	return Vector.length2f(this.mPosition) > 0.01f;
+	return Vector.length2f(this.mSpeed) > 0.0001f;
     }
     
     public void draw(Graphics2D g2) {
-	g2.setColor(Color.RED);
+	g2.setColor(Color.BLACK);
 	g2.fillOval((int) (this.mPosition[0] * this.jpanel.getWidth()), (int) (this.mPosition[1] * this.jpanel.getHeight()), (int) (0.005f * this.jpanel.getWidth()),  (int) (0.005f * this.jpanel.getHeight()));	
     }
 

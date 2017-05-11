@@ -18,7 +18,6 @@ public class PointsAction extends CancelableThread {
 	    synchronized (this.points) {
 		for (int i = this.points.size() - 1; i >= 0; i--) {
 		    this.points.get(i).move();
-		    System.out.println(this.points.size());
 		    if (!this.points.get(i).isAlive()) {
 			this.points.remove(i);
 		    }
