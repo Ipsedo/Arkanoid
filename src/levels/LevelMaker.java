@@ -80,7 +80,11 @@ public class LevelMaker extends JFrame {
 				new float[2], new float[2], LevelMaker.this.jpanel,
 				LevelMaker.this.currBrickLife));
 		    } else {
-			
+			LevelMaker.this.bricks.add(Brick.makeBonusBrick(new float[] { (float) arg0
+				.getX() / (float) LevelMaker.this.jpanel.getWidth(), (float) arg0
+				.getY() / (float) LevelMaker.this.jpanel.getHeight() },
+			new float[2], new float[2], LevelMaker.this.jpanel,
+			LevelMaker.this.currBrickLife, LevelMaker.this.currBrickBonus));
 		    }
 		    LevelMaker.this.repaint();
 		}
@@ -233,7 +237,9 @@ public class LevelMaker extends JFrame {
 			    .parseFloat(tmp[1]) }, new float[2], new float[2], jpanel, Integer
 				    .parseInt(tmp[2])));
 		} else {
-
+		    res.add(Brick.makeBonusBrick(new float[] { Float.parseFloat(tmp[0]), Float
+			    .parseFloat(tmp[1]) }, new float[2], new float[2], jpanel, Integer
+				    .parseInt(tmp[2]), Integer.parseInt(tmp[3])));
 		}
 	    }
 	} catch (IOException ioe) {
