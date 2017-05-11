@@ -44,7 +44,8 @@ public class MyJPanel extends JPanel {
      * @param bricks
      * @param paddle
      */
-    public void init(List<Ball> balls, List<Brick> bricks, Paddle paddle, Score score, List<Point> points) {
+    public void init(List<Ball> balls, List<Brick> bricks, Paddle paddle, Score score,
+	    List<Point> points) {
 	this.balls = balls;
 	this.bricks = bricks;
 	this.paddle = paddle;
@@ -83,22 +84,26 @@ public class MyJPanel extends JPanel {
 	Graphics2D g2 = (Graphics2D) g;
 	g2.setBackground(new Color(189, 195, 199));
 	g2.clearRect(0, 0, super.getWidth(), super.getHeight());
-	
+
 	g2.setColor(new Color(236, 240, 241));
-	g2.fillRect(0, (int) (0.969 * this.getHeight()), this.getWidth(), (int) (0.016 * this.getHeight()));
+	g2.fillRect(0, (int) (0.969 * this.getHeight()), this.getWidth(), (int) (0.016 * this
+		.getHeight()));
 
 	if (this.isDead) {
 	    g2.drawImage(this.gameOverImage, 0, 0, this.getWidth(), super.getHeight(), null);
 	} else if (this.isWinner) {
-	    g2.drawImage(this.levelDone, (int) (0.1 * this.getWidth()), (int) (0.1 * this.getHeight()), (int) (0.8 * this.getWidth()), (int) (0.8 * this.getHeight()), null);
+	    g2.drawImage(this.levelDone, (int) (0.1 * this.getWidth()), (int) (0.1 * this
+		    .getHeight()), (int) (0.8 * this.getWidth()), (int) (0.8 * this.getHeight()),
+		    null);
 	} else {
 	    this.score.draw(g2);
 	    for (int i = 0; i < this.balls.size(); i++)
 		this.balls.get(i).draw(g2);
 	    for (int i = 0; i < this.bricks.size(); i++)
 		this.bricks.get(i).draw(g2);
-	    for(int i = this.points.size() - 1; i >= 0; i--) {
-		this.points.get(i).draw(g2);
+	    synchronized (this.points) {
+		for (int i = this.points.size() - 1; i >= 0; i--)
+		    this.points.get(i).draw(g2);
 	    }
 	    this.paddle.draw(g2);
 	}
