@@ -41,8 +41,8 @@ public class Brick extends Item {
      * @return
      */
     public static Brick makeBonusBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration,
-	    MyJPanel jpanel) {
-	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, 1, 1);
+	    MyJPanel jpanel, int life, int bonus) {
+	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, life, bonus);
     }
 
     /**
@@ -106,9 +106,14 @@ public class Brick extends Item {
 			    * (float) super.getScreenHeight()), (int) (super.height
 				    * (float) super.getScreenWidth()), (int) (super.height
 					    * (float) super.getScreenHeight()));
-	} else if (this.isBonus == 1) {
-	    
-	} else if (this.isBonus == 2) {
+	}
+	// Bonus paddle size++
+	else if (this.isBonus == 1) {
+	    g2.setColor(Color.GREEN);
+	    g2.fillRect((int) ((super.mPosition[0] + 9 * super.width / 20f) * (float) super.getScreenWidth()), 
+		    	(int) ((super.mPosition[1] + 4 * super.height / 10f) * (float) super.getScreenHeight()) + 1,
+		    	(int) (super.width / 10 * (float) super.getScreenWidth()), 
+		    	(int) (super.height * (float) super.getScreenHeight()) - 1);
 	    
 	}
     }

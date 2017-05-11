@@ -323,7 +323,7 @@ public class LevelMaker extends JFrame {
 		for (int j = 9; j < 10; j++) {
 		    float[] pos = new float[] { milieu + (float) i * (Brick.width + 0.01f), 0.1f
 			    + (float) j * (Brick.height + 0.01f) };
-		    res.add(Brick.makeBonusBrick(pos, speed, acc, jpanel));
+		    res.add(Brick.makeBonusBrick(pos, speed, acc, jpanel, 1, 1));
 		}
 	    }
 	} else if (levelId == 1) {
