@@ -155,6 +155,7 @@ public class GameInfoJPanel extends JPanel {
 		} else {
 		    GameInfoJPanel.this.jframe.startLevelFromFile((String) ie.getItem());
 		}
+		GameInfoJPanel.this.jframe.pauseGame();
 	    }
 
 	});
@@ -401,7 +402,7 @@ public class GameInfoJPanel extends JPanel {
 		this.idLevel++;
 	    }
 	    this.comboBox.setSelectedIndex(this.idLevel);
-	    this.jframe.level(this.idLevel);
+	    //this.jframe.level(this.idLevel);
 	}
     }
 

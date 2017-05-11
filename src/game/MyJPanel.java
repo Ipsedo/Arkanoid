@@ -47,7 +47,7 @@ public class MyJPanel extends JPanel {
      * @param paddle
      */
     public void init(List<Ball> balls, List<Brick> bricks, Paddle paddle, Score score,
-	    List<Particule> points) {
+	List<Particule> points) {
 	this.balls = balls;
 	this.bricks = bricks;
 	this.paddle = paddle;
@@ -62,6 +62,7 @@ public class MyJPanel extends JPanel {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
+	System.out.println("JPANEL INIT");
     }
 
     /**

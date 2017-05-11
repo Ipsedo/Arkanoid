@@ -34,7 +34,7 @@ public class Particule {
     }
     
     public void draw(Graphics2D g2) {
-	g2.setColor(Color.BLACK);
+	g2.setColor(Color.WHITE);
 	g2.fillOval((int) (this.mPosition[0] * this.jpanel.getWidth()), (int) (this.mPosition[1] * this.jpanel.getHeight()), (int) (0.005f * this.jpanel.getWidth()),  (int) (0.005f * this.jpanel.getHeight()));	
     }
 
