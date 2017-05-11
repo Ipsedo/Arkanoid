@@ -29,6 +29,10 @@ public class Paddle extends Item {
 	super.mPosition[0] = (float) x / super.getScreenWidth() - super.width / 2f;
 	super.mPosition[1] = 1f - initialHeight;
     }
+    
+    public void resetPaddle() {
+	super.width = 0.2f;
+    }
 
     /**
      * 

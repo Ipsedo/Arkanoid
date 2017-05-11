@@ -81,9 +81,10 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.setIconImage(new ImageIcon("icone_1.png").getImage());
 
 	// On appelle la creation de niveau depuis la classe LevelMaker
-	this.balls = LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()), this.jPanel);
+	this.balls = LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()),
+		this.jPanel);
 	this.bricks = LevelMaker.getBricksFromLevelID(0, this.jPanel);
-	//this.bricks = LevelMaker.createFromFile("test.txt", this.jPanel);
+	// this.bricks = LevelMaker.createFromFile("test.txt", this.jPanel);
 
 	this.paddle = new Paddle(this.jPanel);
 
@@ -148,9 +149,11 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.paddleBoundingThread.start();
 	this.ballsCollisionThread = new BallsCollision(this.balls);
 	this.ballsCollisionThread.start();
-	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks, this.score, this.jPanel, this.paddle);
+	this.ballsBricksCollisionThread = new BallsBricksCollision(this.balls, this.bricks,
+		this.score, this.jPanel, this.paddle);
 	this.ballsBricksCollisionThread.start();
-	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel, this, this.gameInfo);
+	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel,
+		this, this.gameInfo);
 	this.endGameDetectionThread.start();
     }
 
@@ -213,7 +216,12 @@ public class MyJFrame extends JFrame implements Runnable {
 	}
 	synchronized (this.balls) {
 	    this.balls.clear();
-	    this.balls.addAll(LevelMaker.getBallsFromLevelId(x, new Random(System.currentTimeMillis()), this.jPanel));
+	    this.balls.addAll(LevelMaker.getBallsFromLevelId(x, new Random(System
+		    .currentTimeMillis()), this.jPanel));
+	}
+
+	synchronized (this.paddle) {
+	    this.paddle.resetPaddle();
 	}
 
 	/*
@@ -230,21 +238,18 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	// this.pauseGame();
     }
-    
+
     public void startLevelFromFile(String fileName) {
-	
+
 	synchronized (this.bricks) {
 	    this.bricks.clear();
 	    this.bricks.addAll(LevelMaker.createFromFile(fileName, this.jPanel));
 	}
 	synchronized (this.balls) {
 	    this.balls.clear();
-	    this.balls.addAll(LevelMaker.getBallsFromLevelId(3 , new Random(System.currentTimeMillis()), this.jPanel));
+	    this.balls.addAll(LevelMaker.getBallsFromLevelId(3, new Random(System
+		    .currentTimeMillis()), this.jPanel));
 	}
-
-	/*
-	 * synchronized (this.score) { this.score.reset(); }
-	 */
 
 	synchronized (CancelableThread.class) {
 	    CancelableThread.TIME_TO_WAIT = 5f;

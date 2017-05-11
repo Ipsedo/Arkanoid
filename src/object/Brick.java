@@ -25,38 +25,11 @@ public class Brick extends Item {
      * @param life
      * @param isBonus
      */
-    private Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel,
+    public Brick(float[] mPosition, float[] mSpeed, float[] mAcceleration, MyJPanel jpanel,
 	    int life, int isBonus) {
 	super(mPosition, mSpeed, mAcceleration, width, height, jpanel);
 	this.life = life;
 	this.isBonus = isBonus;
-    }
-
-    /**
-     * 
-     * @param mPosition
-     * @param mSpeed
-     * @param mAcceleration
-     * @param jpanel
-     * @return
-     */
-    public static Brick makeBonusBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration,
-	    MyJPanel jpanel) {
-	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, 1, 1);
-    }
-
-    /**
-     * 
-     * @param mPosition
-     * @param mSpeed
-     * @param mAcceleration
-     * @param jpanel
-     * @param life
-     * @return
-     */
-    public static Brick makeSimpleBrick(float[] mPosition, float[] mSpeed, float[] mAcceleration,
-	    MyJPanel jpanel, int life) {
-	return new Brick(mPosition, mSpeed, mAcceleration, jpanel, life, 0);
     }
 
     public boolean intersect(Item other) {
@@ -82,10 +55,10 @@ public class Brick extends Item {
     }
 
     public void updatePaddle(Paddle paddle) {
-	if (this.isBonus == 1) {
-	    paddle.width += 0.05f;
-	} else if (this.isBonus == 2) {
-	    paddle.width -= 0.05f;
+	if (this.isBonus == 2 && paddle.width < 0.6f) {
+	    paddle.width += 0.02f;
+	} else if (this.isBonus == 1 && paddle.width > 0.11f) {
+	    paddle.width -= 0.02f;
 	}
     }
 
@@ -99,13 +72,34 @@ public class Brick extends Item {
 	}
 	super.draw(g2);
 
-	if (this.isBonus != 0) {
+	if (this.isBonus == 3) {
 	    g2.setColor(Color.BLACK);
 	    g2.fillOval((int) ((super.mPosition[0] + super.width / 2f - super.height / 2)
 		    * (float) super.getScreenWidth()), (int) (super.mPosition[1]
 			    * (float) super.getScreenHeight()), (int) (super.height
 				    * (float) super.getScreenWidth()), (int) (super.height
 					    * (float) super.getScreenHeight()));
+	}
+	// Bonus paddle size++
+	else if (this.isBonus == 2) {
+	    g2.setColor(new Color(46, 240, 113));
+	    g2.fillRect((int) ((super.mPosition[0] + 9 * super.width / 20f) * (float) super.getScreenWidth()), 
+		    	(int) ((super.mPosition[1] + super.height / 10f) * (float) super.getScreenHeight()),
+		    	(int) (super.width / 10 * (float) super.getScreenWidth()), 
+		    	(int) ((super.height - 0.004f) * (float) super.getScreenHeight()));
+	    
+	    g2.fillRect((int) ((super.mPosition[0] + 6 * super.width / 20) * (float) super.getScreenWidth()), 
+		    	(int) ((super.mPosition[1] + 18 * super.height / 40f) * (float) super.getScreenHeight()), 
+		    	(int) ((2 * super.width / 5 * (float) super.getScreenWidth())), 
+		    	(int) (super.height / 5 * (float) super.getScreenHeight()));
+	}
+	// Bonus paddle size--
+	else if (this.isBonus == 1) {
+	    g2.setColor(new Color(207, 0, 15));
+	    g2.fillRect((int) ((super.mPosition[0] + 6 * super.width / 20) * (float) super.getScreenWidth()), 
+		    	(int) ((super.mPosition[1] + 18 * super.height / 40f) * (float) super.getScreenHeight()), 
+		    	(int) (2 * super.width / 5 * (float) super.getScreenWidth()), 
+		    	(int) (super.height / 5 * (float) super.getScreenHeight()));
 	}
     }
 
