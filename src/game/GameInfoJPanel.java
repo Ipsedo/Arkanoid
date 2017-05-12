@@ -222,6 +222,10 @@ public class GameInfoJPanel extends JPanel {
 	this.jframe.addKeyListener(new KeyListener() {
 	    @Override
 	    public void keyPressed(KeyEvent arg0) {
+	    }
+
+	    @Override
+	    public void keyReleased(KeyEvent arg0) {
 		if (arg0.getKeyCode() == KeyEvent.VK_P) {
 		    GameInfoJPanel.this.pause();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_R) {
@@ -238,10 +242,6 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.idLevel = arg0.getKeyChar() - '0';
 		    GameInfoJPanel.this.comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
 		}
-	    }
-
-	    @Override
-	    public void keyReleased(KeyEvent arg0) {
 	    }
 
 	    @Override
