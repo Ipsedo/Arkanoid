@@ -24,10 +24,6 @@ public class Sound {
     public static void brickSound() {
 	Sound.playSound("./res/brick.wav");
     }
-    
-    public static void mainSound() {
-	Sound.playSound("./res/loop_funky_sam.wav");
-    }
 
     private static void playSound(String file) {
 	try {

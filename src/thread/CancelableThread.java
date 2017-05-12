@@ -16,7 +16,7 @@ public class CancelableThread extends Thread {
     }
 
     /**
-     * 
+     * Passer
      * @param canceled
      */
     public void setCancel(boolean canceled) {
