@@ -92,7 +92,7 @@ public class GameInfoJPanel extends JPanel {
 	centerPanel.setLayout(new BorderLayout());
 
 	// Declaration et affectation du comboBox
-	// comboBox contient la liste des niveaux par défault du jeu
+	// comboBox contient la liste des niveaux par dï¿½fault du jeu
 	final String[] levelList = { Level_0, Level_1, Level_2, Level_3, Level_4, Level_5,
 		Level_6 };
 	this.comboBox = new JComboBox<String>(levelList);
@@ -234,10 +234,6 @@ public class GameInfoJPanel extends JPanel {
 		    GameInfoJPanel.this.start();
 		} else if (arg0.getKeyCode() == KeyEvent.VK_T) {
 		    GameInfoJPanel.this.retry();
-		} else if (arg0.getKeyCode() == KeyEvent.VK_B) {
-		    GameInfoJPanel.this.back();
-		} else if (arg0.getKeyCode() == KeyEvent.VK_N) {
-		    GameInfoJPanel.this.next();
 		} else if (arg0.getKeyChar() >= '0' && arg0.getKeyChar() <= '6') {
 		    GameInfoJPanel.this.idLevel = arg0.getKeyChar() - '0';
 		    GameInfoJPanel.this.comboBox.setSelectedIndex(GameInfoJPanel.this.idLevel);
