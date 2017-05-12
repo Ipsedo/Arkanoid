@@ -79,7 +79,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.jPanel = new MyJPanel();
 	super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
 	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
-	this.setIconImage(new ImageIcon("./res/icone_1.png").getImage());
+	this.setIconImage(new ImageIcon("./res/iconLabel.png").getImage());
 
 	// On appelle la creation de niveau depuis la classe LevelMaker
 	this.balls = LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()),
