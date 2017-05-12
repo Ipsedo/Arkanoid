@@ -214,7 +214,7 @@ public class LevelMaker extends JFrame {
      */
     public void toFile(String fileName) {
 	try {
-	    PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+	    PrintWriter writer = new PrintWriter("./res/" + fileName, "UTF-8");
 	    for (Brick b : this.bricks)
 		writer.write(b + "\n");
 	    writer.close();
@@ -236,7 +236,7 @@ public class LevelMaker extends JFrame {
 	List<Brick> res = new ArrayList<Brick>();
 	try {
 	    @SuppressWarnings("resource")
-	    BufferedReader br = new BufferedReader(new FileReader(fileName));
+	    BufferedReader br = new BufferedReader(new FileReader("./res/" + fileName));
 	    String line;
 	    while ((line = br.readLine()) != null) {
 		String[] tmp = line.split(" ");
@@ -266,27 +266,9 @@ public class LevelMaker extends JFrame {
      * @return La liste de balle du niveau
      */
     public static List<Ball> getBallsFromLevelId(int levelId, Random rand, MyJPanel jpanel) {
-	// LEVEL 0
-	if (levelId == 0) {
+	// LEVEL 0 - 1 - 2
+	if (levelId >= 0 && levelId <= 2) {
 	    int nbBall = 4;
-	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
-	    for (int i = 0; i < nbBall; i++) {
-		res.add(new Ball(rand, jpanel));
-	    }
-	    return res;
-	}
-	// LEVEL 1
-	else if (levelId == 1) {
-	    int nbBall = 4;
-	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
-	    for (int i = 0; i < nbBall; i++) {
-		res.add(new Ball(rand, jpanel));
-	    }
-	    return res;
-	}
-	// LEVEL 2
-	else if (levelId == 3) {
-	    int nbBall = 40;
 	    List<Ball> res = Collections.synchronizedList(new ArrayList<Ball>());
 	    for (int i = 0; i < nbBall; i++) {
 		res.add(new Ball(rand, jpanel));
