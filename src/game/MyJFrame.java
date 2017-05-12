@@ -29,6 +29,7 @@ import thread.EndGameDetection;
 import thread.PaddleAction;
 import thread.PaddleMove;
 import thread.PointsAction;
+import util.Sound;
 
 public class MyJFrame extends JFrame implements Runnable {
 
@@ -84,7 +85,7 @@ public class MyJFrame extends JFrame implements Runnable {
 
 	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
 
-	this.setIconImage(new ImageIcon("icone_1.png").getImage());
+	this.setIconImage(new ImageIcon("./res/icone_1.png").getImage());
 
 	// On appelle la creation de niveau depuis la classe LevelMaker
 	this.balls = LevelMaker.getBallsFromLevelId(0, new Random(System.currentTimeMillis()),

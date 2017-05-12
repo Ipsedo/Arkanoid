@@ -56,9 +56,9 @@ public class MyJPanel extends JPanel {
 	this.score = score;
 	this.points = points;
 	try {
-	    this.gameOverImage = ImageIO.read(new File("game_over.png"));
-	    this.levelDone = ImageIO.read(new File("level_done.png"));
-	    this.background = new Random(System.currentTimeMillis()).nextBoolean() ? ImageIO.read(new File("wall_3.jpg")) : ImageIO.read(new File("wall_2.jpg"));
+	    this.gameOverImage = ImageIO.read(new File("./res/game_over.png"));
+	    this.levelDone = ImageIO.read(new File("./res/level_done.png"));
+	    this.background = new Random(System.currentTimeMillis()).nextBoolean() ? ImageIO.read(new File("./res/wall_1.jpg")) : ImageIO.read(new File("./res/wall_2.jpg"));
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}

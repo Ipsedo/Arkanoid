@@ -14,29 +14,33 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Sound {
 
     public static void paddleSound() {
-	Sound.playSound("paddle.wav");
+	Sound.playSound("./res/paddle.wav");
     }
 
     public static void bonusSound() {
-	Sound.playSound("bonus.wav");
+	Sound.playSound("./res/bonus.wav");
     }
 
     public static void brickSound() {
-	Sound.playSound("brick.wav");
+	Sound.playSound("./res/brick.wav");
+    }
+    
+    public static void mainSound() {
+	Sound.playSound("./res/loop_funky_sam.wav");
     }
 
     private static void playSound(String file) {
 	try {
-	    File soundFile = new File("brick.wav");
+	    File soundFile = new File(file);
 	    AudioInputStream stream = AudioSystem.getAudioInputStream(soundFile);
 	    AudioFormat format = stream.getFormat();
 	    DataLine.Info info = new DataLine.Info(Clip.class, format);
 	    Clip clip = (Clip) AudioSystem.getLine(info);
+	    
 	    clip.start();
 	} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-
     }
 }

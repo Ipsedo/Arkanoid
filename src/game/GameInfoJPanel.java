@@ -364,7 +364,7 @@ public class GameInfoJPanel extends JPanel {
 
     public ArrayList<String> listFile() {
 	ArrayList<String> res = new ArrayList<>();
-	File directory = new File("./");
+	File directory = new File("./res/");
 	File[] fList = directory.listFiles();
 
 	for (File file : fList) {
