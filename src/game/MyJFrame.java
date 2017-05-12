@@ -26,10 +26,9 @@ import thread.BallsCollision;
 import thread.BallsMove;
 import thread.CancelableThread;
 import thread.EndGameDetection;
+import thread.ExplosionAction;
 import thread.PaddleAction;
 import thread.PaddleMove;
-import thread.ExplosionAction;
-import util.Sound;
 
 public class MyJFrame extends JFrame implements Runnable {
 
