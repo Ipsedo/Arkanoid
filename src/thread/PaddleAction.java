@@ -1,11 +1,8 @@
 package thread;
 
-import game.MyJFrame;
-
 import java.util.List;
 
 import object.Ball;
-import object.Brick;
 import object.Paddle;
 import util.Sound;
 

@@ -1,10 +1,9 @@
 package thread;
 
-import game.MyJPanel;
-
 import java.util.List;
 import java.util.Random;
 
+import game.MyJPanel;
 import object.Ball;
 import object.Brick;
 import object.Paddle;

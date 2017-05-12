@@ -2,11 +2,9 @@ package object;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
-
-import util.Vector;
 
 import game.MyJPanel;
+import util.Vector;
 
 public class Paddle extends Item {
 

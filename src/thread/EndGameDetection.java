@@ -1,11 +1,10 @@
 package thread;
 
+import java.util.List;
+
 import game.GameInfoJPanel;
 import game.MyJFrame;
 import game.MyJPanel;
-
-import java.util.List;
-
 import object.Ball;
 import object.Brick;
 

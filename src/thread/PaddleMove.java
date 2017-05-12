@@ -1,6 +1,5 @@
 package thread;
 
-import object.Ball;
 import object.Paddle;
 
 public class PaddleMove extends CancelableThread {

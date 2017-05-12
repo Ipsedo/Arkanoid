@@ -1,11 +1,10 @@
 package object;
 
-import game.MyJPanel;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Random;
 
+import game.MyJPanel;
 import util.Vector;
 
 public class Particule {
