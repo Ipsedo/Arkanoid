@@ -46,7 +46,7 @@ public class LevelMaker extends JFrame {
 	    "Paddle size -" };
 
     /**
-     * Creation des niveaux
+     * Creation de niveau avec editeur
      */
     public LevelMaker() {
 	super("Arkanoid - LevelMaker");
@@ -56,7 +56,10 @@ public class LevelMaker extends JFrame {
 
 	this.bricks = Collections.synchronizedList(new ArrayList<Brick>());
 	this.fileName = "myFile";
+	this.currBrickLife = 1;
 
+	// On surcharge la methode paintComponent(...) pour ne dessiner que les
+	// briques
 	this.jpanel = new MyJPanel() {
 	    @Override
 	    public void paintComponent(Graphics g) {
@@ -69,6 +72,7 @@ public class LevelMaker extends JFrame {
 	    }
 	};
 
+	// Ajout d'une brique lors d'un clique de la souris
 	this.jpanel.addMouseListener(new MouseListener() {
 	    @Override
 	    public void mouseClicked(MouseEvent arg0) {
@@ -101,15 +105,16 @@ public class LevelMaker extends JFrame {
 	});
 
 	JButton save = new JButton("Save");
-	save.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent arg0) {
-		LevelMaker.this.toFile(LevelMaker.this.fileName + ".txt");
-	    }
-	});
-
 	JButton undo = new JButton("Undo");
+	JTextField jTextField = new JTextField();
+	jTextField.setText(this.fileName);
+	jTextField.setColumns(10);
+	JComboBox<Integer> lifeChooser = new JComboBox<Integer>(this.brickLife);
+	lifeChooser.setEditable(false);
+	JComboBox<String> bonusChooser = new JComboBox<String>(this.brickBonus);
+	bonusChooser.setEditable(false);
 
+	// On supprime la dernière brique ajoutee
 	undo.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent arg0) {
@@ -122,10 +127,15 @@ public class LevelMaker extends JFrame {
 
 	});
 
-	JTextField jTextField = new JTextField();
-	jTextField.setText("myFile");
-	jTextField.setColumns(10);
+	// On sauvegarde le niveau edite selon le nom donne au niveau
+	save.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent arg0) {
+		LevelMaker.this.toFile(LevelMaker.this.fileName + ".txt");
+	    }
+	});
 
+	// On enregistre le nom donnee au fichier que l'on veu sauver
 	jTextField.addCaretListener(new CaretListener() {
 	    @Override
 	    public void caretUpdate(CaretEvent arg0) {
@@ -133,11 +143,7 @@ public class LevelMaker extends JFrame {
 	    }
 	});
 
-	this.currBrickLife = 1;
-
-	JComboBox<Integer> lifeChooser = new JComboBox<Integer>(this.brickLife);
-	lifeChooser.setEditable(false);
-
+	// On enregistre le niveau de vie de la brique a sauvegarder
 	lifeChooser.addItemListener(new ItemListener() {
 	    @Override
 	    public void itemStateChanged(ItemEvent arg0) {
@@ -145,8 +151,7 @@ public class LevelMaker extends JFrame {
 	    }
 	});
 
-	JComboBox<String> bonusChooser = new JComboBox<String>(this.brickBonus);
-	bonusChooser.setEditable(false);
+	// On enregistre le bonus de la brique a sauvegarder
 	bonusChooser.addItemListener(new ItemListener() {
 
 	    @Override
@@ -201,6 +206,12 @@ public class LevelMaker extends JFrame {
 	super.setVisible(true);
     }
 
+    /**
+     * On sauve le niveau editer selon le nom du fichier donne sous format .txt
+     * 
+     * @param fileName
+     *            Le nom du fichier (sans l'extension !)
+     */
     public void toFile(String fileName) {
 	try {
 	    PrintWriter writer = new PrintWriter(fileName, "UTF-8");
@@ -212,6 +223,15 @@ public class LevelMaker extends JFrame {
 	}
     }
 
+    /**
+     * Cree un niveau selon un fichier passe en argument
+     * 
+     * @param fileName
+     *            Le nom du fichier contenant le niveau
+     * @param jpanel
+     *            Le MyJPanel contenant le graphisme
+     * @return La liste de brique du niveau charge
+     */
     public static List<Brick> createFromFile(String fileName, MyJPanel jpanel) {
 	List<Brick> res = new ArrayList<Brick>();
 	try {
@@ -229,13 +249,21 @@ public class LevelMaker extends JFrame {
 	}
 	return res;
     }
+    
+    /*
+     * Cette partie du code suivante genere les niveaux de bases (pas ceux que l'utilisateur cree) 
+     */
 
     /**
+     * Retourne la liste de balle selon le niveau
      * 
      * @param levelId
+     *            L'identifiant du niveau
      * @param rand
+     *            Un objet Random pour la generation aleatoire de position
      * @param jpanel
-     * @return
+     *            Le MyJPanel contenant le graphisme
+     * @return La liste de balle du niveau
      */
     public static List<Ball> getBallsFromLevelId(int levelId, Random rand, MyJPanel jpanel) {
 	// LEVEL 0
@@ -246,7 +274,7 @@ public class LevelMaker extends JFrame {
 		res.add(new Ball(rand, jpanel));
 	    }
 	    return res;
-	} 
+	}
 	// LEVEL 1
 	else if (levelId == 1) {
 	    int nbBall = 4;
@@ -255,7 +283,7 @@ public class LevelMaker extends JFrame {
 		res.add(new Ball(rand, jpanel));
 	    }
 	    return res;
-	} 
+	}
 	// LEVEL 2
 	else if (levelId == 3) {
 	    int nbBall = 40;
@@ -264,7 +292,7 @@ public class LevelMaker extends JFrame {
 		res.add(new Ball(rand, jpanel));
 	    }
 	    return res;
-	} 
+	}
 	// LEVEL >= 3
 	else {
 	    int nbBall = 3;
@@ -277,10 +305,13 @@ public class LevelMaker extends JFrame {
     }
 
     /**
+     * Retourne la liste de brique selon l'identifiant du niveau
      * 
      * @param levelId
+     *            L'identifiant du niveau
      * @param jpanel
-     * @return
+     *            Le MyJpanel contenant le graphisme
+     * @return La liste de brique du niveau
      */
     public static List<Brick> getBricksFromLevelID(int levelId, MyJPanel jpanel) {
 	List<Brick> res = Collections.synchronizedList(new ArrayList<Brick>());
