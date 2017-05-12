@@ -7,8 +7,10 @@ public class CancelableThread extends Thread {
     protected boolean canceled;
 
     /**
+     * Initialise une thread ayant un attribut boolean pour la fin de thread
      * 
      * @param name
+     *            Le nom de la Thread
      */
     public CancelableThread(String name) {
 	super(name);
@@ -16,8 +18,10 @@ public class CancelableThread extends Thread {
     }
 
     /**
-     * Passer
+     * Passer La condition de boucle de la thread
+     * 
      * @param canceled
+     *            Le boolean à passer
      */
     public void setCancel(boolean canceled) {
 	this.canceled = canceled;

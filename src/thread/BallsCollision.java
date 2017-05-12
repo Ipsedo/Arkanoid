@@ -9,8 +9,10 @@ public class BallsCollision extends CancelableThread {
     private List<Ball> balls;
 
     /**
+     * BallsCollision : Thread permettant les collision inter-balles
      * 
      * @param balls
+     *            La liste de balles
      */
     public BallsCollision(List<Ball> balls) {
 	super("BallsCollision");
@@ -18,7 +20,8 @@ public class BallsCollision extends CancelableThread {
     }
 
     /**
-     * 
+     * On check les collisions de balles et on les fait rebondir si il y a
+     * collision
      */
     public void run() {
 	while (!this.canceled) {

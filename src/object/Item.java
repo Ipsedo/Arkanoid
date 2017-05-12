@@ -28,16 +28,23 @@ public class Item {
     protected Color color;
 
     /**
+     * Initialise une item de base pour notre jeu
      * 
      * @param mPosition
+     *            La position
      * @param mSpeed
+     *            La vitesse
      * @param mAcceleration
+     *            L'acceleration
      * @param width
+     *            La largeur de l'item
      * @param height
+     *            La hauteur de l'item
      * @param jpanel
+     *            Le MyJPanel contenant le graphisme
      */
-    public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, float width,
-	    float height, MyJPanel jpanel) {
+    public Item(float[] mPosition, float[] mSpeed, float[] mAcceleration, float width, float height,
+	    MyJPanel jpanel) {
 	this.mPosition = mPosition.clone();
 	this.mSpeed = mSpeed.clone();
 	this.mAcceleration = mAcceleration.clone();
@@ -51,17 +58,22 @@ public class Item {
     }
 
     /**
+     * Detection de collision entre deux items
      * 
      * @param other
-     * @return
+     *            L'item entrant ou non en collision
+     * @return Vrai si il y a collision
      */
     public boolean intersect(Item other) {
 	return this.rect.intersects(other.rect);
     }
 
     /**
+     * Detecte le cote de collision d'un item avec un autre et modifie la
+     * vitesse selon le cote de la collision
      * 
      * @param other
+     *            L'item a faire rebondir
      */
     public void collide(Item other) {
 	if (other.rect.intersectsLine(this.mPosition[0], this.mPosition[1], this.mPosition[0]
@@ -83,8 +95,10 @@ public class Item {
     }
 
     /**
+     * Faire bouger l'objet selon son acceleration et sa vitesse
      * 
      * @param acceleration
+     *            L'acceleration a affecter
      */
     public void move(float[] acceleration) {
 	this.mAcceleration = acceleration.clone();
@@ -99,34 +113,38 @@ public class Item {
     }
 
     /**
+     * Retourne la largeur du MyJPanel
      * 
-     * @return
+     * @return ScreenWidth
      */
     public int getScreenWidth() {
 	return this.jpanel.getWidth();
     }
 
     /**
+     * Retourne la hauteur du MyJPanel
      * 
-     * @return
+     * @return ScreenHeight
      */
     public int getScreenHeight() {
 	return this.jpanel.getHeight();
     }
 
     /**
+     * Dessine un rectangle de couleur noir
      * 
      * @param g2
+     *            L'objet Graphics2D permettant le dessin
      */
     public void draw(Graphics2D g2) {
 	g2.fillRect((int) (this.mPosition[0] * (float) this.jpanel.getWidth()),
-		(int) (this.mPosition[1] * (float) this.jpanel.getHeight()),
-		(int) (this.width * (float) this.jpanel.getWidth()),
-		(int) (this.height * (float) this.jpanel.getHeight()));
+		(int) (this.mPosition[1] * (float) this.jpanel.getHeight()), (int) (this.width
+			* (float) this.jpanel.getWidth()), (int) (this.height * (float) this.jpanel
+				.getHeight()));
 	g2.setColor(Color.BLACK);
 	g2.drawRect((int) (this.mPosition[0] * (float) this.jpanel.getWidth()),
-		(int) (this.mPosition[1] * (float) this.jpanel.getHeight()),
-		(int) (this.width * (float) this.jpanel.getWidth()),
-		(int) (this.height * (float) this.jpanel.getHeight()));
+		(int) (this.mPosition[1] * (float) this.jpanel.getHeight()), (int) (this.width
+			* (float) this.jpanel.getWidth()), (int) (this.height * (float) this.jpanel
+				.getHeight()));
     }
 }

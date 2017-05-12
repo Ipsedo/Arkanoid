@@ -9,8 +9,10 @@ public class BallsMove extends CancelableThread {
     private List<Ball> balls;
 
     /**
+     * BallsMove : Thread permettant le deplacement des balles
      * 
      * @param balls
+     *            La liste de balles
      */
     public BallsMove(List<Ball> balls) {
 	super("BallsMove");
@@ -18,7 +20,7 @@ public class BallsMove extends CancelableThread {
     }
 
     /**
-     * 
+     * On fait bouger les balles une a une
      */
     public void run() {
 	while (!this.canceled) {

@@ -28,7 +28,7 @@ import thread.CancelableThread;
 import thread.EndGameDetection;
 import thread.PaddleAction;
 import thread.PaddleMove;
-import thread.PointsAction;
+import thread.ExplosionAction;
 import util.Sound;
 
 public class MyJFrame extends JFrame implements Runnable {
@@ -56,7 +56,7 @@ public class MyJFrame extends JFrame implements Runnable {
     private BallsCollision ballsCollisionThread;
     private BallsBricksCollision ballsBricksCollisionThread;
     private EndGameDetection endGameDetectionThread;
-    private PointsAction pointsActionThread;
+    private ExplosionAction pointsActionThread;
 
     /**
      * 
@@ -163,7 +163,7 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.endGameDetectionThread = new EndGameDetection(this.balls, this.bricks, this.jPanel,
 		this, this.gameInfo);
 	this.endGameDetectionThread.start();
-	this.pointsActionThread = new PointsAction(this.points);
+	this.pointsActionThread = new ExplosionAction(this.points);
 	this.pointsActionThread.start();
 	
 	System.out.println("INIT");

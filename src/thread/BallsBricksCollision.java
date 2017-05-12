@@ -23,12 +23,21 @@ public class BallsBricksCollision extends CancelableThread {
     private List<Particule> points;
 
     /**
+     * BallsBrickCollision : Thread permettant le rebond des balles sur les
+     * briques, la suppression de briques et l'ajout de bonus
      * 
      * @param balls
+     *            La liste de balles
      * @param bricks
+     *            La liste de briques
      * @param score
+     *            Le score courant
      * @param jpanel
+     *            Le MyJPanel contenant le graphisme
      * @param paddle
+     *            La raquette
+     * @param points
+     *            Les points composants les explosions
      */
     public BallsBricksCollision(List<Ball> balls, List<Brick> bricks, Score score, MyJPanel jpanel,
 	    Paddle paddle, List<Particule> points) {
@@ -43,7 +52,9 @@ public class BallsBricksCollision extends CancelableThread {
     }
 
     /**
-     * 
+     * On check les collisions balles - briques, si il y a intersection on
+     * incremente le score, on cree une explosion, et on check si il y a bonus.
+     * Pour finir, on supprime les briques mortes.
      */
     public void run() {
 	Random rand = new Random(System.currentTimeMillis());

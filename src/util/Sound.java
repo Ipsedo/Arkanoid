@@ -11,6 +11,9 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * Ne fonctionne pas sur nos PC...
+ */
 public class Sound {
 
     public static void paddleSound() {
@@ -32,7 +35,7 @@ public class Sound {
 	    AudioFormat format = stream.getFormat();
 	    DataLine.Info info = new DataLine.Info(Clip.class, format);
 	    Clip clip = (Clip) AudioSystem.getLine(info);
-	    
+
 	    clip.start();
 	} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 	    // TODO Auto-generated catch block

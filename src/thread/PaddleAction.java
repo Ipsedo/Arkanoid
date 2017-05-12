@@ -15,9 +15,13 @@ public class PaddleAction extends CancelableThread {
     private List<Ball> balls;
 
     /**
+     * PaddleAction : Thread permettant le rebond balles - raquette ainsi que
+     * l'acceleration legere du jeu
      * 
      * @param balls
+     *            La liste de balles
      * @param paddle
+     *            La raquette
      */
     public PaddleAction(List<Ball> balls, Paddle paddle) {
 	super("PaddleAction");
@@ -26,7 +30,8 @@ public class PaddleAction extends CancelableThread {
     }
 
     /**
-     * 
+     * On fait rebondir les balles avec la raquette et si il y a intersection on
+     * accelere le jeu
      */
     public void run() {
 	while (!this.canceled) {
