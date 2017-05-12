@@ -108,6 +108,7 @@ public class GameInfoJPanel extends JPanel {
 	reset.setBackground(new Color(189, 195, 199));
 
 	sound.setHorizontalAlignment(JCheckBox.CENTER);
+	sound.setFocusable(false);
 
 	centerPanel.add(modeBox, BorderLayout.NORTH);
 
@@ -131,9 +132,7 @@ public class GameInfoJPanel extends JPanel {
 	this.comboBox.addItemListener(new ItemListener() {
 	    @Override
 	    public void itemStateChanged(ItemEvent ie) {
-		System.out.println("State");
 		if (!GameInfoJPanel.this.editMode && ie.getStateChange() == ItemEvent.SELECTED) {
-		    System.out.println("Changé");
 		    GameInfoJPanel.this.idLevel = GameInfoJPanel.this.comboBox.getSelectedIndex();
 		    GameInfoJPanel.this.jframe.level(GameInfoJPanel.this.idLevel);
 		} else if (ie.getStateChange() == ItemEvent.SELECTED) {
