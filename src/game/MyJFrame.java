@@ -59,7 +59,7 @@ public class MyJFrame extends JFrame implements Runnable {
     private PointsAction pointsActionThread;
 
     /**
-     * 
+     * Fenetre principale du jeu
      */
     public MyJFrame() {
 	super("Arkanoid");
@@ -77,14 +77,9 @@ public class MyJFrame extends JFrame implements Runnable {
 	});
 
 	this.myIdLevel = 0;
-
 	this.jPanel = new MyJPanel();
 	super.getContentPane().add(this.jPanel, BorderLayout.CENTER);
-
-	super.pack();
-
 	super.setSize(MyJFrame.WIDTH, MyJFrame.HEIGHT);
-
 	this.setIconImage(new ImageIcon("./res/icone_1.png").getImage());
 
 	// On appelle la creation de niveau depuis la classe LevelMaker
@@ -92,14 +87,13 @@ public class MyJFrame extends JFrame implements Runnable {
 		this.jPanel);
 	this.bricks = LevelMaker.getBricksFromLevelID(0, this.jPanel);
 	this.points = Collections.synchronizedList(new ArrayList<Particule>());
-	
-	
-	this.paddle = new Paddle(this.jPanel);
 
+	this.paddle = new Paddle(this.jPanel);
 	this.score = new Score(this.jPanel);
 
+	// Ecoute l'action de la sourie sur le JPanel du jeu et affecte la
+	// nouvelle postion de la raquette
 	this.jPanel.addMouseMotionListener(new MouseMotionListener() {
-
 	    @Override
 	    public void mouseDragged(MouseEvent e) {
 		synchronized (MyJFrame.this.paddle) {
@@ -113,7 +107,6 @@ public class MyJFrame extends JFrame implements Runnable {
 		    MyJFrame.this.paddle.setPos(e.getX());
 		}
 	    }
-
 	});
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score, this.points);
@@ -122,18 +115,22 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.jPanel.repaint();
 
 	this.gameInfo = new GameInfoJPanel(this, this.myIdLevel);
-
 	super.getContentPane().add(this.gameInfo, BorderLayout.EAST);
-
 	super.setVisible(true);
     }
 
+    /**
+     * Remet le score a zero
+     */
     public void clearScore() {
 	synchronized (this.score) {
 	    this.score.reset();
 	}
     }
 
+    /**
+     * Divise le score par deux
+     */
     public void divScore() {
 	synchronized (this.score) {
 	    this.score.divByTwo();
@@ -141,7 +138,7 @@ public class MyJFrame extends JFrame implements Runnable {
     }
 
     /**
-     * Initialisation des Threads de jeu
+     * Initialisation des Threads du jeu
      */
     private void initThreads() {
 	this.closed = false;
@@ -165,15 +162,15 @@ public class MyJFrame extends JFrame implements Runnable {
 	this.endGameDetectionThread.start();
 	this.pointsActionThread = new PointsAction(this.points);
 	this.pointsActionThread.start();
-	
+
 	System.out.println("INIT");
     }
 
     /**
-     * Terminer toutes les Threads de jeu
+     * Terminer toutes les Threads du jeu
      */
     private void killThreads() {
-	
+
 	this.closed = true;
 	this.ballsMoveThread.setCancel(true);
 	this.ballsBoundingThread.setCancel(true);
@@ -222,6 +219,7 @@ public class MyJFrame extends JFrame implements Runnable {
      * Creation de level
      * 
      * @param x
+     *            Identifiant du niveau que l'on souhaite afficher/lancer
      */
     public void level(int x) {
 	this.myIdLevel = x;
@@ -239,26 +237,24 @@ public class MyJFrame extends JFrame implements Runnable {
 	synchronized (this.paddle) {
 	    this.paddle.resetPaddle();
 	}
-	
+
 	synchronized (this.points) {
 	    this.points.clear();
 	}
-
-	/*
-	 * synchronized (this.score) { this.score.reset(); }
-	 */
 
 	synchronized (CancelableThread.class) {
 	    CancelableThread.TIME_TO_WAIT = 5f;
 	}
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score, this.points);
-
 	this.jPanel.repaint();
-
-	// this.pauseGame();
     }
 
+    /**
+     * Creation du niveau en mode 'Edit' a partir du fichier choisi
+     * 
+     * @param fileName Nom du fichier
+     */
     public void startLevelFromFile(String fileName) {
 
 	synchronized (this.bricks) {
@@ -274,13 +270,12 @@ public class MyJFrame extends JFrame implements Runnable {
 	synchronized (CancelableThread.class) {
 	    CancelableThread.TIME_TO_WAIT = 5f;
 	}
-	
+
 	synchronized (this.points) {
 	    this.points.clear();
 	}
 
 	this.jPanel.init(this.balls, this.bricks, this.paddle, this.score, this.points);
-
 	this.jPanel.repaint();
     }
 
@@ -300,7 +295,12 @@ public class MyJFrame extends JFrame implements Runnable {
 	}
     }
 
+    /**
+     * Fonction main
+     * 
+     * @param args Inutilise dans le programme
+     */
     public static void main(String[] args) {
-	MyJFrame frame = new MyJFrame();
+	new MyJFrame();
     }
 }
